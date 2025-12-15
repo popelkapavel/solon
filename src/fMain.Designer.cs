@@ -36,6 +36,16 @@
       this.timer = new System.Windows.Forms.Timer(this.components);
       this.bBg = new System.Windows.Forms.Button();
       this.panel = new System.Windows.Forms.Panel();
+      this.pictureBox36 = new System.Windows.Forms.PictureBox();
+      this.pictureBox35 = new System.Windows.Forms.PictureBox();
+      this.pictureBox34 = new System.Windows.Forms.PictureBox();
+      this.pictureBox33 = new System.Windows.Forms.PictureBox();
+      this.pictureBox32 = new System.Windows.Forms.PictureBox();
+      this.bShd = new System.Windows.Forms.Button();
+      this.button1 = new System.Windows.Forms.Button();
+      this.bdelb = new System.Windows.Forms.Button();
+      this.bRename = new System.Windows.Forms.Button();
+      this.bDown = new System.Windows.Forms.Button();
       this.bUp = new System.Windows.Forms.Button();
       this.tName = new System.Windows.Forms.TextBox();
       this.bAdd = new System.Windows.Forms.Button();
@@ -43,9 +53,9 @@
       this.bLoad = new System.Windows.Forms.Button();
       this.lMoves = new System.Windows.Forms.TextBox();
       this.cbSet = new System.Windows.Forms.ComboBox();
-      this.checkBox2 = new System.Windows.Forms.CheckBox();
-      this.chOnOffC = new System.Windows.Forms.PictureBox();
-      this.checkBox1 = new System.Windows.Forms.CheckBox();
+      this.chOnOffC = new System.Windows.Forms.CheckBox();
+      this.pbox24 = new System.Windows.Forms.PictureBox();
+      this.chOnOff3 = new System.Windows.Forms.CheckBox();
       this.pictureBox31 = new System.Windows.Forms.PictureBox();
       this.chOnOffO = new System.Windows.Forms.CheckBox();
       this.pictureBox30 = new System.Windows.Forms.PictureBox();
@@ -74,11 +84,11 @@
       this.bHori = new System.Windows.Forms.Button();
       this.bRota = new System.Windows.Forms.Button();
       this.groupBox3 = new System.Windows.Forms.GroupBox();
-      this.pictureBox23 = new System.Windows.Forms.PictureBox();
       this.pictureBox22 = new System.Windows.Forms.PictureBox();
+      this.shifter = new System.Windows.Forms.RadioButton();
+      this.pictureBox23 = new System.Windows.Forms.PictureBox();
       this.pictureBox21 = new System.Windows.Forms.PictureBox();
       this.onoff = new System.Windows.Forms.RadioButton();
-      this.shifter = new System.Windows.Forms.RadioButton();
       this.sol = new System.Windows.Forms.RadioButton();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
       this.deca = new System.Windows.Forms.RadioButton();
@@ -118,34 +128,32 @@
       this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
       this.miFileExit = new System.Windows.Forms.ToolStripMenuItem();
-      this.miEdit = new System.Windows.Forms.ToolStripMenuItem();
-      this.miEditUndo = new System.Windows.Forms.ToolStripMenuItem();
-      this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.miGame = new System.Windows.Forms.ToolStripMenuItem();
+      this.miGameUndo = new System.Windows.Forms.ToolStripMenuItem();
+      this.miGameRedo = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+      this.miGameSol = new System.Windows.Forms.ToolStripMenuItem();
+      this.miGameOnOff = new System.Windows.Forms.ToolStripMenuItem();
+      this.miGameShift = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+      this.miGamePlay = new System.Windows.Forms.ToolStripMenuItem();
+      this.miEdit = new System.Windows.Forms.ToolStripMenuItem();
       this.miEditClear = new System.Windows.Forms.ToolStripMenuItem();
       this.miEditInvert = new System.Windows.Forms.ToolStripMenuItem();
-      this.miEditBlur = new System.Windows.Forms.ToolStripMenuItem();
-      this.layersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-      this.miHill = new System.Windows.Forms.ToolStripMenuItem();
-      this.miHillCone = new System.Windows.Forms.ToolStripMenuItem();
-      this.miHillSphere = new System.Windows.Forms.ToolStripMenuItem();
-      this.miHillCylinder = new System.Windows.Forms.ToolStripMenuItem();
-      this.miHillSigma = new System.Windows.Forms.ToolStripMenuItem();
-      this.miHillNail = new System.Windows.Forms.ToolStripMenuItem();
-      this.miCombine = new System.Windows.Forms.ToolStripMenuItem();
-      this.miCombineMax = new System.Windows.Forms.ToolStripMenuItem();
-      this.miCombineMul = new System.Windows.Forms.ToolStripMenuItem();
-      this.miCombineAdd = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+      this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+      this.miEditFree = new System.Windows.Forms.ToolStripMenuItem();
+      this.miView = new System.Windows.Forms.ToolStripMenuItem();
+      this.miViewColor1 = new System.Windows.Forms.ToolStripMenuItem();
+      this.miViewColor2 = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-      this.miCombineNone = new System.Windows.Forms.ToolStripMenuItem();
-      this.miShape = new System.Windows.Forms.ToolStripMenuItem();
-      this.miColor = new System.Windows.Forms.ToolStripMenuItem();
-      this.miHillWhite = new System.Windows.Forms.ToolStripMenuItem();
+      this.miViewPeg = new System.Windows.Forms.ToolStripMenuItem();
+      this.miViewRound = new System.Windows.Forms.ToolStripMenuItem();
+      this.miViewCorn = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-      this.rotateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.rGBCMYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.rBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.miViewGrd1 = new System.Windows.Forms.ToolStripMenuItem();
+      this.miViewGrd2 = new System.Windows.Forms.ToolStripMenuItem();
+      this.miShape = new System.Windows.Forms.ToolStripMenuItem();
       this.bBW = new System.Windows.Forms.Button();
       this.bh1 = new System.Windows.Forms.Button();
       this.bClear = new System.Windows.Forms.Button();
@@ -184,17 +192,26 @@
       this.pictureBox15 = new System.Windows.Forms.PictureBox();
       this.dcirc2 = new System.Windows.Forms.RadioButton();
       this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-      this.bDown = new System.Windows.Forms.Button();
-      this.bRename = new System.Windows.Forms.Button();
+      this.miEditFill = new System.Windows.Forms.ToolStripMenuItem();
+      this.miEditEdge = new System.Windows.Forms.ToolStripMenuItem();
+      this.miEditLine = new System.Windows.Forms.ToolStripMenuItem();
+      this.miEditRect = new System.Windows.Forms.ToolStripMenuItem();
+      this.miEditCirc = new System.Windows.Forms.ToolStripMenuItem();
+      this.miEditCirc2 = new System.Windows.Forms.ToolStripMenuItem();
       this.panel.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.chOnOffC)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox32)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbox24)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
       this.groupBox3.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
@@ -262,6 +279,14 @@
       // 
       this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.panel.Controls.Add(this.pictureBox36);
+      this.panel.Controls.Add(this.pictureBox35);
+      this.panel.Controls.Add(this.pictureBox34);
+      this.panel.Controls.Add(this.pictureBox33);
+      this.panel.Controls.Add(this.pictureBox32);
+      this.panel.Controls.Add(this.bShd);
+      this.panel.Controls.Add(this.button1);
+      this.panel.Controls.Add(this.bdelb);
       this.panel.Controls.Add(this.bRename);
       this.panel.Controls.Add(this.bDown);
       this.panel.Controls.Add(this.bUp);
@@ -271,9 +296,9 @@
       this.panel.Controls.Add(this.bLoad);
       this.panel.Controls.Add(this.lMoves);
       this.panel.Controls.Add(this.cbSet);
-      this.panel.Controls.Add(this.checkBox2);
       this.panel.Controls.Add(this.chOnOffC);
-      this.panel.Controls.Add(this.checkBox1);
+      this.panel.Controls.Add(this.pbox24);
+      this.panel.Controls.Add(this.chOnOff3);
       this.panel.Controls.Add(this.pictureBox31);
       this.panel.Controls.Add(this.chOnOffO);
       this.panel.Controls.Add(this.pictureBox30);
@@ -322,10 +347,131 @@
       this.panel.TabIndex = 21;
       this.panel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel_MouseUp);
       // 
+      // pictureBox36
+      // 
+      this.pictureBox36.Image = global::solon.Properties.Resources.grd2;
+      this.pictureBox36.Location = new System.Drawing.Point(220, 119);
+      this.pictureBox36.Name = "pictureBox36";
+      this.pictureBox36.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox36.TabIndex = 121;
+      this.pictureBox36.TabStop = false;
+      this.pictureBox36.Tag = "sol";
+      // 
+      // pictureBox35
+      // 
+      this.pictureBox35.Image = global::solon.Properties.Resources.grd1;
+      this.pictureBox35.Location = new System.Drawing.Point(204, 119);
+      this.pictureBox35.Name = "pictureBox35";
+      this.pictureBox35.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox35.TabIndex = 120;
+      this.pictureBox35.TabStop = false;
+      this.pictureBox35.Tag = "sol";
+      // 
+      // pictureBox34
+      // 
+      this.pictureBox34.Image = global::solon.Properties.Resources.corn;
+      this.pictureBox34.Location = new System.Drawing.Point(41, 125);
+      this.pictureBox34.Name = "pictureBox34";
+      this.pictureBox34.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox34.TabIndex = 119;
+      this.pictureBox34.TabStop = false;
+      this.pictureBox34.Tag = "sol";
+      // 
+      // pictureBox33
+      // 
+      this.pictureBox33.Image = global::solon.Properties.Resources.round;
+      this.pictureBox33.Location = new System.Drawing.Point(24, 125);
+      this.pictureBox33.Name = "pictureBox33";
+      this.pictureBox33.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox33.TabIndex = 118;
+      this.pictureBox33.TabStop = false;
+      this.pictureBox33.Tag = "sol";
+      // 
+      // pictureBox32
+      // 
+      this.pictureBox32.Image = global::solon.Properties.Resources.peg;
+      this.pictureBox32.Location = new System.Drawing.Point(7, 125);
+      this.pictureBox32.Name = "pictureBox32";
+      this.pictureBox32.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox32.TabIndex = 117;
+      this.pictureBox32.TabStop = false;
+      this.pictureBox32.Tag = "sol";
+      // 
+      // bShd
+      // 
+      this.bShd.BackColor = System.Drawing.SystemColors.Control;
+      this.bShd.Image = global::solon.Properties.Resources.shd;
+      this.bShd.Location = new System.Drawing.Point(195, 363);
+      this.bShd.Name = "bShd";
+      this.bShd.Size = new System.Drawing.Size(24, 24);
+      this.bShd.TabIndex = 112;
+      this.bShd.TabStop = false;
+      this.bShd.Tag = "shd";
+      this.toolTip.SetToolTip(this.bShd, "Shift up");
+      this.bShd.UseVisualStyleBackColor = false;
+      this.bShd.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // button1
+      // 
+      this.button1.BackColor = System.Drawing.SystemColors.Control;
+      this.button1.Image = global::solon.Properties.Resources.shu;
+      this.button1.Location = new System.Drawing.Point(195, 340);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(24, 24);
+      this.button1.TabIndex = 111;
+      this.button1.TabStop = false;
+      this.button1.Tag = "shu";
+      this.toolTip.SetToolTip(this.button1, "Shift up");
+      this.button1.UseVisualStyleBackColor = false;
+      this.button1.ClientSizeChanged += new System.EventHandler(this.Tag_Click);
+      this.button1.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bdelb
+      // 
+      this.bdelb.BackColor = System.Drawing.SystemColors.Control;
+      this.bdelb.Location = new System.Drawing.Point(230, 205);
+      this.bdelb.Name = "bdelb";
+      this.bdelb.Size = new System.Drawing.Size(24, 24);
+      this.bdelb.TabIndex = 110;
+      this.bdelb.TabStop = false;
+      this.bdelb.Tag = "delb";
+      this.bdelb.Text = "x";
+      this.toolTip.SetToolTip(this.bdelb, "Delete board");
+      this.bdelb.UseVisualStyleBackColor = false;
+      this.bdelb.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bRename
+      // 
+      this.bRename.BackColor = System.Drawing.SystemColors.Control;
+      this.bRename.Location = new System.Drawing.Point(174, 228);
+      this.bRename.Name = "bRename";
+      this.bRename.Size = new System.Drawing.Size(24, 24);
+      this.bRename.TabIndex = 109;
+      this.bRename.TabStop = false;
+      this.bRename.Tag = "renb";
+      this.bRename.Text = "=";
+      this.toolTip.SetToolTip(this.bRename, "Rename board");
+      this.bRename.UseVisualStyleBackColor = false;
+      this.bRename.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bDown
+      // 
+      this.bDown.BackColor = System.Drawing.SystemColors.Control;
+      this.bDown.Location = new System.Drawing.Point(202, 228);
+      this.bDown.Name = "bDown";
+      this.bDown.Size = new System.Drawing.Size(24, 25);
+      this.bDown.TabIndex = 108;
+      this.bDown.TabStop = false;
+      this.bDown.Tag = "bdown";
+      this.bDown.Text = "v";
+      this.toolTip.SetToolTip(this.bDown, "Board down");
+      this.bDown.UseVisualStyleBackColor = false;
+      this.bDown.Click += new System.EventHandler(this.Tag_Click);
+      // 
       // bUp
       // 
       this.bUp.BackColor = System.Drawing.SystemColors.Control;
-      this.bUp.Location = new System.Drawing.Point(214, 204);
+      this.bUp.Location = new System.Drawing.Point(201, 204);
       this.bUp.Name = "bUp";
       this.bUp.Size = new System.Drawing.Size(24, 25);
       this.bUp.TabIndex = 107;
@@ -338,15 +484,15 @@
       // 
       // tName
       // 
-      this.tName.Location = new System.Drawing.Point(46, 230);
+      this.tName.Location = new System.Drawing.Point(33, 230);
       this.tName.Name = "tName";
-      this.tName.Size = new System.Drawing.Size(138, 20);
+      this.tName.Size = new System.Drawing.Size(139, 20);
       this.tName.TabIndex = 106;
       // 
       // bAdd
       // 
       this.bAdd.BackColor = System.Drawing.SystemColors.Control;
-      this.bAdd.Location = new System.Drawing.Point(21, 228);
+      this.bAdd.Location = new System.Drawing.Point(8, 228);
       this.bAdd.Name = "bAdd";
       this.bAdd.Size = new System.Drawing.Size(24, 24);
       this.bAdd.TabIndex = 105;
@@ -360,7 +506,7 @@
       // bSave
       // 
       this.bSave.BackColor = System.Drawing.SystemColors.Control;
-      this.bSave.Location = new System.Drawing.Point(188, 203);
+      this.bSave.Location = new System.Drawing.Point(175, 203);
       this.bSave.Name = "bSave";
       this.bSave.Size = new System.Drawing.Size(24, 25);
       this.bSave.TabIndex = 104;
@@ -374,7 +520,7 @@
       // bLoad
       // 
       this.bLoad.BackColor = System.Drawing.SystemColors.Control;
-      this.bLoad.Location = new System.Drawing.Point(19, 203);
+      this.bLoad.Location = new System.Drawing.Point(6, 203);
       this.bLoad.Name = "bLoad";
       this.bLoad.Size = new System.Drawing.Size(24, 25);
       this.bLoad.TabIndex = 103;
@@ -403,7 +549,7 @@
       // 
       this.cbSet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.cbSet.FormattingEnabled = true;
-      this.cbSet.Location = new System.Drawing.Point(45, 205);
+      this.cbSet.Location = new System.Drawing.Point(32, 205);
       this.cbSet.Margin = new System.Windows.Forms.Padding(0);
       this.cbSet.Name = "cbSet";
       this.cbSet.Size = new System.Drawing.Size(140, 21);
@@ -411,40 +557,41 @@
       this.cbSet.Tag = "white2";
       this.cbSet.SelectedIndexChanged += new System.EventHandler(this.cbSet_SelectedIndexChanged);
       // 
-      // checkBox2
-      // 
-      this.checkBox2.AutoSize = true;
-      this.checkBox2.Location = new System.Drawing.Point(124, 104);
-      this.checkBox2.Name = "checkBox2";
-      this.checkBox2.Size = new System.Drawing.Size(15, 14);
-      this.checkBox2.TabIndex = 100;
-      this.checkBox2.Tag = "onoffc";
-      this.toolTip.SetToolTip(this.checkBox2, "OnOff cross");
-      this.checkBox2.UseVisualStyleBackColor = true;
-      this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
       // chOnOffC
       // 
-      this.chOnOffC.Image = global::solon.Properties.Resources.gonoffc;
-      this.chOnOffC.Location = new System.Drawing.Point(123, 84);
+      this.chOnOffC.AutoSize = true;
+      this.chOnOffC.Location = new System.Drawing.Point(124, 104);
       this.chOnOffC.Name = "chOnOffC";
-      this.chOnOffC.Size = new System.Drawing.Size(16, 16);
-      this.chOnOffC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.chOnOffC.TabIndex = 99;
-      this.chOnOffC.TabStop = false;
-      this.chOnOffC.Tag = "deca";
+      this.chOnOffC.Size = new System.Drawing.Size(15, 14);
+      this.chOnOffC.TabIndex = 100;
+      this.chOnOffC.Tag = "onoffc";
+      this.toolTip.SetToolTip(this.chOnOffC, "OnOff cross");
+      this.chOnOffC.UseVisualStyleBackColor = true;
+      this.chOnOffC.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
-      // checkBox1
+      // pbox24
       // 
-      this.checkBox1.AutoSize = true;
-      this.checkBox1.Location = new System.Drawing.Point(107, 104);
-      this.checkBox1.Name = "checkBox1";
-      this.checkBox1.Size = new System.Drawing.Size(15, 14);
-      this.checkBox1.TabIndex = 98;
-      this.checkBox1.Tag = "onoff3";
-      this.toolTip.SetToolTip(this.checkBox1, "OnOff 3 state");
-      this.checkBox1.UseVisualStyleBackColor = true;
-      this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      this.pbox24.Image = global::solon.Properties.Resources.gonoffc;
+      this.pbox24.Location = new System.Drawing.Point(123, 84);
+      this.pbox24.Name = "pbox24";
+      this.pbox24.Size = new System.Drawing.Size(16, 16);
+      this.pbox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.pbox24.TabIndex = 99;
+      this.pbox24.TabStop = false;
+      this.pbox24.Tag = "onoffc";
+      this.pbox24.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // chOnOff3
+      // 
+      this.chOnOff3.AutoSize = true;
+      this.chOnOff3.Location = new System.Drawing.Point(107, 104);
+      this.chOnOff3.Name = "chOnOff3";
+      this.chOnOff3.Size = new System.Drawing.Size(15, 14);
+      this.chOnOff3.TabIndex = 98;
+      this.chOnOff3.Tag = "onoff3";
+      this.toolTip.SetToolTip(this.chOnOff3, "OnOff 3 state");
+      this.chOnOff3.UseVisualStyleBackColor = true;
+      this.chOnOff3.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
       // pictureBox31
       // 
@@ -455,7 +602,8 @@
       this.pictureBox31.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
       this.pictureBox31.TabIndex = 97;
       this.pictureBox31.TabStop = false;
-      this.pictureBox31.Tag = "deca";
+      this.pictureBox31.Tag = "onoff3";
+      this.pictureBox31.Click += new System.EventHandler(this.Tag_Click);
       // 
       // chOnOffO
       // 
@@ -478,12 +626,13 @@
       this.pictureBox30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
       this.pictureBox30.TabIndex = 95;
       this.pictureBox30.TabStop = false;
-      this.pictureBox30.Tag = "deca";
+      this.pictureBox30.Tag = "onoffo";
+      this.pictureBox30.Click += new System.EventHandler(this.Tag_Click);
       // 
       // chCorn
       // 
       this.chCorn.AutoSize = true;
-      this.chCorn.Location = new System.Drawing.Point(40, 137);
+      this.chCorn.Location = new System.Drawing.Point(42, 142);
       this.chCorn.Name = "chCorn";
       this.chCorn.Size = new System.Drawing.Size(15, 14);
       this.chCorn.TabIndex = 93;
@@ -535,7 +684,8 @@
       this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
       this.pictureBox25.TabIndex = 90;
       this.pictureBox25.TabStop = false;
-      this.pictureBox25.Tag = "deca";
+      this.pictureBox25.Tag = "onoffx";
+      this.pictureBox25.Click += new System.EventHandler(this.Tag_Click);
       // 
       // pictureBox24
       // 
@@ -546,7 +696,8 @@
       this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
       this.pictureBox24.TabIndex = 90;
       this.pictureBox24.TabStop = false;
-      this.pictureBox24.Tag = "deca";
+      this.pictureBox24.Tag = "diag";
+      this.pictureBox24.Click += new System.EventHandler(this.Tag_Click);
       // 
       // cbwhite2
       // 
@@ -710,7 +861,7 @@
       // chGrd2
       // 
       this.chGrd2.AutoSize = true;
-      this.chGrd2.Location = new System.Drawing.Point(221, 137);
+      this.chGrd2.Location = new System.Drawing.Point(222, 137);
       this.chGrd2.Name = "chGrd2";
       this.chGrd2.Size = new System.Drawing.Size(15, 14);
       this.chGrd2.TabIndex = 84;
@@ -722,7 +873,7 @@
       // chGrd1
       // 
       this.chGrd1.AutoSize = true;
-      this.chGrd1.Location = new System.Drawing.Point(207, 137);
+      this.chGrd1.Location = new System.Drawing.Point(205, 137);
       this.chGrd1.Name = "chGrd1";
       this.chGrd1.Size = new System.Drawing.Size(15, 14);
       this.chGrd1.TabIndex = 83;
@@ -734,80 +885,81 @@
       // bShl
       // 
       this.bShl.BackColor = System.Drawing.SystemColors.Control;
-      this.bShl.Location = new System.Drawing.Point(197, 349);
+      this.bShl.Image = global::solon.Properties.Resources.shl;
+      this.bShl.Location = new System.Drawing.Point(172, 349);
       this.bShl.Name = "bShl";
-      this.bShl.Size = new System.Drawing.Size(24, 25);
+      this.bShl.Size = new System.Drawing.Size(24, 24);
       this.bShl.TabIndex = 82;
       this.bShl.TabStop = false;
       this.bShl.Tag = "shl";
-      this.bShl.Text = "<";
-      this.toolTip.SetToolTip(this.bShl, "Clear");
+      this.toolTip.SetToolTip(this.bShl, "Shift left");
       this.bShl.UseVisualStyleBackColor = false;
       this.bShl.Click += new System.EventHandler(this.Tag_Click);
       // 
       // bShr
       // 
       this.bShr.BackColor = System.Drawing.SystemColors.Control;
-      this.bShr.Location = new System.Drawing.Point(222, 349);
+      this.bShr.Image = global::solon.Properties.Resources.shr;
+      this.bShr.Location = new System.Drawing.Point(219, 349);
       this.bShr.Name = "bShr";
-      this.bShr.Size = new System.Drawing.Size(24, 25);
+      this.bShr.Size = new System.Drawing.Size(24, 24);
       this.bShr.TabIndex = 81;
       this.bShr.TabStop = false;
       this.bShr.Tag = "shr";
       this.bShr.Text = ">";
-      this.toolTip.SetToolTip(this.bShr, "Clear");
+      this.toolTip.SetToolTip(this.bShr, "Shift right");
       this.bShr.UseVisualStyleBackColor = false;
       this.bShr.Click += new System.EventHandler(this.Tag_Click);
       // 
       // bVert
       // 
       this.bVert.BackColor = System.Drawing.SystemColors.Control;
-      this.bVert.Location = new System.Drawing.Point(172, 349);
+      this.bVert.Image = global::solon.Properties.Resources.flipx;
+      this.bVert.Location = new System.Drawing.Point(144, 375);
       this.bVert.Name = "bVert";
-      this.bVert.Size = new System.Drawing.Size(24, 25);
+      this.bVert.Size = new System.Drawing.Size(24, 24);
       this.bVert.TabIndex = 80;
       this.bVert.TabStop = false;
       this.bVert.Tag = "vert";
-      this.bVert.Text = "-";
-      this.toolTip.SetToolTip(this.bVert, "Clear");
+      this.toolTip.SetToolTip(this.bVert, "Flip vertical");
       this.bVert.UseVisualStyleBackColor = false;
       this.bVert.Click += new System.EventHandler(this.Tag_Click);
       // 
       // bHori
       // 
       this.bHori.BackColor = System.Drawing.SystemColors.Control;
-      this.bHori.Location = new System.Drawing.Point(148, 349);
+      this.bHori.Image = global::solon.Properties.Resources.flipy;
+      this.bHori.Location = new System.Drawing.Point(145, 349);
       this.bHori.Name = "bHori";
-      this.bHori.Size = new System.Drawing.Size(24, 25);
+      this.bHori.Size = new System.Drawing.Size(24, 24);
       this.bHori.TabIndex = 79;
       this.bHori.TabStop = false;
       this.bHori.Tag = "hori";
-      this.bHori.Text = "I";
-      this.toolTip.SetToolTip(this.bHori, "Clear");
+      this.toolTip.SetToolTip(this.bHori, "Flip horizontal");
       this.bHori.UseVisualStyleBackColor = false;
       this.bHori.Click += new System.EventHandler(this.Tag_Click);
       // 
       // bRota
       // 
       this.bRota.BackColor = System.Drawing.SystemColors.Control;
-      this.bRota.Location = new System.Drawing.Point(118, 349);
+      this.bRota.Image = global::solon.Properties.Resources.rotate;
+      this.bRota.Location = new System.Drawing.Point(119, 349);
       this.bRota.Name = "bRota";
-      this.bRota.Size = new System.Drawing.Size(28, 25);
+      this.bRota.Size = new System.Drawing.Size(24, 24);
       this.bRota.TabIndex = 78;
       this.bRota.TabStop = false;
       this.bRota.Tag = "rota";
-      this.bRota.Text = "v-";
-      this.toolTip.SetToolTip(this.bRota, "Clear");
+      this.toolTip.SetToolTip(this.bRota, "Rotate");
       this.bRota.UseVisualStyleBackColor = false;
       this.bRota.Click += new System.EventHandler(this.Tag_Click);
       // 
       // groupBox3
       // 
-      this.groupBox3.Controls.Add(this.pictureBox23);
       this.groupBox3.Controls.Add(this.pictureBox22);
+      this.groupBox3.Controls.Add(this.shifter);
+      this.groupBox3.Controls.Add(this.pictureBox23);
       this.groupBox3.Controls.Add(this.pictureBox21);
       this.groupBox3.Controls.Add(this.onoff);
-      this.groupBox3.Controls.Add(this.shifter);
       this.groupBox3.Controls.Add(this.sol);
       this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.groupBox3.Location = new System.Drawing.Point(2, 76);
@@ -817,40 +969,55 @@
       this.groupBox3.TabIndex = 77;
       this.groupBox3.TabStop = false;
       // 
-      // pictureBox23
-      // 
-      this.pictureBox23.Image = global::solon.Properties.Resources.gonoff;
-      this.pictureBox23.Location = new System.Drawing.Point(43, 8);
-      this.pictureBox23.Name = "pictureBox23";
-      this.pictureBox23.Size = new System.Drawing.Size(20, 20);
-      this.pictureBox23.TabIndex = 64;
-      this.pictureBox23.TabStop = false;
-      this.pictureBox23.Tag = "penta";
-      // 
       // pictureBox22
       // 
       this.pictureBox22.Image = global::solon.Properties.Resources.gshift;
-      this.pictureBox22.Location = new System.Drawing.Point(23, 8);
+      this.pictureBox22.Location = new System.Drawing.Point(43, 11);
       this.pictureBox22.Name = "pictureBox22";
-      this.pictureBox22.Size = new System.Drawing.Size(20, 20);
-      this.pictureBox22.TabIndex = 64;
+      this.pictureBox22.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox22.TabIndex = 116;
       this.pictureBox22.TabStop = false;
-      this.pictureBox22.Tag = "penta";
+      this.pictureBox22.Tag = "shifter";
+      // 
+      // shifter
+      // 
+      this.shifter.AutoSize = true;
+      this.shifter.Location = new System.Drawing.Point(46, 30);
+      this.shifter.Name = "shifter";
+      this.shifter.Size = new System.Drawing.Size(14, 13);
+      this.shifter.TabIndex = 115;
+      this.shifter.TabStop = true;
+      this.shifter.Tag = "shifter";
+      this.toolTip.SetToolTip(this.shifter, "Shifter");
+      this.shifter.UseVisualStyleBackColor = true;
+      this.shifter.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // pictureBox23
+      // 
+      this.pictureBox23.Image = global::solon.Properties.Resources.gonoff;
+      this.pictureBox23.Location = new System.Drawing.Point(24, 11);
+      this.pictureBox23.Name = "pictureBox23";
+      this.pictureBox23.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox23.TabIndex = 64;
+      this.pictureBox23.TabStop = false;
+      this.pictureBox23.Tag = "onoff";
+      this.pictureBox23.Click += new System.EventHandler(this.Tag_Click);
       // 
       // pictureBox21
       // 
       this.pictureBox21.Image = global::solon.Properties.Resources.gsol;
-      this.pictureBox21.Location = new System.Drawing.Point(3, 8);
+      this.pictureBox21.Location = new System.Drawing.Point(5, 11);
       this.pictureBox21.Name = "pictureBox21";
-      this.pictureBox21.Size = new System.Drawing.Size(20, 20);
+      this.pictureBox21.Size = new System.Drawing.Size(16, 16);
       this.pictureBox21.TabIndex = 63;
       this.pictureBox21.TabStop = false;
-      this.pictureBox21.Tag = "penta";
+      this.pictureBox21.Tag = "sol";
+      this.pictureBox21.Click += new System.EventHandler(this.Tag_Click);
       // 
       // onoff
       // 
       this.onoff.AutoSize = true;
-      this.onoff.Location = new System.Drawing.Point(46, 30);
+      this.onoff.Location = new System.Drawing.Point(26, 30);
       this.onoff.Name = "onoff";
       this.onoff.Size = new System.Drawing.Size(14, 13);
       this.onoff.TabIndex = 62;
@@ -859,19 +1026,6 @@
       this.toolTip.SetToolTip(this.onoff, "OnOff");
       this.onoff.UseVisualStyleBackColor = true;
       this.onoff.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // shifter
-      // 
-      this.shifter.AutoSize = true;
-      this.shifter.Location = new System.Drawing.Point(26, 30);
-      this.shifter.Name = "shifter";
-      this.shifter.Size = new System.Drawing.Size(14, 13);
-      this.shifter.TabIndex = 61;
-      this.shifter.TabStop = true;
-      this.shifter.Tag = "shifter";
-      this.toolTip.SetToolTip(this.shifter, "Shifter");
-      this.shifter.UseVisualStyleBackColor = true;
-      this.shifter.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
       // sol
       // 
@@ -1159,7 +1313,7 @@
       // chRound
       // 
       this.chRound.AutoSize = true;
-      this.chRound.Location = new System.Drawing.Point(25, 137);
+      this.chRound.Location = new System.Drawing.Point(25, 142);
       this.chRound.Name = "chRound";
       this.chRound.Size = new System.Drawing.Size(15, 14);
       this.chRound.TabIndex = 36;
@@ -1171,7 +1325,7 @@
       // chPeg
       // 
       this.chPeg.AutoSize = true;
-      this.chPeg.Location = new System.Drawing.Point(10, 137);
+      this.chPeg.Location = new System.Drawing.Point(9, 142);
       this.chPeg.Name = "chPeg";
       this.chPeg.Size = new System.Drawing.Size(15, 14);
       this.chPeg.TabIndex = 35;
@@ -1196,11 +1350,10 @@
       // 
       this.mMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miFile,
+            this.miGame,
             this.miEdit,
-            this.miHill,
-            this.miCombine,
-            this.miShape,
-            this.miColor});
+            this.miView,
+            this.miShape});
       this.mMain.Location = new System.Drawing.Point(0, 0);
       this.mMain.Name = "mMain";
       this.mMain.Size = new System.Drawing.Size(254, 24);
@@ -1223,8 +1376,8 @@
             this.miFileExit});
       this.miFile.Image = global::solon.Properties.Resources._new;
       this.miFile.Name = "miFile";
-      this.miFile.Size = new System.Drawing.Size(41, 20);
-      this.miFile.Text = "&F";
+      this.miFile.Size = new System.Drawing.Size(53, 20);
+      this.miFile.Text = "&File";
       this.miFile.ToolTipText = "File";
       // 
       // miFileNew
@@ -1234,7 +1387,7 @@
       this.miFileNew.Size = new System.Drawing.Size(124, 22);
       this.miFileNew.Tag = "new";
       this.miFileNew.Text = "&New";
-      this.miFileNew.Click += new System.EventHandler(this.miFile_Click);
+      this.miFileNew.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // miFileOpen
       // 
@@ -1243,7 +1396,7 @@
       this.miFileOpen.Size = new System.Drawing.Size(124, 22);
       this.miFileOpen.Tag = "open";
       this.miFileOpen.Text = "&Open";
-      this.miFileOpen.Click += new System.EventHandler(this.miFile_Click);
+      this.miFileOpen.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // toolStripSeparator6
       // 
@@ -1257,7 +1410,7 @@
       this.miFileSave.Size = new System.Drawing.Size(124, 22);
       this.miFileSave.Tag = "save";
       this.miFileSave.Text = "&Save";
-      this.miFileSave.Click += new System.EventHandler(this.miFile_Click);
+      this.miFileSave.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // miSaveAs
       // 
@@ -1266,7 +1419,7 @@
       this.miSaveAs.Size = new System.Drawing.Size(124, 22);
       this.miSaveAs.Tag = "saveas";
       this.miSaveAs.Text = "S&ave as ...";
-      this.miSaveAs.Click += new System.EventHandler(this.miFile_Click);
+      this.miSaveAs.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // miExport
       // 
@@ -1275,7 +1428,7 @@
       this.miExport.Size = new System.Drawing.Size(124, 22);
       this.miExport.Tag = "export";
       this.miExport.Text = "&Export ...";
-      this.miExport.Click += new System.EventHandler(this.miFile_Click);
+      this.miExport.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // toolStripSeparator1
       // 
@@ -1284,11 +1437,12 @@
       // 
       // miPage
       // 
+      this.miPage.Image = global::solon.Properties.Resources.page;
       this.miPage.Name = "miPage";
       this.miPage.Size = new System.Drawing.Size(124, 22);
       this.miPage.Tag = "page";
       this.miPage.Text = "Pa&ge ...";
-      this.miPage.Click += new System.EventHandler(this.miFile_Click);
+      this.miPage.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // printToolStripMenuItem
       // 
@@ -1297,7 +1451,7 @@
       this.printToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
       this.printToolStripMenuItem.Tag = "print";
       this.printToolStripMenuItem.Text = "&Print ...";
-      this.printToolStripMenuItem.Click += new System.EventHandler(this.miFile_Click);
+      this.printToolStripMenuItem.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // toolStripSeparator7
       // 
@@ -1306,209 +1460,246 @@
       // 
       // miFileExit
       // 
+      this.miFileExit.Image = global::solon.Properties.Resources.exit;
       this.miFileExit.Name = "miFileExit";
       this.miFileExit.Size = new System.Drawing.Size(124, 22);
       this.miFileExit.Tag = "exit";
       this.miFileExit.Text = "&Exit";
-      this.miFileExit.Click += new System.EventHandler(this.miFile_Click);
+      this.miFileExit.Click += new System.EventHandler(this.miMenu_Click);
       // 
-      // miEdit
+      // miGame
       // 
-      this.miEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miEditUndo,
-            this.redoToolStripMenuItem,
+      this.miGame.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miGameUndo,
+            this.miGameRedo,
             this.toolStripSeparator3,
-            this.miEditClear,
-            this.miEditInvert,
-            this.miEditBlur,
-            this.layersToolStripMenuItem,
-            this.toolStripSeparator5});
-      this.miEdit.Image = global::solon.Properties.Resources.clear;
-      this.miEdit.Name = "miEdit";
-      this.miEdit.Size = new System.Drawing.Size(41, 20);
-      this.miEdit.Text = "&E";
-      this.miEdit.ToolTipText = "Edit";
+            this.miGameSol,
+            this.miGameOnOff,
+            this.miGameShift,
+            this.toolStripSeparator5,
+            this.miGamePlay});
+      this.miGame.Image = global::solon.Properties.Resources.dplay;
+      this.miGame.Name = "miGame";
+      this.miGame.Size = new System.Drawing.Size(66, 20);
+      this.miGame.Text = "&Game";
+      this.miGame.ToolTipText = "Game";
       // 
-      // miEditUndo
+      // miGameUndo
       // 
-      this.miEditUndo.Image = global::solon.Properties.Resources.undo;
-      this.miEditUndo.Name = "miEditUndo";
-      this.miEditUndo.Size = new System.Drawing.Size(107, 22);
-      this.miEditUndo.Tag = "undo";
-      this.miEditUndo.Text = "&Undo";
-      this.miEditUndo.Click += new System.EventHandler(this.miEdit_Click);
+      this.miGameUndo.Image = global::solon.Properties.Resources.undo;
+      this.miGameUndo.Name = "miGameUndo";
+      this.miGameUndo.Size = new System.Drawing.Size(180, 22);
+      this.miGameUndo.Tag = "undo";
+      this.miGameUndo.Text = "&Undo";
+      this.miGameUndo.Click += new System.EventHandler(this.miMenu_Click);
       // 
-      // redoToolStripMenuItem
+      // miGameRedo
       // 
-      this.redoToolStripMenuItem.Image = global::solon.Properties.Resources.redo;
-      this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-      this.redoToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-      this.redoToolStripMenuItem.Tag = "redo";
-      this.redoToolStripMenuItem.Text = "&Redo";
-      this.redoToolStripMenuItem.Click += new System.EventHandler(this.miEdit_Click);
+      this.miGameRedo.Image = global::solon.Properties.Resources.redo;
+      this.miGameRedo.Name = "miGameRedo";
+      this.miGameRedo.Size = new System.Drawing.Size(180, 22);
+      this.miGameRedo.Tag = "redo";
+      this.miGameRedo.Text = "&Redo";
+      this.miGameRedo.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // toolStripSeparator3
       // 
       this.toolStripSeparator3.Name = "toolStripSeparator3";
-      this.toolStripSeparator3.Size = new System.Drawing.Size(104, 6);
+      this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+      // 
+      // miGameSol
+      // 
+      this.miGameSol.Image = global::solon.Properties.Resources.gsol;
+      this.miGameSol.Name = "miGameSol";
+      this.miGameSol.Size = new System.Drawing.Size(180, 22);
+      this.miGameSol.Tag = "sol";
+      this.miGameSol.Text = "&Solitaire";
+      this.miGameSol.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // miGameOnOff
+      // 
+      this.miGameOnOff.Image = global::solon.Properties.Resources.gonoff;
+      this.miGameOnOff.Name = "miGameOnOff";
+      this.miGameOnOff.Size = new System.Drawing.Size(180, 22);
+      this.miGameOnOff.Tag = "onoff";
+      this.miGameOnOff.Text = "&On &&Off";
+      this.miGameOnOff.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // miGameShift
+      // 
+      this.miGameShift.Image = global::solon.Properties.Resources.gshift;
+      this.miGameShift.Name = "miGameShift";
+      this.miGameShift.Size = new System.Drawing.Size(180, 22);
+      this.miGameShift.Tag = "shifter";
+      this.miGameShift.Text = "S&hifter";
+      this.miGameShift.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // toolStripSeparator5
+      // 
+      this.toolStripSeparator5.Name = "toolStripSeparator5";
+      this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+      // 
+      // miGamePlay
+      // 
+      this.miGamePlay.Image = global::solon.Properties.Resources.dplay;
+      this.miGamePlay.Name = "miGamePlay";
+      this.miGamePlay.Size = new System.Drawing.Size(180, 22);
+      this.miGamePlay.Tag = "play";
+      this.miGamePlay.Text = "&Play";
+      this.miGamePlay.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // miEdit
+      // 
+      this.miEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miEditClear,
+            this.miEditInvert,
+            this.toolStripSeparator8,
+            this.miEditFree,
+            this.miEditLine,
+            this.miEditRect,
+            this.miEditCirc,
+            this.miEditCirc2,
+            this.toolStripSeparator9,
+            this.miEditFill,
+            this.miEditEdge});
+      this.miEdit.Image = global::solon.Properties.Resources.dfree;
+      this.miEdit.Name = "miEdit";
+      this.miEdit.Size = new System.Drawing.Size(55, 20);
+      this.miEdit.Text = "&Edit";
+      this.miEdit.ToolTipText = "Edit";
       // 
       // miEditClear
       // 
       this.miEditClear.Image = global::solon.Properties.Resources.clear;
       this.miEditClear.Name = "miEditClear";
-      this.miEditClear.Size = new System.Drawing.Size(107, 22);
+      this.miEditClear.Size = new System.Drawing.Size(180, 22);
       this.miEditClear.Tag = "clear";
       this.miEditClear.Text = "&Clear";
-      this.miEditClear.Click += new System.EventHandler(this.miEdit_Click);
+      this.miEditClear.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // miEditInvert
       // 
       this.miEditInvert.Image = global::solon.Properties.Resources.invert;
       this.miEditInvert.Name = "miEditInvert";
-      this.miEditInvert.Size = new System.Drawing.Size(107, 22);
+      this.miEditInvert.Size = new System.Drawing.Size(180, 22);
       this.miEditInvert.Tag = "invert";
       this.miEditInvert.Text = "&Invert";
-      this.miEditInvert.Click += new System.EventHandler(this.miEdit_Click);
+      this.miEditInvert.Click += new System.EventHandler(this.miMenu_Click);
       // 
-      // miEditBlur
+      // toolStripSeparator8
       // 
-      this.miEditBlur.Name = "miEditBlur";
-      this.miEditBlur.Size = new System.Drawing.Size(107, 22);
-      this.miEditBlur.Tag = "blur";
-      this.miEditBlur.Text = "&Blur";
-      this.miEditBlur.Click += new System.EventHandler(this.miEdit_Click);
+      this.toolStripSeparator8.Name = "toolStripSeparator8";
+      this.toolStripSeparator8.Size = new System.Drawing.Size(177, 6);
       // 
-      // layersToolStripMenuItem
+      // toolStripSeparator9
       // 
-      this.layersToolStripMenuItem.Name = "layersToolStripMenuItem";
-      this.layersToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-      this.layersToolStripMenuItem.Tag = "layers";
-      this.layersToolStripMenuItem.Text = "Layers";
-      this.layersToolStripMenuItem.Click += new System.EventHandler(this.miEdit_Click);
+      this.toolStripSeparator9.Name = "toolStripSeparator9";
+      this.toolStripSeparator9.Size = new System.Drawing.Size(177, 6);
       // 
-      // toolStripSeparator5
+      // miEditFree
       // 
-      this.toolStripSeparator5.Name = "toolStripSeparator5";
-      this.toolStripSeparator5.Size = new System.Drawing.Size(104, 6);
+      this.miEditFree.Image = global::solon.Properties.Resources.dfree;
+      this.miEditFree.Name = "miEditFree";
+      this.miEditFree.Size = new System.Drawing.Size(180, 22);
+      this.miEditFree.Tag = "free";
+      this.miEditFree.Text = "Fr&ee";
+      this.miEditFree.Click += new System.EventHandler(this.miMenu_Click);
       // 
-      // miHill
+      // miView
       // 
-      this.miHill.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miHillCone,
-            this.miHillSphere,
-            this.miHillCylinder,
-            this.miHillSigma,
-            this.miHillNail});
-      this.miHill.Name = "miHill";
-      this.miHill.Size = new System.Drawing.Size(28, 20);
-      this.miHill.Text = "&H";
-      this.miHill.ToolTipText = "Hill";
-      // 
-      // miHillCone
-      // 
-      this.miHillCone.Name = "miHillCone";
-      this.miHillCone.Size = new System.Drawing.Size(67, 22);
-      // 
-      // miHillSphere
-      // 
-      this.miHillSphere.Name = "miHillSphere";
-      this.miHillSphere.Size = new System.Drawing.Size(67, 22);
-      // 
-      // miHillCylinder
-      // 
-      this.miHillCylinder.Name = "miHillCylinder";
-      this.miHillCylinder.Size = new System.Drawing.Size(67, 22);
-      // 
-      // miHillSigma
-      // 
-      this.miHillSigma.Name = "miHillSigma";
-      this.miHillSigma.Size = new System.Drawing.Size(67, 22);
-      // 
-      // miHillNail
-      // 
-      this.miHillNail.Name = "miHillNail";
-      this.miHillNail.Size = new System.Drawing.Size(67, 22);
-      // 
-      // miCombine
-      // 
-      this.miCombine.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miCombineMax,
-            this.miCombineMul,
-            this.miCombineAdd,
+      this.miView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miViewColor1,
+            this.miViewColor2,
             this.toolStripSeparator4,
-            this.miCombineNone});
-      this.miCombine.Name = "miCombine";
-      this.miCombine.Size = new System.Drawing.Size(27, 20);
-      this.miCombine.Text = "&A";
-      this.miCombine.ToolTipText = "Combine";
+            this.miViewPeg,
+            this.miViewRound,
+            this.miViewCorn,
+            this.toolStripSeparator2,
+            this.miViewGrd1,
+            this.miViewGrd2});
+      this.miView.Image = global::solon.Properties.Resources.col2;
+      this.miView.Name = "miView";
+      this.miView.Size = new System.Drawing.Size(60, 20);
+      this.miView.Text = "&View";
+      this.miView.ToolTipText = "View";
       // 
-      // miCombineMax
+      // miViewColor1
       // 
-      this.miCombineMax.Name = "miCombineMax";
-      this.miCombineMax.Size = new System.Drawing.Size(67, 22);
+      this.miViewColor1.Image = global::solon.Properties.Resources.col1;
+      this.miViewColor1.Name = "miViewColor1";
+      this.miViewColor1.Size = new System.Drawing.Size(141, 22);
+      this.miViewColor1.Tag = "col1";
+      this.miViewColor1.Text = "&1 colors";
+      this.miViewColor1.Click += new System.EventHandler(this.miMenu_Click);
       // 
-      // miCombineMul
+      // miViewColor2
       // 
-      this.miCombineMul.Name = "miCombineMul";
-      this.miCombineMul.Size = new System.Drawing.Size(67, 22);
-      // 
-      // miCombineAdd
-      // 
-      this.miCombineAdd.Name = "miCombineAdd";
-      this.miCombineAdd.Size = new System.Drawing.Size(67, 22);
+      this.miViewColor2.Image = global::solon.Properties.Resources.col2;
+      this.miViewColor2.Name = "miViewColor2";
+      this.miViewColor2.Size = new System.Drawing.Size(141, 22);
+      this.miViewColor2.Tag = "col2";
+      this.miViewColor2.Text = "&2 colors";
+      this.miViewColor2.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // toolStripSeparator4
       // 
       this.toolStripSeparator4.Name = "toolStripSeparator4";
-      this.toolStripSeparator4.Size = new System.Drawing.Size(64, 6);
+      this.toolStripSeparator4.Size = new System.Drawing.Size(138, 6);
       // 
-      // miCombineNone
+      // miViewPeg
       // 
-      this.miCombineNone.Name = "miCombineNone";
-      this.miCombineNone.Size = new System.Drawing.Size(67, 22);
+      this.miViewPeg.Image = global::solon.Properties.Resources.peg;
+      this.miViewPeg.Name = "miViewPeg";
+      this.miViewPeg.Size = new System.Drawing.Size(141, 22);
+      this.miViewPeg.Tag = "peg";
+      this.miViewPeg.Text = "Peg";
+      this.miViewPeg.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // miViewRound
+      // 
+      this.miViewRound.Image = global::solon.Properties.Resources.round;
+      this.miViewRound.Name = "miViewRound";
+      this.miViewRound.Size = new System.Drawing.Size(141, 22);
+      this.miViewRound.Tag = "rou";
+      this.miViewRound.Text = "Round";
+      this.miViewRound.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // miViewCorn
+      // 
+      this.miViewCorn.Image = global::solon.Properties.Resources.corn;
+      this.miViewCorn.Name = "miViewCorn";
+      this.miViewCorn.Size = new System.Drawing.Size(141, 22);
+      this.miViewCorn.Tag = "corn";
+      this.miViewCorn.Text = "Corn";
+      this.miViewCorn.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // toolStripSeparator2
+      // 
+      this.toolStripSeparator2.Name = "toolStripSeparator2";
+      this.toolStripSeparator2.Size = new System.Drawing.Size(138, 6);
+      // 
+      // miViewGrd1
+      // 
+      this.miViewGrd1.Image = global::solon.Properties.Resources.grd1;
+      this.miViewGrd1.Name = "miViewGrd1";
+      this.miViewGrd1.Size = new System.Drawing.Size(141, 22);
+      this.miViewGrd1.Tag = "grd1";
+      this.miViewGrd1.Text = "Cell gradient";
+      this.miViewGrd1.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // miViewGrd2
+      // 
+      this.miViewGrd2.Image = global::solon.Properties.Resources.grd2;
+      this.miViewGrd2.Name = "miViewGrd2";
+      this.miViewGrd2.Size = new System.Drawing.Size(141, 22);
+      this.miViewGrd2.Tag = "grd2";
+      this.miViewGrd2.Text = "Peg gradient";
+      this.miViewGrd2.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // miShape
       // 
       this.miShape.Name = "miShape";
       this.miShape.Size = new System.Drawing.Size(12, 20);
-      // 
-      // miColor
-      // 
-      this.miColor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miHillWhite,
-            this.toolStripSeparator2,
-            this.rotateToolStripMenuItem,
-            this.rGBCMYToolStripMenuItem,
-            this.rBToolStripMenuItem});
-      this.miColor.Name = "miColor";
-      this.miColor.Size = new System.Drawing.Size(27, 20);
-      this.miColor.Text = "&C";
-      this.miColor.ToolTipText = "Color";
-      // 
-      // miHillWhite
-      // 
-      this.miHillWhite.Name = "miHillWhite";
-      this.miHillWhite.Size = new System.Drawing.Size(67, 22);
-      // 
-      // toolStripSeparator2
-      // 
-      this.toolStripSeparator2.Name = "toolStripSeparator2";
-      this.toolStripSeparator2.Size = new System.Drawing.Size(64, 6);
-      // 
-      // rotateToolStripMenuItem
-      // 
-      this.rotateToolStripMenuItem.Name = "rotateToolStripMenuItem";
-      this.rotateToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
-      // 
-      // rGBCMYToolStripMenuItem
-      // 
-      this.rGBCMYToolStripMenuItem.Name = "rGBCMYToolStripMenuItem";
-      this.rGBCMYToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
-      // 
-      // rBToolStripMenuItem
-      // 
-      this.rBToolStripMenuItem.Name = "rBToolStripMenuItem";
-      this.rBToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
       // 
       // bBW
       // 
@@ -1527,15 +1718,16 @@
       // bClear
       // 
       this.bClear.BackColor = System.Drawing.SystemColors.Control;
-      this.bClear.Location = new System.Drawing.Point(218, 376);
+      this.bClear.Image = global::solon.Properties.Resources.clear;
+      this.bClear.Location = new System.Drawing.Point(119, 374);
       this.bClear.Name = "bClear";
-      this.bClear.Size = new System.Drawing.Size(28, 28);
+      this.bClear.Size = new System.Drawing.Size(24, 24);
       this.bClear.TabIndex = 19;
       this.bClear.TabStop = false;
-      this.bClear.Tag = "255";
+      this.bClear.Tag = "clear";
       this.toolTip.SetToolTip(this.bClear, "Clear");
       this.bClear.UseVisualStyleBackColor = false;
-      this.bClear.MouseUp += new System.Windows.Forms.MouseEventHandler(this.bClear_MouseUp);
+      this.bClear.Click += new System.EventHandler(this.Tag_Click);
       // 
       // bh3
       // 
@@ -1954,33 +2146,59 @@
       this.dcirc2.UseVisualStyleBackColor = true;
       this.dcirc2.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
-      // bDown
+      // miEditFill
       // 
-      this.bDown.BackColor = System.Drawing.SystemColors.Control;
-      this.bDown.Location = new System.Drawing.Point(215, 228);
-      this.bDown.Name = "bDown";
-      this.bDown.Size = new System.Drawing.Size(24, 25);
-      this.bDown.TabIndex = 108;
-      this.bDown.TabStop = false;
-      this.bDown.Tag = "bdown";
-      this.bDown.Text = "v";
-      this.toolTip.SetToolTip(this.bDown, "Board down");
-      this.bDown.UseVisualStyleBackColor = false;
-      this.bDown.Click += new System.EventHandler(this.Tag_Click);
+      this.miEditFill.Image = global::solon.Properties.Resources.dfill;
+      this.miEditFill.Name = "miEditFill";
+      this.miEditFill.Size = new System.Drawing.Size(180, 22);
+      this.miEditFill.Tag = "fill";
+      this.miEditFill.Text = "&Fill";
+      this.miEditFill.Click += new System.EventHandler(this.miMenu_Click);
       // 
-      // bRename
+      // miEditEdge
       // 
-      this.bRename.BackColor = System.Drawing.SystemColors.Control;
-      this.bRename.Location = new System.Drawing.Point(187, 228);
-      this.bRename.Name = "bRename";
-      this.bRename.Size = new System.Drawing.Size(24, 24);
-      this.bRename.TabIndex = 109;
-      this.bRename.TabStop = false;
-      this.bRename.Tag = "renb";
-      this.bRename.Text = "=";
-      this.toolTip.SetToolTip(this.bRename, "Rename board");
-      this.bRename.UseVisualStyleBackColor = false;
-      this.bRename.Click += new System.EventHandler(this.Tag_Click);
+      this.miEditEdge.Image = global::solon.Properties.Resources.dedge;
+      this.miEditEdge.Name = "miEditEdge";
+      this.miEditEdge.Size = new System.Drawing.Size(180, 22);
+      this.miEditEdge.Tag = "edge";
+      this.miEditEdge.Text = "&Edge";
+      this.miEditEdge.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // miEditLine
+      // 
+      this.miEditLine.Image = global::solon.Properties.Resources.dline;
+      this.miEditLine.Name = "miEditLine";
+      this.miEditLine.Size = new System.Drawing.Size(180, 22);
+      this.miEditLine.Tag = "line";
+      this.miEditLine.Text = "&Line";
+      this.miEditLine.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // miEditRect
+      // 
+      this.miEditRect.Image = global::solon.Properties.Resources.drect;
+      this.miEditRect.Name = "miEditRect";
+      this.miEditRect.Size = new System.Drawing.Size(180, 22);
+      this.miEditRect.Tag = "rect";
+      this.miEditRect.Text = "&Rectangle";
+      this.miEditRect.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // miEditCirc
+      // 
+      this.miEditCirc.Image = global::solon.Properties.Resources.dcirc;
+      this.miEditCirc.Name = "miEditCirc";
+      this.miEditCirc.Size = new System.Drawing.Size(180, 22);
+      this.miEditCirc.Tag = "circ";
+      this.miEditCirc.Text = "&Circle";
+      this.miEditCirc.Click += new System.EventHandler(this.miMenu_Click);
+      // 
+      // miEditCirc2
+      // 
+      this.miEditCirc2.Image = global::solon.Properties.Resources.dcirc2;
+      this.miEditCirc2.Name = "miEditCirc2";
+      this.miEditCirc2.Size = new System.Drawing.Size(180, 22);
+      this.miEditCirc2.Tag = "circ2";
+      this.miEditCirc2.Text = "&Circle 2";
+      this.miEditCirc2.Click += new System.EventHandler(this.miMenu_Click);
       // 
       // fMain
       // 
@@ -1992,21 +2210,27 @@
       this.MainMenuStrip = this.mMain;
       this.Name = "fMain";
       this.Text = "Solon";
+      this.DoubleClick += new System.EventHandler(this.fMain_DoubleClick);
       this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.fMain_MouseDown);
       this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.fMain_MouseMove);
       this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.fMain_MouseUp);
       this.Resize += new System.EventHandler(this.fMain_Resize);
       this.panel.ResumeLayout(false);
       this.panel.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.chOnOffC)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox32)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbox24)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
       this.groupBox3.ResumeLayout(false);
       this.groupBox3.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
       this.groupBox1.ResumeLayout(false);
       this.groupBox1.PerformLayout();
@@ -2070,34 +2294,13 @@
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     private System.Windows.Forms.ToolStripMenuItem miFileExit;
     private System.Windows.Forms.ToolStripMenuItem miEdit;
-    private System.Windows.Forms.ToolStripMenuItem miEditUndo;
-    private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
-    private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     private System.Windows.Forms.ToolStripMenuItem miEditClear;
     private System.Windows.Forms.ToolStripMenuItem miEditInvert;
-    private System.Windows.Forms.ToolStripMenuItem miEditBlur;
-    private System.Windows.Forms.ToolStripMenuItem layersToolStripMenuItem;
-    private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     private System.Windows.Forms.ToolStripMenuItem miAutoSnap;
-    private System.Windows.Forms.ToolStripMenuItem miHill;
-    private System.Windows.Forms.ToolStripMenuItem miHillCone;
-    private System.Windows.Forms.ToolStripMenuItem miHillSphere;
-    private System.Windows.Forms.ToolStripMenuItem miHillCylinder;
-    private System.Windows.Forms.ToolStripMenuItem miHillSigma;
-    private System.Windows.Forms.ToolStripMenuItem miHillNail;
-    private System.Windows.Forms.ToolStripMenuItem miCombine;
-    private System.Windows.Forms.ToolStripMenuItem miCombineMax;
-    private System.Windows.Forms.ToolStripMenuItem miCombineMul;
-    private System.Windows.Forms.ToolStripMenuItem miCombineAdd;
+    private System.Windows.Forms.ToolStripMenuItem miGame;
+    private System.Windows.Forms.ToolStripMenuItem miView;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-    private System.Windows.Forms.ToolStripMenuItem miCombineNone;
     private System.Windows.Forms.ToolStripMenuItem miShape;
-    private System.Windows.Forms.ToolStripMenuItem miColor;
-    private System.Windows.Forms.ToolStripMenuItem miHillWhite;
-    private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-    private System.Windows.Forms.ToolStripMenuItem rotateToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem rGBCMYToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem rBToolStripMenuItem;
     public System.Windows.Forms.Button bBg;
     public System.Windows.Forms.Button bFg;
     private System.Windows.Forms.CheckBox chPeg;
@@ -2143,7 +2346,6 @@
     private System.Windows.Forms.RadioButton dcolo;
     private System.Windows.Forms.GroupBox groupBox3;
     private System.Windows.Forms.RadioButton onoff;
-    private System.Windows.Forms.RadioButton shifter;
     private System.Windows.Forms.RadioButton sol;
     private System.Windows.Forms.GroupBox groupBox2;
     private System.Windows.Forms.GroupBox groupBox1;
@@ -2169,7 +2371,6 @@
     private System.Windows.Forms.ComboBox chWB;
     private System.Windows.Forms.ComboBox cbwhite2;
     private System.Windows.Forms.PictureBox pictureBox21;
-    private System.Windows.Forms.PictureBox pictureBox22;
     private System.Windows.Forms.PictureBox pictureBox23;
     private System.Windows.Forms.PictureBox pictureBox24;
     private System.Windows.Forms.CheckBox chOnOffx;
@@ -2189,10 +2390,10 @@
     private System.Windows.Forms.RadioButton col30;
     private System.Windows.Forms.CheckBox chOnOffO;
     private System.Windows.Forms.PictureBox pictureBox30;
-    private System.Windows.Forms.CheckBox checkBox1;
+    private System.Windows.Forms.CheckBox chOnOff3;
     private System.Windows.Forms.PictureBox pictureBox31;
-    private System.Windows.Forms.CheckBox checkBox2;
-    private System.Windows.Forms.PictureBox chOnOffC;
+    private System.Windows.Forms.CheckBox chOnOffC;
+    private System.Windows.Forms.PictureBox pbox24;
     private System.Windows.Forms.ComboBox cbSet;
     private System.Windows.Forms.TextBox lMoves;
     private System.Windows.Forms.Button bLoad;
@@ -2202,6 +2403,41 @@
     private System.Windows.Forms.Button bUp;
     private System.Windows.Forms.Button bDown;
     private System.Windows.Forms.Button bRename;
+    private System.Windows.Forms.Button bdelb;
+    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button bShd;
+    private System.Windows.Forms.ToolStripMenuItem miGameUndo;
+    private System.Windows.Forms.ToolStripMenuItem miGameRedo;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+    private System.Windows.Forms.ToolStripMenuItem miGamePlay;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+    private System.Windows.Forms.ToolStripMenuItem miEditFree;
+    private System.Windows.Forms.ToolStripMenuItem miViewColor2;
+    private System.Windows.Forms.ToolStripMenuItem miViewColor1;
+    private System.Windows.Forms.PictureBox pictureBox22;
+    private System.Windows.Forms.RadioButton shifter;
+    private System.Windows.Forms.ToolStripMenuItem miViewPeg;
+    private System.Windows.Forms.ToolStripMenuItem miViewRound;
+    private System.Windows.Forms.ToolStripMenuItem miViewCorn;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+    private System.Windows.Forms.ToolStripMenuItem miViewGrd1;
+    private System.Windows.Forms.ToolStripMenuItem miViewGrd2;
+    private System.Windows.Forms.PictureBox pictureBox32;
+    private System.Windows.Forms.PictureBox pictureBox33;
+    private System.Windows.Forms.PictureBox pictureBox34;
+    private System.Windows.Forms.PictureBox pictureBox36;
+    private System.Windows.Forms.PictureBox pictureBox35;
+    private System.Windows.Forms.ToolStripMenuItem miGameSol;
+    private System.Windows.Forms.ToolStripMenuItem miGameOnOff;
+    private System.Windows.Forms.ToolStripMenuItem miGameShift;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+    private System.Windows.Forms.ToolStripMenuItem miEditLine;
+    private System.Windows.Forms.ToolStripMenuItem miEditRect;
+    private System.Windows.Forms.ToolStripMenuItem miEditCirc;
+    private System.Windows.Forms.ToolStripMenuItem miEditCirc2;
+    private System.Windows.Forms.ToolStripMenuItem miEditFill;
+    private System.Windows.Forms.ToolStripMenuItem miEditEdge;
   }
 }
 

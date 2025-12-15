@@ -235,8 +235,18 @@ namespace solon {
          else bm.Save(s,ImageFormat.Png);
         }
       }
-      public void Clear() {}
-      public void Extent(int x,int y) {}
+      public bool IsEmpty() {
+        if(Data==null) return true;
+        foreach(C c in Data) if(c.ch!=0) return false;        
+        return true;
+      }
+      public void Clear(bool conly) {
+        for(int i=0;i<Data.Length;i++) {
+          if(!conly) Data[i].ch=0;
+          Data[i].back=Data[i].fore=0;
+        }          
+      }
+      public void Extent(int x,int y) { _extent(x,y);}
       public void Rotate90(bool counter) {}
       public void Invert() {
         for(int i=0;i<Data.Length;i++) Invert(ref Data[i].ch);
@@ -1595,9 +1605,11 @@ static int[] _border11(int x,int y) {
      for(i=0;i<p.Length;i++) a[n+i]=p[i];
    }
    public static void Push(List<float> a,params float[] p) {
+     if(a==null) a=new List<float>();
      foreach(var x in p) a.Add(x);
    }
    public static List<int> Push(List<int> a,params int[] p) { 
+     if(a==null) a=new List<int>();
      foreach(var x in p) a.Add(x);
      return a;
    }
@@ -2813,10 +2825,10 @@ void _dfill(int px,int py,int c,bool k) {
     x=x1=fifo[n];y=fifo[n+1];n+=2;m=fifo.Count;u=y>1;d=y+1<Height;
     t=0;
     var b=bf(x,y);
-    int i,l=b.Length,x2,y2;
+    int i,l=b.Length,x2,y2,dl=Data.Length,ix;    
     for(i=0;i<l;i+=2) {
       f=0;x2=x+b[i];y2=y+b[i+1];
-      if(y2>0&&y2<Height&&(f=Data[Index(x2,y2)].ch)==s&&(k||!_blocked(x,y,x2,y2))) {t++;Push(fifo,x2,y2);}
+      if(y2>0&&(ix=Index(x2,y2))<dl&&(f=Data[ix].ch)==s&&(k||!_blocked(x,y,x2,y2))) {t++;Push(fifo,x2,y2);}
       else if(f==nc||f=='f') t++;
     }
     if(c<0&&t==(H==H.penta?5:H==H.hexa?6:H==H.tria||H==H.tria2||H==H.tria4?3:4)) 

@@ -103,24 +103,8 @@ namespace solon {
           var v=map.View;
           lMoves.Text=""+v.moves;
         }
-        public void UpdateControls() {
-         try {
+        void UpdateH() {
           UIIgnore++;
-           var v=map.View;
-          sol.Checked=map.Game==Game.Sol;
-          shifter.Checked=map.Game==Game.Shift;
-          onoff.Checked=map.Game==Game.OnOff;
-          chDiag.Checked=map.Diag;
-          chOnOffx.Checked=map.oox;
-          //cbOnOff6.SelectedIndex=map.View.onoff6;
-          _w4();
-          UpdateWhite2(v.whiter);
-
-          chPeg.Checked=v.peg;
-          chRound.Checked=v.rou;
-          chGrd1.Checked=v.grdm!=0;
-          chGrd2.Checked=v.grdm2!=0;
-
           var h=map.H;
           quad.Checked=h==H.quad;
           hexa.Checked=h==H.hexa;
@@ -132,25 +116,69 @@ namespace solon {
           delta.Checked=h==H.delta;
           trap.Checked=h==H.trap;
           deca.Checked=h==H.deca;
+          UIIgnore--;
+        }
+        void UpdateG() {
+          UIIgnore++;
+          miGameSol.Checked=sol.Checked=map.Game==Game.Sol;
+          miGameShift.Checked=shifter.Checked=map.Game==Game.Shift;
+          miGameOnOff.Checked=onoff.Checked=map.Game==Game.OnOff;
+          UIIgnore--;
+        }
+        void UpdateCh() {
+          UIIgnore++;
+          chDiag.Checked=map.Diag;
+          chOnOffx.Checked=map.oox;
+          chOnOffO.Checked=map.ooo;
+          chOnOff3.Checked=map.oo3;
+          chOnOffC.Checked=map.ooc;
+          UIIgnore--;
+        }
+        public void UpdateControls() {
+         try {
+          UIIgnore++;
+           var v=map.View;
+          UpdateG();
+          UpdateCh();
+          //cbOnOff6.SelectedIndex=map.View.onoff6;
+          _w4();
+          UpdateWhite2(v.whiter);
+          UpdateH();
+
+          chPeg.Checked=v.peg;
+          chRound.Checked=v.rou;
+          chCorn.Checked=v.corn!=0;
+          chGrd1.Checked=v.grdm!=0;
+          chGrd2.Checked=v.grdm2!=0;
+          miViewPeg.Checked=chPeg.Checked;
+          miViewRound.Checked=chRound.Checked;
+          miViewCorn.Checked=chCorn.Checked;
+          miViewGrd1.Checked=chGrd1.Checked;
+          miViewGrd2.Checked=chGrd2.Checked;
+
+
           var d=v.design;
           dplay.Checked=d==D.play;
-          dfree.Checked=d==D.free;
-          dline.Checked=d==D.line;
-          drect.Checked=d==D.rect;
-          dcirc.Checked=d==D.circ;
-          dcirc2.Checked=d==D.circ;
-          dfill.Checked=d==D.fill;
-          dedge.Checked=d==D.edge;
+          miEditFree.Checked=dfree.Checked=d==D.free;
+          miEditLine.Checked=dline.Checked=d==D.line;
+          miEditRect.Checked=drect.Checked=d==D.rect;
+          miEditCirc.Checked=dcirc.Checked=d==D.circ;
+          miEditCirc2.Checked=dcirc2.Checked=d==D.circ2;
+          miEditFill.Checked=dfill.Checked=d==D.fill;
+          miEditEdge.Checked=dedge.Checked=d==D.edge;
           dcolo.Checked=d==D.color;
           dcolo2.Checked=d==D.color2;
-          chWhite.Checked=v.white;          
+          chWhite.Checked=v.white;
+          miGamePlay.Checked=d==D.play;
 
           col1.Checked=v.mono<2;
           col2.Checked=v.mono==2;
           col21.Checked=v.mono==21;
           col30.Checked=v.mono==30;
           col31.Checked=v.mono==31;
-          col4.Checked=v.mono==4;  
+          col4.Checked=v.mono==4;
+          miViewColor1.Checked=col1.Checked;
+          miViewColor2.Checked=col2.Checked;
          } finally {
           UIIgnore--;
           }
@@ -300,14 +328,14 @@ namespace solon {
         void Center() {
           sin=angle=0;cos=1;
           sx=sy=0;zoom=ZoomBase;
-          if(map!=null) {
+          if(map!=null&&!map.IsEmpty()) {            
             sx=SX(map.Width,0);sy=SY(0,map.Height);
             sx=(Width-sx)/2;sy=(Height-sy)/2;
           }
         }
         void Clear(bool conly) {
           PushUndo(true);
-          map.Clear();
+          map.Clear(conly);
           Center();
           Repaint(true);
         }
@@ -444,7 +472,8 @@ namespace solon {
             case Keys.ControlKey|Keys.Control:return false;
             case Keys.F11:Fullscreen();return true;
             case Keys.Escape:
-              if(FormBorderStyle==FormBorderStyle.None) {
+              if(!panel.Visible) panel.Visible=true;
+              else if(FormBorderStyle==FormBorderStyle.None) {
                 Fullscreen();
               } else 
                 NoScale();
@@ -472,6 +501,7 @@ namespace solon {
             switch(k) {
               case Keys.Z:Redo(shift?10:1);break;
               case Keys.F1:HelpCmd();break;
+              case Keys.F11:panel.Visible^=true;break;
               case Keys.M:MirrorView();break;              
               default: goto ret;
             }
@@ -574,9 +604,8 @@ namespace solon {
           if(Text.EndsWith("*")) Text=Text.Substring(0,Text.Length-1);        
         }
 
-        private void miFileClear_Click(object sender, EventArgs e) {
-          map.Clear();
-          Repaint(true);
+        private void miFileClear_Click(object sender, EventArgs e) { 
+          Clear(false);
         }
         
         void ChangeFileName(string filename) {
@@ -826,17 +855,6 @@ namespace solon {
         }
         internal void ClearUndo() { map.View.undo.Clear();map.View.redo=0;}
         
-        private void miEdit_Click(object sender, EventArgs e) {
-          var mi = sender as ToolStripMenuItem;
-          switch(mi.Tag+"") {
-           case "redo":Redo(GDI.CtrlKey?10:1);return;
-           case "undo":Undo(GDI.CtrlKey?10:1);return;
-           case "clear":map.Clear();break;
-           case "invert":map.Invert();break;
-          }
-          Repaint(true);
-        }
-
         string GetTag(object sender) {
           ToolStripMenuItem i = sender as ToolStripMenuItem;
           Button b;
@@ -848,24 +866,87 @@ namespace solon {
           Repaint(false);
         }
 
+        private void miMenu_Click(object sender, EventArgs e) { 
+          string tag=""+(sender as ToolStripItem).Tag;
+          switch(tag) {
+             case "new":NewFile();break;
+           case "open":OpenFile();break;
+           case "save":SaveFile1(false,false);break;
+           case "saveas":SaveFile1(true,false);break;
+           case "export":ExportFile(true);break;
+           case "page":PrintPage(true);break;
+           case "print":Print();break;
+           case "exit":Close();break;
+           case "redo":Redo(GDI.CtrlKey?10:1);return;
+           case "undo":Undo(GDI.CtrlKey?10:1);return;
+           default:
+            UITag(tag);
+            break;
+          }
+        }
+        private void miEdit_Click(object sender, EventArgs e) {
+          var mi = sender as ToolStripMenuItem;
+          switch(mi.Tag+"") {
+          }
+          Repaint(true);
+        }
+
+    private void Tag_Click(object sender, EventArgs e) { 
+       Control c=sender as Control;
+       UITag(""+c.Tag);
+    }
+    private void UITag(string tag) {
+       if(GDI.ShiftKey) tag='+'+tag;
+       if(GDI.CtrlKey) tag='^'+tag;
+       if(ProcTag(tag))
+        Repaint(true);
+    }
+
     bool ProcTag(string tag) {
       var v=map.View;
-      if(tag=="sol") {map.Game=Game.Sol;}
-      else if(tag=="shifter") {map.Game=Game.Shift;}
-      else if(tag=="onoff") { map.Game=Game.OnOff;}
-      else if(tag=="quad"||tag=="hexa"||tag=="tria"||tag=="tria2"||tag=="tria4"||tag=="penta"||tag=="cubes"||tag=="delta"||tag=="trap"||tag=="deca") {
-        map.H=(H)Enum.Parse(typeof(H),tag);
-        CheckBitmap();
-      } else if(tag=="play"||tag=="free"||tag=="line"||tag=="rect"||tag=="circ"||tag=="circ2"||tag=="fill"||tag=="edge"||tag=="color"||tag=="color2") {
-        map.View.design=(D)Enum.Parse(typeof(D),tag);          
-      } else if(tag=="bg"||tag=="fg") ColorDiag(tag=="fg");
-       else if(tag=="rota") {map.transf2(0);Repaint(true);}
+      int ct=0,sh=0;
+      if(tag[0]=='^') {ct=1;tag=tag.Substring(1);}
+      if(tag[0]=='+') {sh=1;tag=tag.Substring(1);}
+      if(tag=="addb"&&ct!=0) tag="clonb";
+      if(tag=="clear"&&sh!=0) tag="clearc";
+
+      if(IsEdit) {
+       if(tag=="rota") {map.transf2(0);Repaint(true);}
        else if(tag=="hori") {map.transf2(1);Repaint(true);}
        else if(tag=="vert") {map.transf2(2);Repaint(true);}
        else if(tag=="shl") {map._deletex(0,1);if(map.Width<4) map._insertx(map.Width,1,true);UpdateBitmap(0,0);Repaint(true);}
        else if(tag=="shr") {map._insertx(0,1,true);UpdateBitmap(0,0);Repaint(true);}
-       else if(tag.StartsWith("col")) map.View.mono=int.Parse(tag.Substring(3));
-       else if(tag=="loadb") {
+       else if(tag=="shu") {map._deletey(0,1);if(map.Height<4) map._inserty(map.Height,1,true);UpdateBitmap(0,0);Repaint(true);}
+       else if(tag=="shd") {map._inserty(0,1,true);UpdateBitmap(0,0);Repaint(true);}
+       else if(tag=="clear"||tag=="clearc") { Clear(tag=="clearc");}
+       else if(tag=="invert") { map.Invert();Repaint(true);}
+       else goto n;
+       return true;
+      }
+     n:
+      if(tag=="sol") {map.Game=Game.Sol;UpdateG();}
+      else if(tag=="shift") {map.Game=Game.Shift;UpdateG();}
+      else if(tag=="onoff") { map.Game=Game.OnOff;UpdateG();}
+      else if(tag=="quad"||tag=="hexa"||tag=="tria"||tag=="tria2"||tag=="tria4"||tag=="penta"||tag=="cubes"||tag=="delta"||tag=="trap"||tag=="deca") {
+        map.H=(H)Enum.Parse(typeof(H),tag);
+        UpdateH();
+        CheckBitmap();
+      } else if(tag=="diag"||tag=="onoffo"||tag=="onoffx"||tag=="onoff3"||tag=="onoffc") {
+         if(tag=="diag") map.Diag^=true;
+         if(tag=="onoffo") map.ooo^=true;
+         if(tag=="onoffc") map.ooc^=true;
+         if(tag=="onoff3") map.oo3^=true;
+         if(tag=="onoffx") map.oox^=true;
+         UpdateCh();
+      } else if(tag=="play"||tag=="free"||tag=="line"||tag=="rect"||tag=="circ"||tag=="circ2"||tag=="fill"||tag=="edge"||tag=="color"||tag=="color2") {
+        D d;
+        map.View.design=d=(D)Enum.Parse(typeof(D),tag);
+        UpdateControls();
+      } else if(tag=="bg"||tag=="fg") ColorDiag(tag=="fg");
+       else if(tag.StartsWith("col")) {
+         map.View.mono=int.Parse(tag.Substring(3));
+         UpdateControls();
+       } else if(tag=="loadb") {
           string txt=SetIndex<set.Count?set[SetIndex].txt:"";
           map.Parse(txt);
           Repaint(true);
@@ -878,24 +959,60 @@ namespace solon {
        } else if(tag=="renb") {
          set[SetIndex].id=tName.Text;
          Set2CB(SetIndex);
-       } else if(tag=="addb") {
-         Set s=new Set();
+       } else if(tag=="addb"||tag=="clonb") {
+         Set s=new Set(),t=set[SetIndex];
          s.id=tName.Text;
-         if(s.id=="") s.id=set[SetIndex].id;
-         s.txt=map._game2txt(s.id,"");
+         if(s.id=="") s.id=SPlus(t.id);
+         s.txt=tag=="clonb"?t.txt:map._game2txt(s.id,"");
          UIIgnore++;
-         set.Add(s);
-         Set2CB(set.Count-1);
+         int pos=SetIndex+1;
+         if(SetIndex<0) pos=0;else if(SetIndex>set.Count) pos=set.Count;
+         set.Insert(pos,s);
+         Set2CB(pos);
          UIIgnore--;
+       } else if(tag=="delb") {
+         if(set.Count>0) {
+           int n=set.Count-1;
+           if(SetIndex<0) SetIndex=0;if(SetIndex>n) SetIndex=n;
+           set.RemoveAt(SetIndex);
+           if(SetIndex==n) SetIndex--;
+           Set2CB(SetIndex);
+         }
        } else if(tag=="bup"||tag=="bdown") {
          int i=SetIndex,j=i+(tag.Length==3?-1:1);
          if(j>=0&&j<set.Count) {
            Set s=set[i];set[i]=set[j];set[j]=s;
            Set2CB(j);
          }
-       } else
+       } else if(tag=="peg"||tag=="rou"||tag=="corn"||tag=="grd1"||tag=="grd2") { 
+         if(tag=="peg") map.View.peg^=true;
+         else if(tag=="rou") map.View.rou^=true;
+         else if(tag=="corn") map.View.corn=(map.View.corn+1)%3;
+         else if(tag=="grd1") Grd1(ct,sh);
+         else if(tag=="grd2") map.View.grdm2=map.View.grdm2!=0?0:1;
+         UpdateControls();
+         return true;
+       }
+       else
         return false; 
       return true;
+    }
+    static string SPlus(string s) {
+      int n=s.Length,p=n-1;
+      while(p>=0&&s[p]=='9') p--;
+      char ch=p<0?' ':s[p];
+      bool d=char.IsDigit(ch);
+      s=s.Substring(0,p+(d?0:1));
+      p=n-1-p;      
+      return s+(d?(char)(ch+1):p>0?'1':'2')+new string('0',p);
+    }
+    void Grd1(int sh,int ct) {       
+       map.View.grdm=map.View.grdm==0?1+ct+2*sh:0;
+       if((sh|ct)!=0&&map.View.grdm==0) {
+         map.View.grdm=5+sh*(1+ct);
+       }
+       if(map.H==H.tria||map.H==H.tria2||map.H==H.tria4) {map.View.grdx=1;map.View.grdy=2;}
+       else {map.View.grdx=1;map.View.grdy=1;}
     }
     private void CheckedChanged(object sender, EventArgs e) {
       if(UIIgnore>0) return;
@@ -905,33 +1022,19 @@ namespace solon {
         if(r.Checked) {
           ProcTag(tag);
         }
-      } else  if(tag=="peg") map.View.peg=ch.Checked;
-      else if(tag=="rou") map.View.rou=ch.Checked; 
-      else if(tag=="corn") {map.View.corn=(map.View.corn+1)%3;ch.Checked=map.View.corn!=0;} 
+      } else  if(tag=="peg") { map.View.peg=ch.Checked;UpdateControls();}
+      else if(tag=="rou") {map.View.rou=ch.Checked;UpdateControls();}
+      else if(tag=="corn") {map.View.corn=(map.View.corn+1)%3;ch.Checked=map.View.corn!=0;UpdateControls();} 
       else if(tag=="diag") map.Diag=ch.Checked; 
       else if(tag=="onoffx") map.oox=ch.Checked; 
       else if(tag=="grd1") {
-        int sh=GDI.ShiftKey?1:0,ct=GDI.CtrlKey?1:0;
-        map.View.grdm=ch.Checked?1+ct+2*sh:0;
-        if((sh|ct)!=0&&map.View.grdm==0) {
-          map.View.grdm=5+sh*(1+ct);
-          ch.Checked=true;
-        }
-        if(map.H==H.tria||map.H==H.tria2||map.H==H.tria4) {map.View.grdx=1;map.View.grdy=2;}
-        else {map.View.grdx=1;map.View.grdy=1;}
-        
-      } else if(tag=="grd2") map.View.grdm2=ch.Checked?1:0;
+        Grd1(GDI.CtrlKey?1:0,GDI.ShiftKey?1:0);
+        UpdateControls();        
+      } else if(tag=="grd2") {map.View.grdm2=ch.Checked?1:0;UpdateControls();}
       else if(tag=="white") map.View.white=ch.Checked;        
 
       Repaint(true);
 
-    }
-
-    private void Tag_Click(object sender, EventArgs e) {
-       Control c=sender as Control;
-       string tag=""+c.Tag;
-       if(ProcTag(tag))
-        Repaint(true);
     }
 
     float[] _mxy(int x,int y) {
@@ -966,9 +1069,17 @@ namespace solon {
       return false;
     }
 
+    bool IsPlay { get { return map!=null&&map.View.design==D.play;}}
+    bool IsEdit { get { return !IsPlay;}}
+
     private void cbSet_SelectedIndexChanged(object sender, EventArgs e) {
       cbSet_event('i',sender as ComboBox,e);
     }
+
+    private void fMain_DoubleClick(object sender, EventArgs e) {
+       if(IsPlay) Fullscreen();
+    }
+
     void cbSet_event(char a,ComboBox cb,EventArgs e) {
       if(UIIgnore>0) return;
       int i=cb.SelectedIndex;
@@ -1059,11 +1170,6 @@ namespace solon {
     }
 
 
-    private void bClear_MouseUp(object sender, MouseEventArgs e) {
-      Clear(GDI.ShiftKey);
-    }
-
-
     private void chColor_CheckedChanged(object sender,EventArgs e) {
 
     }
@@ -1120,20 +1226,6 @@ namespace solon {
           if(l.X!=panel.Left||l.Y!=panel.Top) panel.Location=l;
           if(anch!=panel.Anchor) panel.Anchor=anch;
         }       
-
-        private void miFile_Click(object sender, EventArgs e) { 
-          string tag=""+(sender as ToolStripItem).Tag;
-          switch(tag) {
-           case "new":NewFile();break;
-           case "open":OpenFile();break;
-           case "save":SaveFile1(false,false);break;
-           case "saveas":SaveFile1(true,false);break;
-           case "export":ExportFile(true);break;
-           case "page":PrintPage(true);break;
-           case "print":Print();break;
-           case "exit":Close();break;
-          }
-        }
 
     }
 

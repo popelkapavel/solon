@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>solon</RootNamespace>
     <AssemblyName>solon</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -34,6 +34,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -148,6 +149,8 @@
     <None Include="img\col2.png" />
     <None Include="img\col3.png" />
     <None Include="img\col4.png" />
+    <None Include="img\exit.png" />
+    <None Include="img\corn.png" />
     <Content Include="img\export.png" />
     <None Include="img\invert.png" />
     <None Include="img\hquad.png" />
@@ -168,6 +171,18 @@
     <None Include="img\gonoff3.png" />
     <None Include="img\gonoffo.png" />
     <None Include="img\gonoffc.png" />
+    <None Include="img\page.png" />
+    <None Include="img\rotate.png" />
+    <None Include="img\flipy.png" />
+    <None Include="img\flipx.png" />
+    <None Include="img\shl.png" />
+    <None Include="img\shr.png" />
+    <None Include="img\shd.png" />
+    <None Include="img\shu.png" />
+    <None Include="img\peg.png" />
+    <None Include="img\round.png" />
+    <None Include="img\grd2.png" />
+    <None Include="img\grd1.png" />
     <Content Include="solon.ico" />
     <None Include="img\print.png" />
     <None Include="img\redo.png" />
