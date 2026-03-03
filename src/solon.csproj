@@ -151,6 +151,7 @@
     <None Include="img\col4.png" />
     <None Include="img\exit.png" />
     <None Include="img\corn.png" />
+    <None Include="img\black.png" />
     <Content Include="img\export.png" />
     <None Include="img\invert.png" />
     <None Include="img\hquad.png" />
@@ -183,6 +184,9 @@
     <None Include="img\round.png" />
     <None Include="img\grd2.png" />
     <None Include="img\grd1.png" />
+    <None Include="img\solx.png" />
+    <None Include="img\solf.png" />
+    <None Include="img\solm.png" />
     <Content Include="solon.ico" />
     <None Include="img\print.png" />
     <None Include="img\redo.png" />

@@ -12,8 +12,6 @@ using System.Drawing.Drawing2D;
 namespace solon {
     public partial class pmap {
 
-
-
 int[] _shiftxy(int px,int py,int b,bool opt,out int pi) {
   var xy=new List<int>();int x,y,p,nx,ny,f;int[] n;
   f=H==H.penta&&opt?b^4:H==H.tria4||H==H.penta?(((b+4)^1)&7):H==H.quad||H==H.tria2?i2(b=b&3,b^2):i2(b%=6,(b%6+3)%6);
@@ -119,8 +117,13 @@ bool _next(int x,int y,int d,bool opt,out int nx,out int ny) {
     x+=d==0?-1:d==1?dx:d==2?dx+1:d==3?1:d==4?dx+1:d==5?dx:0;
     y+=d==1||d==2?-1:d==4||d==5?1:0;
   } else {
-    x+=d==0?-1:d==2?1:0;
-    y+=d==1?-1:d==3?1:0;
+    if(opt) {
+      x+=d==3||d==0?-1:d==1||d==2?1:0;
+      y+=d==0||d==1?-1:d==2||d==3?1:0;
+    } else {
+      x+=d==0?-1:d==2?1:0;
+      y+=d==1?-1:d==3?1:0;
+    }
   }
   nx=x;ny=y;
   return true;
@@ -186,8 +189,13 @@ int _shiftb(int px,int py,int ex,int ey) {
     b=_idx(ex,ey,_points(px,py),0,0);
   } else {
     //b=Math.abs(px-mx)>Math.abs(py-my)?0:1,
-    b=_idx(ex,ey,_points(px,py),0,0);
-    b&=3;
+    if(Diag) {
+      b=_idx(ex,ey,_points(px,py),3,0);
+      b=(b&3)|((b&64)>>4);
+    } else {
+      b=_idx(ex,ey,_points(px,py),0,0);
+      b&=3;
+    }
   }
   return b;
 }

@@ -132,6 +132,9 @@ namespace solon {
           chOnOffO.Checked=map.ooo;
           chOnOff3.Checked=map.oo3;
           chOnOffC.Checked=map.ooc;
+          chSolX.Checked=map.solx;
+          chSolF.Checked=map.solf;
+          chSolM.Checked=map.solm;
           UIIgnore--;
         }
         public void UpdateControls() {
@@ -920,6 +923,7 @@ namespace solon {
        else if(tag=="shd") {map._inserty(0,1,true);UpdateBitmap(0,0);Repaint(true);}
        else if(tag=="clear"||tag=="clearc") { Clear(tag=="clearc");}
        else if(tag=="invert") { map.Invert();Repaint(true);}
+       else if(tag=="black") { map.Black();Repaint(true);}
        else goto n;
        return true;
       }
@@ -931,12 +935,15 @@ namespace solon {
         map.H=(H)Enum.Parse(typeof(H),tag);
         UpdateH();
         CheckBitmap();
-      } else if(tag=="diag"||tag=="onoffo"||tag=="onoffx"||tag=="onoff3"||tag=="onoffc") {
+      } else if(tag=="diag"||tag=="onoffo"||tag=="onoffx"||tag=="onoff3"||tag=="onoffc"||tag=="solx"||tag=="solf"||tag=="solm") {
          if(tag=="diag") map.Diag^=true;
          if(tag=="onoffo") map.ooo^=true;
          if(tag=="onoffc") map.ooc^=true;
          if(tag=="onoff3") map.oo3^=true;
          if(tag=="onoffx") map.oox^=true;
+         if(tag=="solx")   map.solx^=true;
+         if(tag=="solf") map.solf^=true;
+         if(tag=="solm") map.solm^=true;
          UpdateCh();
       } else if(tag=="play"||tag=="free"||tag=="line"||tag=="rect"||tag=="circ"||tag=="circ2"||tag=="fill"||tag=="edge"||tag=="color"||tag=="color2") {
         D d;
@@ -1027,6 +1034,10 @@ namespace solon {
       else if(tag=="corn") {map.View.corn=(map.View.corn+1)%3;ch.Checked=map.View.corn!=0;UpdateControls();} 
       else if(tag=="diag") map.Diag=ch.Checked; 
       else if(tag=="onoffx") map.oox=ch.Checked; 
+      else if(tag=="onoffc") map.ooc=ch.Checked; 
+      else if(tag=="solx") {map.solx=ch.Checked;if(map.solx) map.solf=chSolF.Checked=false;}
+      else if(tag=="solf") {map.solf=ch.Checked;if(map.solf) map.solx=chSolX.Checked=false;}
+      else if(tag=="solm") map.solm=ch.Checked;
       else if(tag=="grd1") {
         Grd1(GDI.CtrlKey?1:0,GDI.ShiftKey?1:0);
         UpdateControls();        

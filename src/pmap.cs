@@ -34,6 +34,12 @@ namespace solon {
         u.ia=ia;
         return u;        
       }
+      public static U Solm(int x,int y,int b,bool opt,int fo,int[] cha) {
+        var u=new U(3);
+        u.ia=new int[] {x,y,b,pmap.b2i(opt),fo};
+        Add(ref u.ia,cha);
+        return u;
+      }
       public static U OnOff(int[] xy,params int[] ia) {
         var u=new U(1);
         u.ia=ia;u.xy=xy;
@@ -43,6 +49,13 @@ namespace solon {
         var u=new U(2);
         u.ia=new int[] {x,y,b,pmap.b2i(opt),i};
         return u;
+      }
+      public static void Add(ref int[] a,int[] b) {
+        if(b!=null&&b.Length>0) {
+          int n=a.Length;
+          Array.Resize(ref a,n+b.Length);
+          Array.Copy(b,0,a,n,b.Length);
+        }
       }
     }
     public class V {
@@ -82,7 +95,7 @@ namespace solon {
       public H H=H.quad; // 0 quad,1 hexa,2 tria,3 tria4,5 penta,6 cubes,7 delta,8 trap
       public Game Game;
       public string Whiter;
-      public bool Diag,oox,oo3,ooc,ooo;
+      public bool Diag,oox,oo3,ooc,ooo,solx,solf,solm;
       public int White,Color;
       public V View=new V(); 
 
@@ -122,13 +135,17 @@ namespace solon {
           if(x==""||x[0]=='@') continue;
           else if(Regex.IsMatch(x,@"quad|hexa|tria|penta|cubes|delta|trap|deca")) 
             H=(H)(x=="hexa"?1:x=="tria"?2:x=="tria2"?3:x=="tria4"?4:x=="penta"?5:x=="cubes"?6:x=="delta"?7:x=="trap"?8:x=="deca"?9:0);
-           else if(Regex.IsMatch(x,@"sol|shift|onoff")) {             
+           else if(Regex.IsMatch(x,@"sol|shift|onoff")) {
              if(x=="onoff") oox=oo3=ooc=ooo=B0;
              if(x=="onoffx") oox=B1;
              if(x=="onoffo") ooo=B1;
              if(x=="onoff3") oo3=B1;
              if(x=="onoffc") ooc=B1;
-             Game=x=="sol"?Game.Sol:x=="shift"?Game.Shift:Game.OnOff;
+             if(x=="sol") solx=solf=solm=B0;
+             if(x=="solx") solx=B1;
+             if(x=="solf") solf=B1;
+             if(x=="solm") solm=B1;
+             Game=Regex.IsMatch(x,@"sol")?Game.Sol:x=="shift"?Game.Shift:Game.OnOff;
            } else if(Regex.IsMatch(x,@"^white_")) Whiter=x.Substring(6);
            else if(Regex.IsMatch(x,@"(no)diag")) Diag=x=="diag";
            else if(Regex.IsMatch(x,@"col\d+$")) {
@@ -168,7 +185,7 @@ namespace solon {
       public string _game2txt(string name,string txt) {        
         var sa=new List<string>();int i,c,e,r,x,y,xi=-1,yi=-1,ya=0,n;bool wh=Whiter!="xxff"||_white();string hdr,l,s;
         hdr="//"+(name+""==""?"":"@"+name)+','+(H==H.deca?"deca":H==H.trap?"trap":H==H.delta?"delta":H==H.cubes?"cubes":H==H.penta?"penta":H==H.tria4?"tria4":H==H.tria2?"tria2":H==H.tria?"tria":H==H.hexa?"hexa":"quad")
-          +(Game==Game.Shift?",shift":Game==Game.OnOff?",onoff"+(ooc?",onoffc":oo3?",onoff3":"")+(oox?",onoffx":"")+(ooo?",onoffo":""):",sol")+(wh?",white_"+Whiter:"")+(Diag?",diag":"");
+          +(Game==Game.Shift?",shift":Game==Game.OnOff?",onoff"+(ooc?",onoffc":oo3?",onoff3":"")+(oox?",onoffx":"")+(ooo?",onoffo":""):",sol"+(solf?",solf":solx?",solx":"")+(solm?",solm":""))+(wh?",white_"+Whiter:"")+(Diag?",diag":"");
         for(y=0;y<Height;y++) {
           l="";
           for(x=0;x<Width;x++) {
@@ -254,6 +271,12 @@ namespace solon {
       public static void Invert(ref int ch) {
         if(ch==3) ch=2;
         else if(ch==2) ch=3;
+      }
+      public void Black() {
+        for(int i=0;i<Data.Length;i++) Black(ref Data[i].ch);
+      }
+      public static void Black(ref int ch) {
+        if(ch==3) ch=2;
       }
       public bool Bounding(ref int x0,ref int y0,ref int x1,ref int y1) { return false;}
       public bool Copy(int dx,int dy,pmap src,int x0,int y0,int x1,int y1) {
@@ -2957,6 +2980,14 @@ public bool _mup(ME e) {
     }
     return true;
   }
+  if(solx||solf||solm) {
+    var u=_solx(1,mxy,e,solf,solm);
+    if(u!=null) {
+       AddUndo(u);
+       _moves(1);_beep();
+    }
+    return true;
+  }
   { int ip,iq,ir,b,j,dx=-1,dy=0,l,r,u2,d,d2,ld,lu,rd,ru,s,ii=Index(px,py),c=Data[ii].ch,c1,ex;U u;
     if(c==2||c==3) {
     var ja=_jumpsx()(px,py);
@@ -2989,31 +3020,46 @@ public bool _mup(ME e) {
   _moves(1);_beep();
   Data[ip].ch=1;
   b=u.ia[5];
-  if(View.white) {
-    r=2*(b2i(c==3))+b2i(c1==3);
-    r=View.whiter[r];
-    b=r=='b'?2:r=='e'?c1:r=='f'?c1==2?3:2:r=='w'?3:r=='o'?2:1;
-  } else b=c==2?1:c1==2?3:2;
-  Data[iq].ch=b;
+  SolOver(c,iq);
   Data[ir].ch=c;
-  Data[ir].fore=Data[ip].fore;
-  
+  Data[ir].fore=Data[ip].fore;  
   return true; 
   }
 }
+
+      public int SolOver(int c,int iq) {
+        int c1=Data[iq].ch,r,b;
+        if(View.white) {
+           r=2*(b2i(c==3))+b2i(c1==3);
+         r=View.whiter[r];
+        b=r=='b'?2:r=='e'?c1:r=='f'?c1==2?3:2:r=='w'?3:r=='o'?2:1;
+         } else b=c==2?1:c1==2?3:2;
+        Data[iq].ch=b;
+        return c1;
+      }
 
         internal void Undo(int n) { 
          if(n<1) n=1;
          var v=View;
          while(v.redo>0&&pmap.i2b(n--)) {
            U u=v.undo[--v.redo];int[] ia=u.ia;int ii,px=ia[0],py=ia[1],dx=ia[2],dy=ia[3],m=-1;
-           if(u.t==2) {
+           if(u.t==3) {
+             int pi,i,j,k,ir,rx,ry;
+             int[] xy=_xybn(px,py,dx,i2b(dy),ia.Length-4);
+             j=xy.Length-2;
+             ii=Index(px,py);
+             ir=Index(xy[j],xy[j+1]);Data[ir].ch=1;
+             for(i=0,k=5;i<j;i+=2,k++)
+               Data[Index(xy[i],xy[i+1])].ch=ia[k];
+             Data[ii].fore=Data[ir].fore;
+             Data[ir].fore=ia[4];             
+           } else if(u.t==2) {
              int pi;
              int[] xy=_shiftxy(px,py,dx,i2b(dy),out pi);
              _shift(xy,-ia[4]);
-            } else if(u.t==1) {
+           } else if(u.t==1) {
              _switchx(ia[2])(px,py,ia[3],ia[4],u.xy);
-            } else if(dx!=0||dy!=0) {
+           } else if(dx!=0||dy!=0) {
 	           var qr=_jumps(px,py,dx);int qx=qr[0],qy=qr[1],rx=qr[2],ry=qr[3],ir,iq;
 	           ii=Index(px,py);Data[ii].ch=ia[4];
              iq=Index(qx,qy);Data[iq].ch=ia[5];
@@ -3031,7 +3077,20 @@ public bool _mup(ME e) {
          var v=View;
          while(v.redo<v.undo.Count&&pmap.i2b(n--)) {
            U u=v.undo[v.redo++];int[] ia=u.ia;int ii,px=ia[0],py=ia[1],dx=ia[2],dy=ia[3],m=1;
-           if(u.t==2) {
+           if(u.t==3) {
+             int pi,i,j,k,ir,iq,rx,ry;
+             int[] xy=_xybn(px,py,dx,i2b(dy),ia.Length-4);
+             j=xy.Length-2;
+             ii=Index(px,py);
+             ir=Index(xy[j],xy[j+1]);Data[ir].ch=Data[ii].ch;
+             Data[ii].ch=1;
+             for(i=2,k=6;i<j;i+=2,k++) {
+               iq=Index(xy[i],xy[i+1]);
+               ia[k]=SolOver(ia[5],iq);
+             }
+             Data[ir].fore=Data[ii].fore;
+             Data[ii].fore=ia[4];             
+           } else if(u.t==2) {
              int pi;
              int[] xy=_shiftxy(px,py,dx,i2b(dy),out pi);
              _shift(xy,ia[4]);

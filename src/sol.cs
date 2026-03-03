@@ -147,6 +147,65 @@ bool _can5(int x,int y,int qx,int qy,int rx,int ry) {
   return !(_blocked(x,y,qx,qy)||_blocked(qx,qy,rx,ry));
 }
 
+int[] _solxxy(int px,int py,int b,bool opt,int ex,int ey,bool move) {
+  var xy=new List<int>();int x,y,p,nx,ny,f;int[] n;
+  f=H==H.penta&&opt?b^4:H==H.tria4||H==H.penta?(((b+4)^1)&7):H==H.quad||H==H.tria2?i2(b=b&3,b^2):i2(b%=6,(b%6+3)%6);
+  for(x=px,y=py;_next(x,y,b,opt,out nx,out ny)&&_xo(nx,ny)&&!_blocked(x,y,nx,ny);x=nx,y=ny) {
+    Push(xy,nx,ny);
+    if(nx==ex&&ny==ey) return xy.Count<(solm?2:4)?null:xy.ToArray();    
+  }
+  //xy.Reverse();
+  return null;
+}
+
+int[] _xybn(int x,int y,int b,bool opt,int n) {
+  var xy=new List<int>();int p,i;
+  for(i=0;i<n;i++) {
+    Push(xy,x,y);
+    _next(x,y,b,opt,out x,out y);
+  }
+  //xy.Reverse();
+  return xy.ToArray();
+}
+
+
+   U _solx(int up,float[] mu,ME ev,bool hole,bool move) {
+     int px=(int)View.mp[0],py=(int)View.mp[1],rx=(int)mu[0],ry=(int)mu[1],ex=(int)mu[5],ey=(int)mu[6];int ip,ir,c,b,i=0,j,e,x,y,x2,y2,pi,mi=0,fo,iq,n;var opt=Diag;
+     float[] p;float pv,mv;
+     ip=Index(px,py);c=Data[ip].ch;
+     ir=Index(rx,ry);
+     if(Data[ir].ch!=1||(c!=2&&c!=3)) return null;
+     b=_shiftb(px,py,ex,ey);
+     if(opt&&H==H.quad) {
+       opt=i2b(b&4);b&=3;
+     }
+     int[] xy=_solxxy(px,py,b,opt,rx,ry,move),cha;
+     if(xy==null) return null;
+     x2=px;y2=py;
+     n=xy.Length-2;
+     for(i=e=0;i<n;i+=2,x2=x,y2=y) {
+       iq=Index(x=xy[i],y=xy[i+1]);
+       j=Data[iq].ch;
+       if(j!=2&&j!=3) {
+         if(!hole||j!=1) return null;
+       } else e++;
+       if(_blocked(x2,y2,x,y)) return null;
+     }
+     if(!solm&&e==0) return null;
+     Data[ip].ch=1;
+     cha=new int[1+(n>>1)];
+     cha[0]=c;
+     for(i=0,j=1;i<n;i+=2,j++) {
+       iq=Index(xy[i],xy[i+1]);
+       cha[j]=SolOver(c,iq);
+     }
+     Data[ir].ch=c;
+     fo=Data[ir].fore;
+     Data[ir].fore=Data[ip].fore;  
+     return U.Solm(px,py,b,opt,fo,cha);
+   }
+
+
     }
 
 }
