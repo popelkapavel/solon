@@ -66,7 +66,6 @@ namespace solon {
       public D design;
       public List<int> sele=new List<int>();
       public int dm9c,dm10c,onoff6;
-      public fMain f;
       public List<U> undo=new List<U>();
       public int redo;
       public float[] mm,mp;
@@ -97,14 +96,13 @@ namespace solon {
       public string Whiter;
       public bool Diag,oox,oo3,ooc,ooo,solx,solf,solm;
       public int White,Color;
-      public V View=new V(); 
+      public static fMain F1;
 
       public override string ToString() {
         return ""+Width+"x"+Height;
       }
 
-      public pmap(fMain f) {
-        View.f=f;
+      public pmap() {
         Sizes(1);
       }
       public static void Sizes(float k) {
@@ -122,7 +120,6 @@ namespace solon {
       public void Copy(pmap src) {
         Data=src.Data.Clone() as C[];
         Width=src.Width;Height=src.Height;
-        View=src.View;
       }
       public void Alloc(int width,int height) {
         Data=new C[width*height];
@@ -154,7 +151,7 @@ namespace solon {
              //SetColor(cc);
            }
         }
-        View.f.UpdateControls();
+        F1.UpdateControls();
       }
       public void Parse(string txt) {
         var cmd=Regex.Match(txt,@"^\s*//.*");
@@ -244,7 +241,7 @@ namespace solon {
       public void ExportPng(string s) {
         using(Bitmap bm=new Bitmap(BWidth(),BHeight())) {
          using(Graphics gr=Graphics.FromImage(bm)) {
-          if(View.back) pmap.Back(gr,bm.Width,bm.Height);
+          if(F1.View.back) pmap.Back(gr,bm.Width,bm.Height);
           gr.SmoothingMode=SmoothingMode.HighQuality;
           Draw(gr);          
          }
@@ -347,7 +344,7 @@ namespace solon {
         return c;
       }
       public int _color(int x,int y) {
-        int idx=Index(x,y),c=Data[idx].back,mono=View.mono;
+        int idx=Index(x,y),c=Data[idx].back,mono=F1.View.mono;
         if(c<1) {
           switch(H) {
            case H.trap:c=mono==2?clr2[(x+y)&1]:mono==22?clr2[1&((x+1)>>1)]:mono==21?clr2[x&1]:mono==4?clr4[2*(y&1)+(x&1)]:mono==30?clr2[y&1]:mono==31?clr3[(x+2*(y&1))%3]:0xffffff;break;
@@ -382,21 +379,22 @@ namespace solon {
         float sx=brd+x*Cell,sy=brd+y*Cell;
         int c=_color(x,y);        
   Brush b;
-  if(View.grdm>0) {
+  var w=F1.View;
+  if(w.grdm>0) {
     if(c==Pal.White) c=clr2[1];
     var xy=_points14(x,y);
-    if(View.grdm>=5) {
-      if(View.rou) {
+    if(w.grdm>=5) {
+      if(w.rou) {
         bool[] ba=_brdborder(x,y,null);
-        _ground(gr,xy,Pal.White,c,Pen05,0,0,View.grdm>5,ba,(float)Math.Sqrt(3)/3); 
-      } else _gpoly(gr,xy,Pal.White,c,Pen05,0,0,View.grdm>5);
+        _ground(gr,xy,Pal.White,c,Pen05,0,0,w.grdm>5,ba,(float)Math.Sqrt(3)/3); 
+      } else _gpoly(gr,xy,Pal.White,c,Pen05,0,0,w.grdm>5);
       return;
-    } else if(View.grdm>1) {float[] fa=_radial(View.grdx,View.grdy,xy);b=_radialbrush(fa[0],fa[1],fa[2],c,Pal.White);}
-    else { float[] fa=_linear(View.grdx,View.grdy,xy);b=_linearbrush(fa[0],fa[1],fa[2],fa[3],c,Pal.White);}
+    } else if(w.grdm>1) {float[] fa=_radial(w.grdx,w.grdy,xy);b=_radialbrush(fa[0],fa[1],fa[2],c,Pal.White);}
+    else { float[] fa=_linear(w.grdx,w.grdy,xy);b=_linearbrush(fa[0],fa[1],fa[2],fa[3],c,Pal.White);}
   } else
     b=new SolidBrush(Pal.IntColor(c));    
   GraphicsPath gp=new GraphicsPath();
-        if(View.rou) {
+        if(w.rou) {
     float c2=Cell/2,cx=sx+c2,cy=sy+c2;var ba=new bool[]{_brd(x-1,y),_brd(x,y-1),_brd(x+1,y),_brd(x,y+1),false};
     ba[4]=ba[0];
     gr.FillEllipse(b,sx,sy,Cell,Cell);
@@ -508,20 +506,21 @@ void _drawcell16(Graphics gr,int x,int y) {
   //var sx=brd+(x+(y&1)/2)*cell6y,sy=brd+((1+y*3)/4)*cell6x,x2=sx+cell6y/2,x3=sx+cell6y;
   int c=_color(x,y);        
   Brush b;
-  if(View.grdm>0) {
+  var w=F1.View;
+  if(w.grdm>0) {
     if(c==Pal.White) c=clr2[1];
-    if(View.grdm>=5) {
-      if(View.rou) {
+    if(w.grdm>=5) {
+      if(w.rou) {
         bool[] ba=_brdborder(x,y,null);
-        _ground(gr,xy,Pal.White,c,Pen05,0,0,View.grdm>5,ba,(float)Math.Sqrt(3)/3); 
-      } else _gpoly(gr,xy,Pal.White,c,Pen05,0,0,View.grdm>5);
+        _ground(gr,xy,Pal.White,c,Pen05,0,0,w.grdm>5,ba,(float)Math.Sqrt(3)/3); 
+      } else _gpoly(gr,xy,Pal.White,c,Pen05,0,0,w.grdm>5);
       return;
-    } else if(View.grdm>1) {float[] fa=_radial(View.grdx,View.grdy,xy);b=_radialbrush(fa[0],fa[1],fa[2],c,Pal.White);}
-    else { float[] fa=_linear(View.grdx,View.grdy,xy);b=_linearbrush(fa[0],fa[1],fa[2],fa[3],c,Pal.White);}
+    } else if(w.grdm>1) {float[] fa=_radial(w.grdx,w.grdy,xy);b=_radialbrush(fa[0],fa[1],fa[2],c,Pal.White);}
+    else { float[] fa=_linear(w.grdx,w.grdy,xy);b=_linearbrush(fa[0],fa[1],fa[2],fa[3],c,Pal.White);}
   } else
     b=new SolidBrush(Pal.IntColor(c));    
   GraphicsPath gp=new GraphicsPath();
-  if(View.rou) {
+  if(w.rou) {
     int i,i1;float cx=(xy[0]+xy[6])/2,cy=(xy[1]+xy[7])/2,r=(float)Math.Sqrt(_sqr(xy[0]-cx,xy[1]-cy));int[] b2=_border16(x,y);bool[] ba=new bool[8];
     for(i1=i=0;i<12;i1++,i+=2) ba[i1]=_brd(x+b2[i],y+b2[i+1]);
     ba[6]=ba[0];
@@ -546,21 +545,22 @@ void _drawcell16(Graphics gr,int x,int y) {
 
 void _drawcell3x(Graphics gr,int x,int y,float[] xy,int c,fBorder border) {
   Brush b;int n=xy.Length;
-  if(View.grdm>0) {
+  var v=F1.View;
+  if(v.grdm>0) {
     if(c==Pal.White) c=clr2[1];
-    if(View.grdm>=5) {
-      if(View.rou) {
+    if(v.grdm>=5) {
+      if(v.rou) {
         int[] b2=border(x,y);bool[] ba=_brdborder(x,y,null);
-        _ground(gr,xy,Pal.White,c,Pen05,0,0,View.grdm>5,ba,H==H.tria?(float)Math.Sqrt(2)/3:0.125f); 
-      } else _gpoly(gr,xy,Pal.White,c,Pen05,0,0,View.grdm>5);
+        _ground(gr,xy,Pal.White,c,Pen05,0,0,v.grdm>5,ba,H==H.tria?(float)Math.Sqrt(2)/3:0.125f); 
+      } else _gpoly(gr,xy,Pal.White,c,Pen05,0,0,v.grdm>5);
       return;
-    } else if(View.grdm>1) {float[] fa=_radial(View.grdx,View.grdy,xy);b=_radialbrush(fa[0],fa[1],fa[2],c,Pal.White);}
-    else { float[] fa=_linear(View.grdx,View.grdy,xy);b=_linearbrush(fa[0],fa[1],fa[2],fa[3],c,Pal.White);}
+    } else if(v.grdm>1) {float[] fa=_radial(v.grdx,v.grdy,xy);b=_radialbrush(fa[0],fa[1],fa[2],c,Pal.White);}
+    else { float[] fa=_linear(v.grdx,v.grdy,xy);b=_linearbrush(fa[0],fa[1],fa[2],fa[3],c,Pal.White);}
     //else g=ctx.createLinearGradient(xy[0],xy[1],xy[2],xy[3]);
   } else
     b=new SolidBrush(Pal.IntColor(c));
   GraphicsPath gp=new GraphicsPath();
-  if(View.rou) {
+  if(v.rou) {
     int i,i1;int[] b2=border(x,y);bool[] ba=new bool[4];
     for(i1=i=0;i<6;i1++,i+=2) ba[i1]=_brd(x+b2[i],y+b2[i+1]);
     ba[3]=ba[0];
@@ -604,21 +604,22 @@ void _drawcell15(Graphics gr,int x,int y) {
   var xy=_points15(x,y);int cx=(x+1)/2|0,x1=x&1,v=(cx+y)&1;
   Brush b;int n=xy.Length,n2=n/2;
   var c=_color(x,y);
-  if(View.grdm>0) {
+  var w=F1.View;
+  if(w.grdm>0) {
     if(c==Pal.White) c=clr2[1];
-    if(View.grdm>=5) {
-      if(View.rou) {
+    if(w.grdm>=5) {
+      if(w.rou) {
         int[] b2=_border15(x,y);bool[] ba=_brdborder(x,y,null);
-        _ground(gr,xy,Pal.White,c,Pen05,0,0,View.grdm>5,ba,H==H.tria?(float)Math.Sqrt(2)/3:0.125f); 
-      } else _gpoly(gr,xy,Pal.White,c,Pen05,0,0,View.grdm>5);
+        _ground(gr,xy,Pal.White,c,Pen05,0,0,w.grdm>5,ba,H==H.tria?(float)Math.Sqrt(2)/3:0.125f); 
+      } else _gpoly(gr,xy,Pal.White,c,Pen05,0,0,w.grdm>5);
       return;
-    } else if(View.grdm>1) {float[] fa=_radial(View.grdx,View.grdy,xy);b=_radialbrush(fa[0],fa[1],fa[2],c,Pal.White);}
-    else { float[] fa=_linear(View.grdx,View.grdy,xy);b=_linearbrush(fa[0],fa[1],fa[2],fa[3],c,Pal.White);}
+    } else if(w.grdm>1) {float[] fa=_radial(w.grdx,w.grdy,xy);b=_radialbrush(fa[0],fa[1],fa[2],c,Pal.White);}
+    else { float[] fa=_linear(w.grdx,w.grdy,xy);b=_linearbrush(fa[0],fa[1],fa[2],fa[3],c,Pal.White);}
     //else g=ctx.createLinearGradient(xy[0],xy[1],xy[2],xy[3]);
   } else
     b=new SolidBrush(Pal.IntColor(c));
   GraphicsPath gp=new GraphicsPath();
-  if(View.rou) {
+  if(w.rou) {
     int i,i1;var b2=_border15(x,y);var ba=new bool[n2+1];
     for(i1=i=0;i<10;i1++,i+=2) ba[i1]=_brd(x+b2[i],y+b2[i+1]);
     ba[n2]=ba[0];
@@ -649,21 +650,22 @@ void _drawcell8(Graphics gr,int x,int y) {
 void _drawcell8x(Graphics gr,int x,int y,float[] xy,fBorder border) {
   Brush b;int n=xy.Length,n2=n/2;
   var c=_color(x,y);
-  if(View.grdm>0) {
+  var w=F1.View;
+  if(w.grdm>0) {
     if(c==Pal.White) c=clr2[1];
-    if(View.grdm>=5) {
-      if(View.rou) {
+    if(w.grdm>=5) {
+      if(w.rou) {
         int[] b2=border(x,y);bool[] ba=_brdborder(x,y,null);
-        _ground(gr,xy,Pal.White,c,Pen05,0,0,View.grdm>5,ba,H==H.tria?(float)Math.Sqrt(2)/3:0.125f); 
-      } else _gpoly(gr,xy,Pal.White,c,Pen05,0,0,View.grdm>5);
+        _ground(gr,xy,Pal.White,c,Pen05,0,0,w.grdm>5,ba,H==H.tria?(float)Math.Sqrt(2)/3:0.125f); 
+      } else _gpoly(gr,xy,Pal.White,c,Pen05,0,0,w.grdm>5);
       return;
-    } else if(View.grdm>1) {float[] fa=_radial(View.grdx,View.grdy,xy);b=_radialbrush(fa[0],fa[1],fa[2],c,Pal.White);}
-    else { float[] fa=_linear(View.grdx,View.grdy,xy);b=_linearbrush(fa[0],fa[1],fa[2],fa[3],c,Pal.White);}
+    } else if(w.grdm>1) {float[] fa=_radial(w.grdx,w.grdy,xy);b=_radialbrush(fa[0],fa[1],fa[2],c,Pal.White);}
+    else { float[] fa=_linear(w.grdx,w.grdy,xy);b=_linearbrush(fa[0],fa[1],fa[2],fa[3],c,Pal.White);}
     //else g=ctx.createLinearGradient(xy[0],xy[1],xy[2],xy[3]);
   } else
     b=new SolidBrush(Pal.IntColor(c));
   GraphicsPath gp=new GraphicsPath();
-  if(View.rou) {
+  if(w.rou) {
     int i,i1;var b2=border(x,y);var ba=new bool[n2+1];
     for(i1=i=0;i<n;i1++,i+=2) ba[i1]=_brd(x+b2[i],y+b2[i+1]);
     ba[n2]=ba[0];
@@ -745,7 +747,7 @@ void _drawcell7(Graphics gr,int x,int y) {
       }
 float[] _radial(float dx,float dy,float[] xy) {
   int i,j=0,k=0;float m=float.PositiveInfinity,n=float.NegativeInfinity,x,sx,sy;
-  if(View.grdm==3) {
+  if(F1.View.grdm==3) {
     for(sx=sy=i=0;i<xy.Length;i+=2) {sx+=xy[i];sy+=xy[i+1];}
     i>>=1;sx/=i;sy/=i;
     i=H==H.deca||H==H.trap?4:H==H.tria2||H==H.tria4?2:0;
@@ -782,13 +784,13 @@ float[] _linear(float dx,float dy,float[] xy) {
       public delegate void fDrawPeg(Graphics gr,int x,int y,bool white);
       public void _drawpeg(Graphics gr,int x,int y,bool white) {
         float sx=brd+x*Cell,sy=brd+y*Cell,c2=Cell/2,r=c2-3;
-        int pc=Data[Index(x,y)].fore,fs=pc!=0?white?_whi(pc):pc:white?View.grdm2>0?0xcccccc:Pal.White:0;
+        int pc=Data[Index(x,y)].fore,fs=pc!=0?white?_whi(pc):pc:white?F1.View.grdm2>0?0xcccccc:Pal.White:0;
         Brush bb=new SolidBrush(Pal.IntColor(fs)),bb2=null;
         Pen p=white?Pen20:Pen05;
         float[] rp;
-        if(View.peg) {
-          if(View.grdm2>0) {rp=_radial_xy(new float[] {sx+4,sy+4,sx+Cell-4,sy+4,sx+Cell-4,sy+Cell-4,sx+4,sy+Cell-4});bb2=_radialbrush(rp[0],rp[1],rp[2],fs,-1);};
-          if(View.rou) {
+        if(F1.View.peg) {
+          if(F1.View.grdm2>0) {rp=_radial_xy(new float[] {sx+4,sy+4,sx+Cell-4,sy+4,sx+Cell-4,sy+Cell-4,sx+4,sy+Cell-4});bb2=_radialbrush(rp[0],rp[1],rp[2],fs,-1);};
+          if(F1.View.rou) {
             float cx=sx+c2,cy=sy+c2,d=4;r=c2-d;
             bool[] ba=new bool[] {_brd(x-1,y),_brd(x,y-1),_brd(x+1,y),_brd(x,y+1)};
             GraphicsPath gp=new GraphicsPath();
@@ -797,7 +799,7 @@ float[] _linear(float dx,float dy,float[] xy) {
             _arc2(gp,ba[1]||ba[2],lx,ly,sx+Cell-d,sy+d,nx=sx+Cell-d,ny=sy+c2,r);lx=nx;ly=ny;
             _arc2(gp,ba[2]||ba[3],lx,ly,sx+Cell-d,sy+Cell-d,nx=sx+c2,ny=sy+Cell-d,r);lx=nx;ly=ny;
             _arc2(gp,ba[3]||ba[0],lx,ly,sx+d,sy+Cell-d,nx=sx+4,ny=sy+c2,r);
-            if(View.grdm2>0) gr.FillPath(new SolidBrush(Pal.IntColor(pc)),gp);
+            if(F1.View.grdm2>0) gr.FillPath(new SolidBrush(Pal.IntColor(pc)),gp);
             gr.FillPath(bb,gp);
             if(bb2!=null) gr.FillPath(bb2,gp);
             gr.DrawPath(p,gp);
@@ -807,7 +809,7 @@ float[] _linear(float dx,float dy,float[] xy) {
           }
         } else {
           gr.FillEllipse(bb,sx+c2-r,sy+c2-r,2*r,2*r);
-          if(View.grdm2>0) {
+          if(F1.View.grdm2>0) {
             rp=_radial_sph(sx+c2,sy+c2,c2-3);bb2=_radialbrush(rp[0],rp[1],rp[2],fs,-1);
             gr.FillEllipse(bb2,sx+c2-r,sy+c2-r,2*r,2*r);
           }
@@ -815,13 +817,13 @@ float[] _linear(float dx,float dy,float[] xy) {
         }
       }
 void _drawpeg3x(Graphics gr,int x,int y,bool white,bool pg,fPoints points,fBorder border) {
-  int pc=_getpgc(x,y),fs=pc!=0?white?_whi(pc):pc:white?View.grdm2>0?0xcccccc:Pal.White:0;
+  int pc=_getpgc(x,y),fs=pc!=0?white?_whi(pc):pc:white?F1.View.grdm2>0?0xcccccc:Pal.White:0;
   var gp=new GraphicsPath();
   Brush bb=new SolidBrush(Pal.IntColor(fs)),bb2=null;
   if(pg) {
     float[] pt=_polyex2(_points(x,y),0.75f,0,0),rp2;
-    if(View.grdm2>0) {rp2=_radial_xy(pt);bb2=_radialbrush(rp2[0],rp2[1],rp2[2],fs,-1);}
-    if(View.rou) {
+    if(F1.View.grdm2>0) {rp2=_radial_xy(pt);bb2=_radialbrush(rp2[0],rp2[1],rp2[2],fs,-1);}
+    if(F1.View.rou) {
       float[] xy=pt;int[] b=border(x,y);
       int i,i1;bool[] o=new bool[xy.Length/2+1];float lx,ly,nx,ny;int n=xy.Length;
       for(i1=i=0;i<n;i1++,i+=2) o[i1]=_brd(x+b[i],y+b[i+1]);
@@ -837,7 +839,7 @@ void _drawpeg3x(Graphics gr,int x,int y,bool white,bool pg,fPoints points,fBorde
         gp.AddLine(pt[j],pt[j+1],pt[i],pt[i+1]);
   } else {
     float[] p=_peg(x,y);
-    if(View.grdm2!=0) {float[] rp=_radial_sph(p[0],p[1],p[2]);bb2=_radialbrush(rp[0],rp[1],rp[2],fs,-1);}
+    if(F1.View.grdm2!=0) {float[] rp=_radial_sph(p[0],p[1],p[2]);bb2=_radialbrush(rp[0],rp[1],rp[2],fs,-1);}
     gp.AddArc(p[0]-p[2],p[1]-p[2],2*p[2],2*p[2],0,360);
   }
   gr.FillPath(bb,gp);
@@ -847,35 +849,35 @@ void _drawpeg3x(Graphics gr,int x,int y,bool white,bool pg,fPoints points,fBorde
 }
 
     void _drawpeg3(Graphics gr,int x,int y,bool white) {
-      _drawpeg3x(gr,x,y,white,View.peg,_points3,_border3);
+      _drawpeg3x(gr,x,y,white,F1.View.peg,_points3,_border3);
      }
 
     void _drawpeg2(Graphics gr,int x,int y,bool white) {
-      _drawpeg3x(gr,x,y,white,View.peg,_points2,_border2);
+      _drawpeg3x(gr,x,y,white,F1.View.peg,_points2,_border2);
      }
 
     void _drawpeg5(Graphics gr,int x,int y,bool white) {
-      _drawpeg3x(gr,x,y,white,View.peg,_points2,_border5);
+      _drawpeg3x(gr,x,y,white,F1.View.peg,_points2,_border5);
      }
       void _drawpeg15(Graphics gr,int x,int y,bool white) {
-         _drawpeg3x(gr,x,y,white,View.peg,_points15,_border15);
+         _drawpeg3x(gr,x,y,white,F1.View.peg,_points15,_border15);
       }
       void _drawpeg8(Graphics gr,int x,int y,bool white) {
-         _drawpeg3x(gr,x,y,white,View.peg,_points8,_border8);
+         _drawpeg3x(gr,x,y,white,F1.View.peg,_points8,_border8);
       }
       void _drawpeg9(Graphics gr,int x,int y,bool white) {
-         _drawpeg3x(gr,x,y,white,View.peg,_points9,_border9);
+         _drawpeg3x(gr,x,y,white,F1.View.peg,_points9,_border9);
       }
       void _drawpeg11(Graphics gr,int x,int y,bool white) {
-         _drawpeg3x(gr,x,y,white,View.peg,_points11,_border11);
+         _drawpeg3x(gr,x,y,white,F1.View.peg,_points11,_border11);
       }
       void _drawpeg7(Graphics gr,int x,int y,bool white) {
-         _drawpeg3x(gr,x,y,white,View.peg,_points7,_border7);
+         _drawpeg3x(gr,x,y,white,F1.View.peg,_points7,_border7);
       }
 
 
       void _drawpeg16(Graphics gr,int x,int y,bool white) {
-         _drawpeg3x(gr,x,y,white,View.peg,_points16,_border16);
+         _drawpeg3x(gr,x,y,white,F1.View.peg,_points16,_border16);
       }
 
       public delegate float[] fPoints(int x,int y);
@@ -982,7 +984,7 @@ void _arc(Graphics gr,Pen p,float cx,float cy,float r,float a,float s) {
 void _drawborder(Graphics gr,int x,int y,fPoints points,fBorder border) {
   float sx=brd+x*Cell,sy=brd+y*Cell,c2=Cell/2;int e=Data[Index(x,y)].block;
   Pen p=Pen20;bool[] b=null;
-  if(View.rou) {
+  if(F1.View.rou) {
     float cx=sx+c2,cy=sy+c2;b=new bool[]{_brd(x-1,y),_brd(x,y-1),_brd(x+1,y),_brd(x,y+1)};
     if(!b[0]) {
       if(b[1]) _rline(gr,p,sx,sy,0,c2+1);else _arc(gr,p,cx,cy,c2,180,90);
@@ -998,14 +1000,14 @@ void _drawborder(Graphics gr,int x,int y,fPoints points,fBorder border) {
       if(!b[1]) _rline(gr,p,sx+c2-1,sy,c2+1,0);
       if(!b[3]) _rline(gr,p,sx+c2,sy+Cell,c2,0);
     }
-    if(View.corn!=0) b=new bool[]{_brd(x,y-1),_brd(x+1,y),_brd(x,y+1),_brd(x-1,y)};
+    if(F1.View.corn!=0) b=new bool[]{_brd(x,y-1),_brd(x+1,y),_brd(x,y+1),_brd(x-1,y)};
   } else {
     if(!_xo2(x-1,y)) _line(gr,p,sx,sy,sx,sy+Cell);
     if(!_xo2(x,y-1)) _line(gr,p,sx,sy,sx+Cell,sy);
     if(!_xo2(x+1,y)) _line(gr,p,sx+Cell,sy,sx+Cell,sy+Cell);
     if(!_xo2(x,y+1)) _line(gr,p,sx,sy+Cell,sx+Cell,sy+Cell);
   }
-  if(View.corn!=0) _corn(gr,View.corn,3,8,new float[] {sx,sy,sx+Cell,sy,sx+Cell,sy+Cell,sx,sy+Cell},b);
+  if(F1.View.corn!=0) _corn(gr,F1.View.corn,3,8,new float[] {sx,sy,sx+Cell,sy,sx+Cell,sy+Cell,sx,sy+Cell},b);
   if(e!=0) {
     if(i2b(e&1)) _line(gr,p,sx+1,sy,sx+1,sy+Cell);
     if(i2b(e&2)) _line(gr,p,sx,sy,sx+Cell,sy);
@@ -1018,7 +1020,7 @@ void _drawborder(Graphics gr,int x,int y,fPoints points,fBorder border) {
 void _drawborder16(Graphics gr,int x,int y,fPoints points,fBorder border) {
   float[] xy=_points(x,y);int[] b=_border(x,y);int i,i2,i3,e=Data[Index(x,y)].block;bool[] o=null;
   Pen p=Pen20;
-  if(View.rou) {
+  if(F1.View.rou) {
     int i1,a;float cx=(xy[0]+xy[6])/2,cy=(xy[1]+xy[7])/2,r=(float)Math.Sqrt(_sqr((xy[0]+xy[2])/2-cx,(xy[1]+xy[3])/2-cy));o=new bool[6];
     for(i1=i=0;i<12;i1++,i+=2) o[i1]=_brd(x+b[i],y+b[i+1]);
     ShiftL(o);Push(ref o,o[0]);
@@ -1030,7 +1032,7 @@ void _drawborder16(Graphics gr,int x,int y,fPoints points,fBorder border) {
     }
   } else for(i=0,i2=10;i<12;i2=i,i+=2)
     if(!_xo2(x+b[i],y+b[i+1])) _line(gr,p,xy[i],xy[i+1],xy[i2],xy[i2+1]);
-  if(View.corn!=0) _corn(gr,View.corn,3,12,xy,o);
+  if(F1.View.corn!=0) _corn(gr,F1.View.corn,3,12,xy,o);
   if(e!=0) {
     Array.Resize(ref xy,12);    
     var xy2=FAC(xy);
@@ -1049,7 +1051,7 @@ void _drawborder3x(Graphics gr,int x,int y,fPoints points,fBorder border) {
   Pen p=Pen20;
   int i1,i2,i3;
 
-  if(View.rou) {
+  if(F1.View.rou) {
     float cx=(xy[0]+xy[4])/2,cy=(xy[1]+xy[5])/2,r=(float)Math.Sqrt(_sqr((xy[0]+xy[2])/2-cx,(xy[1]+xy[3])/2-cy));o=new bool[xy.Length/2];
     for(i1=i=0;i<6;i1++,i+=2) o[i1]=_brd(x+b[i],y+b[i+1]);
     ShiftL(o);Push(ref o,o[0]);
@@ -1064,7 +1066,7 @@ void _drawborder3x(Graphics gr,int x,int y,fPoints points,fBorder border) {
   } else 
     for(i=0,i2=4;i<6;i2=i,i+=2)
       if(!_xo2(x+b[i],y+b[i+1])) _line(gr,p,xy[i],xy[i+1],xy[i2],xy[i2+1]);
-  if(View.corn!=0) _corn(gr,View.corn,3,6,xy,o);
+  if(F1.View.corn!=0) _corn(gr,F1.View.corn,3,6,xy,o);
   if(i2b(e)) {
     _polyex2(xy,15f/16,0,0);
     for(i=0,i2=4;i<3;i++,i2=(i2+2)%6) if(i2b(e&(1<<i))) {
@@ -1088,7 +1090,8 @@ void _drawborder5(Graphics gr,int x,int y,fPoints points,fBorder border) {
 void _drawborder15(Graphics gr,int x,int y,fPoints points,fBorder border) {
   float[] xy=points(x,y);int[] b=border(x,y);int i,i2,i3,e=Data[Index(x,y)].block,n=xy.Length,n2=n/2;bool[]o=null;
   Pen p=Pen20;
-  if(View.rou) {
+  V w=F1.View;
+  if(w.rou) {
     int i1;float a,cx,cy,r;o=new bool[n2];
     cx=(xy[0]+xy[6])/2;cy=(xy[1]+xy[7])/2;r=(float)Math.Sqrt(_sqr((xy[0]+xy[2])/2-cx,(xy[1]+xy[3])/2-cy));
     for(i1=i=0;i<10;i1++,i+=2) o[i1]=_brd(x+b[i],y+b[i+1]);
@@ -1102,7 +1105,7 @@ void _drawborder15(Graphics gr,int x,int y,fPoints points,fBorder border) {
   } else 
     for(i=0,i2=8;i<10;i2=i,i+=2)
       if(!_xo2(x+b[i],y+b[i+1])) _line(gr,p,xy[i],xy[i+1],xy[i2],xy[i2+1]);
-   if(View.corn!=0) _corn(gr,View.corn,3,10,xy,o);
+   if(w.corn!=0) _corn(gr,w.corn,3,10,xy,o);
    if(i2b(e)) {
     _polyex2(xy,15f/16,0,0);
     for(i=0,i2=8;i<5;i++,i2=(i2+2)%n) if(i2b(e&(1<<i))) {
@@ -1116,7 +1119,7 @@ void _drawborder15(Graphics gr,int x,int y,fPoints points,fBorder border) {
 void _drawborder8(Graphics gr,int x,int y,fPoints points,fBorder border) {
   float[] xy=points(x,y);int[] b=border(x,y);int i,i2,i3,e=Data[Index(x,y)].block,n=xy.Length,n2=n/2;bool[]o=null;
   Pen p=Pen20;
-  if(View.rou) {
+  if(F1.View.rou) {
     int i1;float a,cx,cy,r;o=new bool[n2];
     if(H==H.cubes||H==H.penta||H==H.trap||H==H.deca) {cx=(xy[0]+xy[4])/2;cy=(xy[1]+xy[5])/2;r=(float)Math.Sqrt(_sqr((xy[0]+xy[2])/2-cx,(xy[1]+xy[3])/2-cy));}
     else if(H==H.penta) {cx=(xy[0]+xy[6])/2;cy=(xy[1]+xy[7])/2;r=(float)Math.Sqrt(_sqr((xy[0]+xy[2])/2-cx,(xy[1]+xy[3])/2-cy));}
@@ -1131,7 +1134,7 @@ void _drawborder8(Graphics gr,int x,int y,fPoints points,fBorder border) {
   } else 
     for(i=0,i2=n-2;i<n;i2=i,i+=2)
       if(!_xo2(x+b[i],y+b[i+1])) _line(gr,p,xy[i],xy[i+1],xy[i2],xy[i2+1]);
-  if(View.corn!=0) _corn(gr,View.corn,3,n,xy,o);
+  if(F1.View.corn!=0) _corn(gr,F1.View.corn,3,n,xy,o);
   if(i2b(e)) {
     _polyex2(xy,15f/16,0,0);
     for(i=0,i2=n-2;i<n2;i++,i2=(i2+2)%n) if(i2b(e&(1<<i))) {
@@ -1285,7 +1288,7 @@ PointF[] _polyex(float[] xy,float e,float dx,float dy) {
              if((c=Data[i].ch)>0)
                fdb(gr,x,y,pf,bf);
            }
-         var se=View.sele;
+         var se=F1.View.sele;
          for(i=0;i<se.Count;i+=2)
            _drawsele(gr,se[i],se[i+1]);
          t=_ticks()-t;
@@ -1769,7 +1772,7 @@ string _svg_radial(string n,int c,float dx,float dy) {
   e=Math.Abs(x);f=Math.Abs(y);
   if(e<f) e=f;
   //x/=e,y/=e;
-  if(View.grdm==3) x=y=r=50;
+  if(F1.View.grdm==3) x=y=r=50;
   else {x=(float)Math.Round(50*(1-x));y=(float)Math.Round(50*(1-y));r=100;}
   s+=_svg_radialp(n,c,x,y,r,B0,-1);
   return s;
@@ -1791,31 +1794,32 @@ Dictionary<string,string> svgg=new Dictionary<string, string>();
 string _svgf(int c,string gn) {return gn!=""?"url(#"+gn+")":Pal.IntHtml(c);}
 string _svgcell(int x,int y,float rr) {
   string s="",gn="";int c=_color(x,y);
-  if(View.grdm>0) { 
+  V w=F1.View;
+  if(w.grdm>0) { 
    if(c==0xffffff) c=clr2[1];
-   if(View.grdm<5) {
+   if(w.grdm<5) {
      gn=Pal.IntHtml(c).Replace('#','x');string t,g;
-     if(View.grdm==3) {
+     if(w.grdm==3) {
      //t=tria2||tria4?(x&1)+2*(y&1):_t11(x,y);
      t=""+x+'_'+y;gn+="_"+t;svgg.TryGetValue(gn,out g);
      if(g==null) s+=svgg[gn]="<defs>"+_svg_radialxy(gn,c,x,y)+"</defs>\r\n";
    } else {
      svgg.TryGetValue(gn,out g);
-     if(g==null) s+=svgg[gn]="<defs>"+(View.grdm>1?(f_svg_linear)_svg_radial:_svg_linear)(gn,c,View.grdx,View.grdy)+"</defs>\r\n";
+     if(g==null) s+=svgg[gn]="<defs>"+(w.grdm>1?(f_svg_linear)_svg_radial:_svg_linear)(gn,c,w.grdx,w.grdy)+"</defs>\r\n";
    }
   }}
-  if(H==H.quad&&!View.rou&&View.grdm<5) {
+  if(H==H.quad&&!w.rou&&w.grdm<5) {
     float sx=brd+x*Cell,sy=brd+y*Cell;    
     s+="<rect x=\""+sx+"\" y=\""+sy+"\" width=\""+Cell+"\" height=\""+Cell+"\" style=\"fill:"+Pal.IntHtml(c)+";stroke:#000;stroke-width:0.5;\" />\r\n";
   } else {
     var xy=_points(x,y);
-    if(View.rou) {
+    if(w.rou) {
       int i,i1;var o=new bool[xy.Length/2];float lx,ly,nx,ny;int[] r=_border(x,y);string s2="";
       for(i1=i=0;i<xy.Length;i1++,i+=2) o[i1]=_brd(x+r[i],y+r[i+1]);
-      if(View.grdm>=5) s+=_svggpoly(x,y,0.5f,c,xy,o,View.grdm>5);
+      if(w.grdm>=5) s+=_svggpoly(x,y,0.5f,c,xy,o,w.grdm>5);
       else s+=_svg_path(0.5f,_svgf(c,gn),xy,o,rr);
     } else {
-      if(View.grdm>=5) s+=_svggpoly(x,y,0.5f,c,xy,null,View.grdm>5);
+      if(w.grdm>=5) s+=_svggpoly(x,y,0.5f,c,xy,null,w.grdm>5);
       else s+=_svgpoly(0.5f,c,xy,gn);
     }
   }
@@ -1844,7 +1848,8 @@ string _svgcorn(int m,int e,int n,float[] xy2,bool[] b) {
 
 string _svgborder(int x,int y,float rr) {
   string s="";int i,i2;float[] xy=_points(x,y);int[] b=_border(x,y);int e=Data[Index(x,y)].block;int n=xy.Length;bool[] o=null;
-  if(View.rou) {
+  V w=F1.View;
+  if(w.rou) {
     int i1;float a;o=new bool[xy.Length/2+1];
     for(i1=i=0;i<xy.Length;i1++,i+=2) o[i1>0?i1-1:o.Length-2]=_brd(x+b[i],y+b[i+1]);
     o[o.Length-1]=o[0];
@@ -1862,7 +1867,7 @@ string _svgborder(int x,int y,float rr) {
     for(i=0,i2=b.Length-2;i<xy.Length;i2=i,i+=2) {
       if(Ch(x+b[i],y+b[i+1])<1) s+=_svgline(2,xy[i],xy[i+1],xy[i2],xy[i2+1]);
     }
-  if(View.corn!=0) s+=_svgcorn(View.corn,3,n,xy,o);
+  if(w.corn!=0) s+=_svgcorn(w.corn,3,n,xy,o);
   if(e!=0) {
     Array.Resize(ref xy,xy.Length-4);
     int m,i3;float[] xy2=xy.Clone() as float[];
@@ -1880,7 +1885,8 @@ string _svgborder(int x,int y,float rr) {
 
       public string _svg() {
   int c,x,y,ii;
-  var s="";bool p=View.peg;float rr=H==H.tria?cell3y/3f:H==H.hexa?cell6x/2f:H==H.quad?Cell/2f:0.125f,rr2=rr>0?rr*0.75f:rr;
+  V w=F1.View;
+  var s="";bool p=w.peg;float rr=H==H.tria?cell3y/3f:H==H.hexa?cell6x/2f:H==H.quad?Cell/2f:0.125f,rr2=rr>0?rr*0.75f:rr;
   svgg.Clear();
   for(y=ii=0;y<Height;y++)
     for(x=0;x<Width;x++,ii++)
@@ -1888,22 +1894,22 @@ string _svgborder(int x,int y,float rr) {
         s+=_svgcell(x,y,rr)+"\r\n";
         if(c!=1) {
           bool wh=c==3;int pc=Data[ii].fore,bw=wh?2:1;string gn="";
-          pc=pc!=0?wh?_whi(pc):pc:wh?View.grdm2>0?0xcccccc:0xffffff:0;
+          pc=pc!=0?wh?_whi(pc):pc:wh?F1.View.grdm2>0?0xcccccc:0xffffff:0;
           if(p) {
             var xy=_polyex2(_points(x,y),0.75f,0,0);
-            if(View.rou) {
+            if(w.rou) {
               int i,i1;bool[] o=new bool[xy.Length/2];int[] r=_border(x,y);
               for(i1=i=0;i<xy.Length;i1++,i+=2) o[i1]=_brd(x+r[i],y+r[i+1]);
-              if(View.grdm2>0) {
+              if(w.grdm2>0) {
                 gn="xp"+x+'_'+y;float[] rp=_radial_xy(xy);
                 s+="<defs>"+_svg_radialp(gn,pc,rp[0],rp[1],rp[2],B1,-1)+"</defs>\r\n";                
               }
               s+=_svg_path(bw,Pal.IntHtml(pc),xy,o,rr2);
             } else 
-              s+=_svgpoly(bw,pc,xy,View.grdm2>0?"xp"+x+'_'+y:"");
+              s+=_svgpoly(bw,pc,xy,w.grdm2>0?"xp"+x+'_'+y:"");
           } else {
             var g=_peg(x,y);
-            if(View.grdm2>0) {
+            if(w.grdm2>0) {
               gn=Pal.IntHtml(pc).Replace("#","xp");string gg;svgg.TryGetValue(gn,out gg);
               if(gg==null) s+=svgg[gn]="<defs>"+_svg_radialp(gn,pc,25,25,75,B0,-1)+"</defs>\r\n";
               
@@ -2064,7 +2070,7 @@ int _pdf_fx(int c0,int c1) {
 
 delegate int f_pdf_linear(int c,float dx,float dy,float[] xy,int c2);
 int _pdf_linear(int c,float dx,float dy,float[] xy,int c2) {
-  int n;string s;int fn=_pdf_fx(c2<0?0xffffff:c2,c);float[] g=_linear(View.grdx,View.grdy,xy);
+  int n;string s;int fn=_pdf_fx(c2<0?0xffffff:c2,c);float[] g=_linear(F1.View.grdx,F1.View.grdy,xy);
   
   s="<< /ShadingType 2 /ColorSpace /DeviceRGB /Coords ["+_pdfx(g[0])+" "+_pdfy(g[1])+" "+_pdfx(g[2])+" "+_pdfy(g[3])+"] /Domain [0 1] /Extend [true true] /Function "+fn+" 0 R >>";
   pdfo.Add(s);
@@ -2073,7 +2079,7 @@ int _pdf_linear(int c,float dx,float dy,float[] xy,int c2) {
 }
 
 int _pdf_radial(int c,float dx,float dy,float[] xy,int c2) {
-  string s;int n,fn=_pdf_fx(c2<0?0xffffff:c2,c<0?0xffffff:c);float[] g=xy.Length==3?xy:_radial(View.grdx,View.grdy,xy);
+  string s;int n,fn=_pdf_fx(c2<0?0xffffff:c2,c<0?0xffffff:c);float[] g=xy.Length==3?xy:_radial(F1.View.grdx,F1.View.grdy,xy);
   s="<< /ShadingType 3 /ColorSpace /DeviceRGB /Coords ["+_pdfx(g[0])+" "+_pdfy(g[1])+" 0 "+_pdfx(g[0])+" "+_pdfy(g[1])+" "+_pdfx(g[2])+"] /Domain [0 1] /Extend [true true] /Function "+fn+" 0 R >>";
   pdfo.Add(s);
   pdfd["$"+(n=pdfo.Count)]=n;
@@ -2082,23 +2088,24 @@ int _pdf_radial(int c,float dx,float dy,float[] xy,int c2) {
 
 string _pdfcell(int x,int y,float rr,bool b) {
   string s="";int c=_color(x,y);float[] xy=_points(x,y);int sh=0;
-  if(View.grdm>0) { 
+  V w=F1.View;
+  if(w.grdm>0) { 
    if(b) { if(c==0xffffff) c=clr2[1];
-     if(View.grdm<5) sh=(View.grdm>1?(f_pdf_linear)_pdf_radial:_pdf_linear)(c,View.grdx,View.grdy,xy,-1);
+     if(w.grdm<5) sh=(w.grdm>1?(f_pdf_linear)_pdf_radial:_pdf_linear)(c,F1.View.grdx,F1.View.grdy,xy,-1);
    } else sh=-1;
   }
-  if(H==H.quad&&!View.rou&&View.grdm<5) {
+  if(H==H.quad&&!w.rou&&w.grdm<5) {
     float sx=brd+x*Cell,sy=brd+y*Cell;
     s+=" 0.5 w "+_pdf_color(c)+" rg";
     s+=" "+_pdfx(sx)+" "+_pdfy(sy+Cell)+" "+_pdfx(Cell)+" "+_pdfx(Cell)+" re "+(sh!=0?sh<0?"s":"q W n /Sh"+sh+" sh Q":"b")+"\n";
   } else {
-    if(View.rou) {
+    if(w.rou) {
       int i,i1;bool[] o=new bool[xy.Length];float lx,ly,nx,ny;int[] r=_border(x,y);string s2="";
       for(i1=i=0;i<xy.Length;i1++,i+=2) o[i1]=_brd(x+r[i],y+r[i+1]);
-      if(b&&View.grdm>=5) s+=_pdfgpoly(x,y,0.5f,c,xy,o,View.grdm>5);
+      if(b&&w.grdm>=5) s+=_pdfgpoly(x,y,0.5f,c,xy,o,w.grdm>5);
       else s+=_pdf_path(0.5f,c,xy,o,rr,sh);
     } else 
-      if(b&&View.grdm>=5) s+=_pdfgpoly(x,y,0.5f,c,xy,null,View.grdm>5);
+      if(b&&w.grdm>=5) s+=_pdfgpoly(x,y,0.5f,c,xy,null,w.grdm>5);
       else s+=_pdfpoly(0.5f,c,xy,sh);
   }
   return s;
@@ -2126,7 +2133,8 @@ string _pdfcorn(int m,int e,int n,float[] xy2,bool[] b) {
 
 string _pdfborder(int x,int y,float rr) {
   var s="";int i,i2;float[] xy=_points(x,y);int[] b2,b=_border(x,y);int e=Data[Index(x,y)].block,n=xy.Length;bool[] o=null;
-  if(View.rou) {
+  V w=F1.View;
+  if(w.rou) {
     int i1;float a;o=new bool[xy.Length/2+1];
     for(i1=i=0;i<xy.Length;i1++,i+=2) o[i1>0?i1-1:o.Length-2]=_brd(x+b[i],y+b[i+1]);
     o[o.Length-1]=o[0];
@@ -2144,7 +2152,7 @@ string _pdfborder(int x,int y,float rr) {
     for(i=0,i2=b.Length-2;i<xy.Length;i2=i,i+=2) {
       if(Ch(x+b[i],y+b[i+1])<1) s+=_pdfline(2,xy[i],xy[i+1],xy[i2],xy[i2+1]);
     }
-  if(View.corn!=0) s+=_pdfcorn(View.corn,3,n,xy,o);
+  if(w.corn!=0) s+=_pdfcorn(w.corn,3,n,xy,o);
   if(e!=0) {
     int m;Array.Resize(ref xy,xy.Length-4);
     float[] xy2=xy.Clone() as float[];
@@ -2164,13 +2172,14 @@ string _pdf() {
   int w=BWidth(),h=BHeight();
   var s="1 j 1 J 1 w\n";var xr=new List<int>();
   int c,x,y,ii;
-  bool p=View.peg;float rr=(float)(H==H.tria?cell3y/3:H==H.hexa?cell6x/2:H==H.quad?Cell/2:0.125),rr2=rr>0?rr*0.75f:rr;
+  V vw=F1.View;
+  bool p=vw.peg;float rr=(float)(H==H.tria?cell3y/3:H==H.hexa?cell6x/2:H==H.quad?Cell/2:0.125),rr2=rr>0?rr*0.75f:rr;
   pdfh=h;pdfo.Clear();pdfd.Clear();
   pdfo.Add("<<\r\n/Type /Catalog\r\n/Pages 2 0 R\r\n>>");
   pdfo.Add("<<\r\n/Type /Pages\r\n/Count 1\r\n/Kids[3 0 R]\r\n>>");
   pdfo.Add("<<\r\n/Type /Page\r\n/Parent 2 0 R\r\n/Resources << /ProcSet 5 0 R /Shading <<>> >>\r\n/MediaBox[0 0 "+w+" "+h+"]\r\n/Contents 4 0 R\r\n>>");
   s+="0 0 0 RG\n";
-  if(View.grdm>0) {
+  if(vw.grdm>0) {
   for(y=ii=0;y<Height;y++)
     for(x=0;x<Width;x++,ii++)
       if((c=Data[ii].ch)>0) s+=_pdfcell(x,y,rr,B1)+"\r\n";
@@ -2181,11 +2190,11 @@ for(y=ii=0;y<Height;y++)
         s+=_pdfcell(x,y,rr,B0)+"\r\n";
         if(c!=1) {
           bool wh=c==3;int pc=Data[Index(x,y)].fore;
-          pc=pc!=0?wh?_whi(pc):pc:wh?View.grdm2>0?0xcccccc:0xffffff:0;
+          pc=pc!=0?wh?_whi(pc):pc:wh?vw.grdm2>0?0xcccccc:0xffffff:0;
           if(p) {
             var xy=_polyex2(_points(x,y),0.75f,0,0);int sh=0;float[] rp;
-            if(View.grdm2>0) {rp=_radial_xy(xy);sh=_pdf_radial(pc,0,0,rp,-1);}
-            if(View.rou) {
+            if(vw.grdm2>0) {rp=_radial_xy(xy);sh=_pdf_radial(pc,0,0,rp,-1);}
+            if(vw.rou) {
               int i,i1;bool[] o=new bool[xy.Length];int[] r=_border(x,y);
               for(i1=i=0;i<xy.Length;i1++,i+=2) o[i1]=_brd(x+r[i],y+r[i+1]);
               s+=_pdf_path(wh?2:1,pc,xy,o,rr2,sh);
@@ -2193,7 +2202,7 @@ for(y=ii=0;y<Height;y++)
               s+=_pdfpoly(wh?2:1,pc,xy,sh);
           } else {
             float[] g=_peg(x,y);int sh=0;
-            if(View.grdm2>0) sh=_pdf_radial(pc,0,0,new float[] {g[0]-g[2]/2,g[1]-g[2]/2,g[2]},-1);
+            if(vw.grdm2>0) sh=_pdf_radial(pc,0,0,new float[] {g[0]-g[2]/2,g[1]-g[2]/2,g[2]},-1);
             s+=" "+_pdfcircle(wh?2:1,pc,g[2],g[0],g[1],sh);
           }
         }
@@ -2501,7 +2510,7 @@ public int[] _resize2(int w2,int h) {
   public int BHeight() { return _resize2(2*Width+1,Height)[1];}
 
 void _resize(int w,int h) {
-  View.f.UpdateBitmap(w,h);
+  F1.UpdateBitmap(w,h);
 }
 
 
@@ -2721,6 +2730,7 @@ bool _blocked(int x,int y,int x2,int y2) {
 
 public void _mdesign(D dm,int up,float[] mp,float[] mm2,float[] mu,ME ev) {
  if(dm==0) return;
+ V w=F1.View;
  int lx=(int)mu[0],ly=(int)mu[1];
  if(i2b(up)) {
    if(lx<1||_extx(0)) {lx=1;_extentx();mp[0]++;}
@@ -2735,24 +2745,24 @@ public void _mdesign(D dm,int up,float[] mp,float[] mm2,float[] mu,ME ev) {
    }
  } else if(dm==D.color) {
    if(up<0) {
-     int fc=Pal.IntColor(View.f.bBg.BackColor); 
-     if(ev.shiftKey) {View.dm9c=_getuco(lx,ly);if(View.dm9c==fc||!i2b(View.dm9c)) View.dm9c=0;else View.f.bBg.BackColor=Pal.IntColor(View.dm9c);}
-     else View.dm9c=fc;
+     int fc=Pal.IntColor(F1.bBg.BackColor); 
+     if(ev.shiftKey) {w.dm9c=_getuco(lx,ly);if(w.dm9c==fc||!i2b(w.dm9c)) w.dm9c=0;else F1.bBg.BackColor=Pal.IntColor(w.dm9c);}
+     else w.dm9c=fc;
    }
-   _setuco(lx,ly,View.dm9c);
+   _setuco(lx,ly,w.dm9c);
  } else if(dm==D.color2) {
    if(up<0) {
-     int fc=Pal.IntColor(View.f.bFg.BackColor); 
-     if(ev.shiftKey) {View.dm10c=_getpgc(lx,ly);if(View.dm10c==fc||!i2b(View.dm10c)) View.dm10c=0;else View.f.bFg.BackColor=Pal.IntColor(View.dm10c);}
-     else View.dm10c=fc;
+     int fc=Pal.IntColor(F1.bFg.BackColor); 
+     if(ev.shiftKey) {F1.View.dm10c=_getpgc(lx,ly);if(w.dm10c==fc||!i2b(w.dm10c)) w.dm10c=0;else F1.bFg.BackColor=Pal.IntColor(w.dm10c);}
+     else w.dm10c=fc;
    }
-   _setpgc(lx,ly,View.dm10c);
+   _setpgc(lx,ly,w.dm10c);
  } else if(dm==D.free||px==lx&&py==ly) {
     int c=Ch(px,py),y;
     _extent(lx,ly);
     if(up!=0) {
       if(lx==px&&ly==py) {
-        bool wh=View.white;
+        bool wh=w.white;
         Data[Index(lx,ly)].ch=ev!=null&&ev.ctrlKey?wh?c==2?3:2:c==2?0:2:c==2?wh?3:1:c==3?1:c==1?0:2;
       } else Data[Index(lx,ly)].ch=c;
     } else {
@@ -2760,7 +2770,7 @@ public void _mdesign(D dm,int up,float[] mp,float[] mm2,float[] mu,ME ev) {
       else if(ly>=0&&In(lx,ly)) Data[Index(lx,ly)].ch=c;
     }
  } else {
-   View.sele.Clear();
+   w.sele.Clear();
    var c=i2b(up)?Ch(px,py):-1;
    if(dm==D.circ||dm==D.circ2) { int[] e=_dcircl2(mp[5],mp[6],mu[5],mu[6],c,dm==D.circ2,ev.shiftKey);ex=e[0];ey=e[1];}
    else if(dm==D.fill) _dfill(lx,ly,c,B0);
@@ -2775,7 +2785,7 @@ void _dline(int px,int py,int mx,int my,int c) {
   int i,x,y,dx=mx-px,dy=my-py,ax=(int)abs(dx),ay=(int)abs(dy);bool d=ax>ay;int a=d?ax:ay;
   for(i=0;i<=a;i++) {
     x=px+(((i*dx+(d?0:a/2))/a)|0);y=py+(((i*dy+(d?a/2:0))/a)|0);
-    if(In(x,y)) if(c<0) Push(View.sele,x,y);else Data[Index(x,y)].ch=c;
+    if(In(x,y)) if(c<0) Push(F1.View.sele,x,y);else Data[Index(x,y)].ch=c;
   }
 }
 
@@ -2788,7 +2798,7 @@ void _dline3(float px,float py,float mx,float my,int c) {
     k=xx|(yy<<16);
     if(!m.ContainsKey(k)&&In(xx,yy)) {
       m[k]=B1;
-      if(c<0) Push(View.sele,xx,yy);else Data[Index(xx,yy)].ch=c;
+      if(c<0) Push(F1.View.sele,xx,yy);else Data[Index(xx,yy)].ch=c;
     }
   }
 }
@@ -2816,8 +2826,8 @@ int[] _dcircl2(float px,float py,float mx,float my,int c,bool p2,bool circ) {
       }
     }
     if(c<0||circ) for(x=1;x+1<Width;x++) {
-      if(l2[x]!=0&&(l[x-1]==0||l[x]==0||l[x+1]==0)) {if(c<0) Push(View.sele,x,y-1);else Data[Index(x,y-1)].ch=c;}
-      if(l[x]!=0&&(l[x-1]==0||l[x+1]==0||l2[x-1]==0||l2[x]==0||l2[x+1]==0)) {if(c<0) {l[x]=2;Push(View.sele,x,y);} else Data[Index(x,y)].ch=c;};
+      if(l2[x]!=0&&(l[x-1]==0||l[x]==0||l[x+1]==0)) {if(c<0) Push(F1.View.sele,x,y-1);else Data[Index(x,y-1)].ch=c;}
+      if(l[x]!=0&&(l[x-1]==0||l[x+1]==0||l2[x-1]==0||l2[x]==0||l2[x+1]==0)) {if(c<0) {l[x]=2;Push(F1.View.sele,x,y);} else Data[Index(x,y)].ch=c;};
     }
   }
   return IA((int)ml[0]+1,(int)ml[1]+1);
@@ -2830,8 +2840,8 @@ void _drect(int px,int py,int mx,int my,int c) {
   for(y=py;y<=my;y++) {
     if(In(0,y)) 
       if(c<0) {
-        Push(View.sele,px,y,mx,y);
-        if(y==py||y==my) for(x=px+1;x<mx;x++) Push(View.sele,x,y);
+        Push(F1.View.sele,px,y,mx,y);
+        if(y==py||y==my) for(x=px+1;x<mx;x++) Push(F1.View.sele,x,y);
       } else for(x=px;x<=mx;x++)
         Data[Index(x,y)].ch=c;
   }
@@ -2862,24 +2872,25 @@ void _dfill(int px,int py,int c,bool k) {
   if(c<0) for(m=0;m<fifo.Count;m+=2) {
     f=Data[Index(x=fifo[m],y=fifo[m+1])].ch;
     Data[Index(x,y)].ch=s;
-    if(f!='f') Push(View.sele,x,y);
+    if(f!='f') Push(F1.View.sele,x,y);
   }
 }
 
 
 
 public bool _mdown(ME e) {   
-   float[] mm=View.mm=pmap._mxy(H,e.x,e.y),mp=View.mp=mm;
+   V w=F1.View;
+   float[] mm=w.mm=pmap._mxy(H,e.x,e.y),mp=w.mp=mm;
    int cx,cy; 
     if(mp!=null) {
             cx=(int)mp[0];cy=(int)mp[1];  //_mdown
-            if(View.design==D.edge) { Array.Resize(ref mp,9);View.mm=View.mp=mp;mp[7]=pmap._idx(mp[5],mp[6],_points(cx,cy),0,0);mp[8]=_getblock(cx,cy);}
-            else if(View.design==D.color||View.design==D.color2)  {
-              _mdesign(View.design,-1,mp,mp,mm,e);
+            if(w.design==D.edge) { Array.Resize(ref mp,9);w.mm=w.mp=mp;mp[7]=pmap._idx(mp[5],mp[6],_points(cx,cy),0,0);mp[8]=_getblock(cx,cy);}
+            else if(w.design==D.color||w.design==D.color2)  {
+              _mdesign(w.design,-1,mp,mp,mm,e);
               return true;
             }
             if(mp!=null&&Ch(cx,cy)>0) {
-              View.sele.Clear();pmap.Push(View.sele,cx,cy);
+              w.sele.Clear();pmap.Push(w.sele,cx,cy);
               return true;
             }
        }
@@ -2888,23 +2899,24 @@ public bool _mdown(ME e) {
 
 public int _ticks() { return System.Environment.TickCount;}
 public bool _mmove(ME e,bool d) {
-  if(!i2b(e.buttons)||!o2b(View.mp)) return false;
-  float[] xy=_mxy(H,e.x,e.y),mm2=View.mm;float r;int x7=0;var dm=View.design;
+  V w=F1.View;
+  if(!i2b(e.buttons)||!o2b(w.mp)) return false;
+  float[] xy=_mxy(H,e.x,e.y),mm2=w.mm;float r;int x7=0;var dm=w.design;
   if(dm==D.edge) {x7=1;A(ref xy,7,_idx(xy[5],xy[6],_points((int)xy[0],(int)xy[1]),0,128));}
   //if(design==) x7=1,xy[7]=_idx(xy[5],xy[6],_points(xy[0],xy[1]),tria?2:0);
   if(Game==Game.Shift&&dm==0) {x7=1;A(ref xy,7,_idx(xy[5],xy[6],H==H.trap?_points11h((int)xy[0],(int)xy[1]):_points((int)xy[0],(int)xy[1]),H==H.trap?b2i(Diag):2,0));}
   dm=_design(e);
   if(dm==D.circ2||dm==D.fill) {
     if(!d) {
-      r=_d2(xy[5]-View.mm[5],xy[6]-View.mm[6]);
+      r=_d2(xy[5]-w.mm[5],xy[6]-w.mm[6]);
       if(r==0) return false ;
-      if(!o2b(View.mm1)) View.mm1=IA(_ticks());
-      View.mm1e=e;
+      if(!o2b(w.mm1)) w.mm1=IA(_ticks());
+      w.mm1e=e;
       return false;
     }
-  } else if((dm==D.edge&&xy[7]==-1)||(xy[0]==View.mm[0]&&xy[1]==View.mm[1]&&(!i2b(x7)||xy[7]==View.mm[7]))) return false;
-  View.mm=xy;View.mm1=null;
-  if(View.design!=0) {_mdesign(View.design,0,View.mp,mm2,xy,e);return true;}
+  } else if((dm==D.edge&&xy[7]==-1)||(xy[0]==w.mm[0]&&xy[1]==w.mm[1]&&(!i2b(x7)||xy[7]==w.mm[7]))) return false;
+  w.mm=xy;w.mm1=null;
+  if(w.design!=0) {_mdesign(w.design,0,w.mp,mm2,xy,e);F1.SetDirty();return true;}
   else if(Game==Game.Shift) {_shifter(0,xy,e);return true;}   
   return false;
 }
@@ -2936,19 +2948,22 @@ bool _fullxy(int x,int y) {
 
 
 public void AddUndo(U x) {
-  var u=View.undo;  
-  u.RemoveRange(View.redo,u.Count-View.redo);
-  View.undo.Add(x);
-  View.redo=u.Count;
+  V w=F1.View;
+  var u=w.undo;  
+  u.RemoveRange(w.redo,u.Count-w.redo);
+  w.undo.Add(x);
+  w.redo=u.Count;
 }
 public bool _mup(ME e) { 
-  if(View.mp==null) return false;
-  View.sele.Clear();
-  float[] mxy=_mxy(H,e.x,e.y);int lx=(int)mxy[0],ly=(int)mxy[1],px=(int)View.mp[0],py=(int)View.mp[1],qx,qy,rx,ry,qr;
+  V w=F1.View;
+  if(w.mp==null) return false;
+  w.sele.Clear();
+  float[] mxy=_mxy(H,e.x,e.y);int lx=(int)mxy[0],ly=(int)mxy[1],px=(int)w.mp[0],py=(int)w.mp[1],qx,qy,rx,ry,qr;
   D dm=_design(e);
   if(dm>0) {
     if(dm==D.edge) {Array.Resize(ref mxy,8);mxy[7]=_idx(mxy[5],mxy[6],_points((int)mxy[0],(int)mxy[1]),0,0);}
-    _mdesign(dm,1,View.mp,View.mm,mxy,e);
+    _mdesign(dm,1,w.mp,w.mm,mxy,e);
+    F1.SetDirty();
     return true;
   }
   if(!In(lx,ly)||!In(px,py)) return true;
@@ -2961,7 +2976,7 @@ public bool _mup(ME e) {
   if(Game==Game.OnOff) {
     int c=Data[Index(lx,ly)].ch;
     if(c==3||c==2||c==1) {
-      int mc=(int)mxy[4],p,p2=0,p3=0,x6=View.onoff6;int[] xyc;
+      int mc=(int)mxy[4],p,p2=0,p3=0,x6=w.onoff6;int[] xyc;
       {
         if(H==H.trap) {p=11;p3=_idx(mxy[5],mxy[6],_points11(lx,ly),b2i(x6>=6),0);xyc=_switch11(lx,ly,p2=_mask(x6,lx,ly,p3),p3);}
         else if(H==H.delta) {p=19;p3=4*_idx(mxy[5],mxy[6],_points9(lx,ly),b2i(x6>=6),0);xyc=_switch19(lx,ly,p2=_mask(x6,lx,ly,p3),p3);}
@@ -3029,9 +3044,9 @@ public bool _mup(ME e) {
 
       public int SolOver(int c,int iq) {
         int c1=Data[iq].ch,r,b;
-        if(View.white) {
+        if(F1.View.white) {
            r=2*(b2i(c==3))+b2i(c1==3);
-         r=View.whiter[r];
+         r=F1.View.whiter[r];
         b=r=='b'?2:r=='e'?c1:r=='f'?c1==2?3:2:r=='w'?3:r=='o'?2:1;
          } else b=c==2?1:c1==2?3:2;
         Data[iq].ch=b;
@@ -3040,9 +3055,9 @@ public bool _mup(ME e) {
 
         internal void Undo(int n) { 
          if(n<1) n=1;
-         var v=View;
-         while(v.redo>0&&pmap.i2b(n--)) {
-           U u=v.undo[--v.redo];int[] ia=u.ia;int ii,px=ia[0],py=ia[1],dx=ia[2],dy=ia[3],m=-1;
+         var w=F1.View;
+         while(w.redo>0&&pmap.i2b(n--)) {
+           U u=w.undo[--w.redo];int[] ia=u.ia;int ii,px=ia[0],py=ia[1],dx=ia[2],dy=ia[3],m=-1;
            if(u.t==3) {
              int pi,i,j,k,ir,rx,ry;
              int[] xy=_xybn(px,py,dx,i2b(dy),ia.Length-4);
@@ -3074,9 +3089,9 @@ public bool _mup(ME e) {
         }
         internal void Redo(int n) { 
          if(n<1) n=1;
-         var v=View;
-         while(v.redo<v.undo.Count&&pmap.i2b(n--)) {
-           U u=v.undo[v.redo++];int[] ia=u.ia;int ii,px=ia[0],py=ia[1],dx=ia[2],dy=ia[3],m=1;
+         var w=F1.View;
+         while(w.redo<w.undo.Count&&pmap.i2b(n--)) {
+           U u=w.undo[w.redo++];int[] ia=u.ia;int ii,px=ia[0],py=ia[1],dx=ia[2],dy=ia[3],m=1;
            if(u.t==3) {
              int pi,i,j,k,ir,iq,rx,ry;
              int[] xy=_xybn(px,py,dx,i2b(dy),ia.Length-4);
@@ -3235,10 +3250,10 @@ public void transf2(int mode) {
 void _beep() {
   GDI.Beep(220,50); 
 }
-D _design(ME e) { return View.design==D.edge?D.edge:e.ctrlKey?e.shiftKey?D.rect:D.free:View.design;}
+D _design(ME e) { return F1.View.design==D.edge?D.edge:e.ctrlKey?e.shiftKey?D.rect:D.free:F1.View.design;}
 void _moves(int n) {
-  View.moves+=n;
-  View.f.Moves();
+  F1.View.moves+=n;
+  F1.Moves();
 }
 
  

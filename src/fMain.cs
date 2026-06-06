@@ -15,7 +15,7 @@ namespace solon {
         const int ZoomBase=120,MinZoom=8,MaxZoom=1960;
         int NewWidth,NewHeight;
         Brush BackBrush=Brushes.Wheat;// Brushes.LightGray;
-        bool Dirty=false;
+        bool Dirty,DirtyS;
         OpenFileDialog ofd=new OpenFileDialog();
         SaveFileDialog sfd,efd;
         PrintDialog pd;PageSetupDialog paged;
@@ -38,6 +38,7 @@ namespace solon {
         bool mirx;
         double cos=1,sin=0;
 				fHelp Help;
+        public V View=new V(); 
         
         int IX(int x,int y) { int r=(int)(((x-sx)*cos+(y-sy)*sin)*ZoomBase/zoom);return mirx?-r:r;}
         int IY(int x,int y) { int r=(int)((-(x-sx)*sin+(y-sy)*cos)*ZoomBase/zoom);return r;}
@@ -57,9 +58,10 @@ namespace solon {
             //for(int y=0;y<map.Data.Length;y++) map.Data[y]=(float)(y/512/512.0);
             //map.FuncRadial(Bez,Combine.Max,.5,.5,.3,1);           
             //map.FloodFill(0.9,0.9,0.33);
+            pmap.F1=this;
             InitializeComponent();            
             int a=0;
-            while(a<arg.Length&&arg[a].Length>0&&arg[a][0]=='-') {
+            while(a<arg.Length&&arg[a].Length>0&&arg[a][0]=='-'&&arg[a]!="-") {
               string opt=arg[a++],opt2="";
               if(opt.Length<2) break;
               if(opt.Length>2) opt2=opt.Substring(2);
@@ -68,21 +70,18 @@ namespace solon {
               }
             }
             string fname=a<arg.Length?arg[a]:null;
-            map=new pmap(this);
-            map.View.onoff6=1;
-            NUI++;
-            if(!LoadFile(fname="x.sol",false)) {
-              map.Alloc(32,32);
-            }
-            cbOnOff6.SelectedIndex=map.View.onoff6;
-            UpdateControls();
-            NUI--;
-            if(fname==null) {
+            map=new pmap();
+            View.onoff6=1;
+            if(fname!=null&&LoadFile(fname,false)) {
+              ChangeFileName(fname);
+              LoadBoard();
+              UpdateBitmap(0,0);Repaint(true);
+            } else {
               NewFile();
-              UpdateBitmap(0,0);
+              map.Alloc(32,32);
+              UpdateBitmap(0,0);Repaint(true);
               Center();
-            } else
-              LoadFile1(fname,true,map.View);
+            }
         }
         char _wx(char e,char x) {
           if(x=='e') x=e;else if(x=='f') x=e=='w'?'b':'w';
@@ -93,14 +92,14 @@ namespace solon {
           cb.SelectedIndex=x=='b'?1:x=='w'?2:0;
         }
         void _w4() {          
-           var v=map.View;
+           var v=View;
           _ws(chBB,'b',v.whiter[0]);
           _ws(chBW,'w',v.whiter[1]);
           _ws(chWB,'b',v.whiter[2]);
           _ws(chWW,'w',v.whiter[3]);
         }
         public void Moves() {
-          var v=map.View;
+          var v=View;
           lMoves.Text=""+v.moves;
         }
         void UpdateH() {
@@ -140,7 +139,7 @@ namespace solon {
         public void UpdateControls() {
          try {
           UIIgnore++;
-           var v=map.View;
+           var v=View;
           UpdateG();
           UpdateCh();
           //cbOnOff6.SelectedIndex=map.View.onoff6;
@@ -220,7 +219,7 @@ namespace solon {
           Repaint(x0-e,y0-e,x1+e,y1+e,dirty);
         }
         public void Repaint(Graphics xgr,bool print) {
-          if(map.View.back) pmap.Back(xgr,bm.Width,bm.Height);
+          if(View.back) pmap.Back(xgr,bm.Width,bm.Height);
           else xgr.FillRectangle(print?Brushes.White:BackBrush,0,0,bm.Width,bm.Height);
           xgr.SmoothingMode=SmoothingMode.HighQuality;
           map.Draw(xgr);
@@ -337,13 +336,13 @@ namespace solon {
           }
         }
         void Clear(bool conly) {
-          PushUndo(true);
+          PushEUndo(true);
           map.Clear(conly);
           Center();
           Repaint(true);
         }
         void Rotate90(bool counter) {
-          if(pmb==MouseButtons.None) PushUndo(false);
+          if(pmb==MouseButtons.None) PushEUndo(false);
           map.Rotate90(counter);
           bm.RotateFlip(counter?RotateFlipType.Rotate90FlipNone:RotateFlipType.Rotate270FlipNone);
           
@@ -376,7 +375,7 @@ namespace solon {
           Repaint(true);
         }
         void MirrorBitmap(bool vertical) {
-          PushUndo(false);
+          PushEUndo(false);
           //map.Mirror(vertical);
           //map.Mirror(vertical);
           if(pmb!=MouseButtons.None) {            
@@ -399,7 +398,7 @@ namespace solon {
         }
         void Shrink(int x0,int y0,int x1,int y1) {
           if(!map.Intersected(ref x0,ref y0,ref x1,ref y1)||(x0==0&&y0==0&&x1==map.Width-1&&y1==map.Height-1)) return;          
-          PushUndo(false);
+          PushEUndo(false);
           pmap m2=new pmap(x1-x0+1,y1-y0+1);
           m2.Copy(0,0,map,x0,y0,x1,y1);
           map=m2;
@@ -420,7 +419,7 @@ namespace solon {
         void Duplicate(int x0,int y0,int x1,int y1,bool vertical) {
            bool nx=x1<x0,ny=y1<y0;
            int dx=vertical?nx?x1:x0:nx?2*x1-x0+1:x1+1,dy=vertical?ny?2*y1-y0+1:y1+1:ny?y1:y0;
-           PushUndo(true);
+           PushEUndo(true);
            map.Copy(dx,dy,map,x0,y0,x1,y1);
            Repaint(true);
            if(vertical) piy=y1+(ny?-1:1);
@@ -591,20 +590,26 @@ namespace solon {
         }       
         
         bool CheckDirty(string caption) {
-          if (!Dirty) return true;
+          if (!Dirty&&!DirtyS) return true;
           DialogResult dr=MessageBox.Show(this,"Save changes?",caption,MessageBoxButtons.YesNoCancel,MessageBoxIcon.Exclamation,MessageBoxDefaultButton.Button3);
           if(dr!=DialogResult.Yes) return dr==DialogResult.No;
           return SaveFile1(false,false);
         }
-        void SetDirty() {
+        internal void SetDirty() {
           if(Dirty) return;
           Dirty=true;
-          if(!Text.EndsWith("*")) Text+="*";
+          UpdDirtys();
         }
-        void UnsetDirty() {
-          if(!Dirty) return;
-          Dirty=false;
-          if(Text.EndsWith("*")) Text=Text.Substring(0,Text.Length-1);        
+        void UnsetDirtys() {
+          if(!Dirty&&!DirtyS) return;
+          Dirty=DirtyS=false;          
+          UpdDirtys();
+        }
+        void UpdDirtys() {
+          bool d=Dirty||DirtyS;
+          if(d!=Text.EndsWith("*")) {
+            if(d) Text+="*";else Text=Text.Substring(0,Text.Length-1);
+          }
         }
 
         private void miFileClear_Click(object sender, EventArgs e) { 
@@ -617,9 +622,9 @@ namespace solon {
           Dirty=false;
           Text="Solon"+(string.IsNullOrEmpty(fn)?"":" - "+fn);//+(Dirty?"*":"");
         }
-        void LoadFile1(string filename,bool update,V view) {
+        void LoadFile1(string filename,bool update) {
           if(!File.Exists(filename)) return;
-          if(map==null) {map=new pmap(this);if(view!=null) map.View=view;}
+          if(map==null) map=new pmap();
           map.ParseFile(filename);
           ChangeFileName(filename);
           ClearUndo();                      
@@ -648,7 +653,7 @@ namespace solon {
               for(int i=0;i<set.Count;i++) {
                 w.WriteLine(set[i].txt);
               }   
-              UnsetDirty();
+              UnsetDirtys();
             }
           }
           return true;
@@ -734,8 +739,8 @@ namespace solon {
         void NewMap(bool update) {
           ClearUndo();
           if(NewWidth==0||NewHeight==0) {
-            NewWidth=Screen.PrimaryScreen.Bounds.Width;
-            NewHeight=Screen.PrimaryScreen.Bounds.Height;
+            NewWidth=32;//Screen.PrimaryScreen.Bounds.Width;
+            NewHeight=32;//Screen.PrimaryScreen.Bounds.Height;
           }
           map=new pmap(NewWidth,NewHeight);
           if(update) {UpdateBitmap(0,0);Repaint(true);}        
@@ -747,8 +752,11 @@ namespace solon {
           ofd.Filter="*.sol|*.sol|*.txt|*.txt|*.*|*.*";
           ofd.DefaultExt="sol";
           if(DialogResult.OK==ofd.ShowDialog(this)) {
-            ClearUndo();
-            LoadFile(ofd.FileName,GDI.CtrlKey||GDI.ShiftKey);
+            if(LoadFile(ofd.FileName,GDI.CtrlKey||GDI.ShiftKey)) {
+              ClearUndo();
+              ChangeFileName(ofd.FileName);
+              LoadBoard();
+            }
           }
           Directory.SetCurrentDirectory(dir);
         }
@@ -766,6 +774,10 @@ namespace solon {
          } finally { UIIgnore--;}
         }
 
+        bool NotEmpty(string txt) {
+          return Regex.IsMatch(""+txt,@"[WO\.]");
+        }
+
         int UIIgnore,SetIndex;
         bool LoadFile(string fn,bool append) {
           if(!File.Exists(fn)) return false;
@@ -780,12 +792,18 @@ namespace solon {
             string l;Match m;
             while(null!=(l=r.ReadLine())) {
               if((m=Set.Rex.Match(l)).Success) {
-                if(g.txt!=null||g.id!=null) set.Add(g);
+                if(NotEmpty(g.txt)) {
+                  if(g.id==null) g.id=Path.GetFileName(fn);
+                  set.Add(g);
+                }
                 g=new Set() {id=m.Groups[1]+""};
               }
               g.txt+=(g.txt==null?"":"\r\n")+l;
             }
-            if(g.id!=null) set.Add(g);
+            if(NotEmpty(g.txt)) {
+              if(g.id==null) g.id=Path.GetFileName(fn);
+              set.Add(g);               
+            }
           }
           if(!append) {
             if(set.Count<1) set.Add(new Set() {id="*",txt="//*,quad,sol"});          
@@ -815,8 +833,8 @@ namespace solon {
           u.map=x;            
         }
 
-        internal void PushUndo(bool clone) { PushUndo(clone,null);}
-        internal void PushUndo(bool clone,string op) {
+        internal void PushEUndo(bool clone) { PushEUndo(clone,null);}
+        internal void PushEUndo(bool clone,string op) {
           if(op!=null&&op==undop) return;
           undop=op;
           UndoItem ui=undoc<undos.Count?undos[undoc]:new UndoItem();
@@ -856,7 +874,7 @@ namespace solon {
            map.Redo(n);
            Repaint(true);
         }
-        internal void ClearUndo() { map.View.undo.Clear();map.View.redo=0;}
+        internal void ClearUndo() { View.undo.Clear();View.redo=0;}
         
         string GetTag(object sender) {
           ToolStripMenuItem i = sender as ToolStripMenuItem;
@@ -905,8 +923,14 @@ namespace solon {
         Repaint(true);
     }
 
+    void LoadBoard() {
+      string txt=SetIndex<set.Count?set[SetIndex].txt:"";
+      map.Parse(txt);
+      Repaint(true);
+    }
+
     bool ProcTag(string tag) {
-      var v=map.View;
+      var v=View;
       int ct=0,sh=0;
       if(tag[0]=='^') {ct=1;tag=tag.Substring(1);}
       if(tag[0]=='+') {sh=1;tag=tag.Substring(1);}
@@ -947,25 +971,24 @@ namespace solon {
          UpdateCh();
       } else if(tag=="play"||tag=="free"||tag=="line"||tag=="rect"||tag=="circ"||tag=="circ2"||tag=="fill"||tag=="edge"||tag=="color"||tag=="color2") {
         D d;
-        map.View.design=d=(D)Enum.Parse(typeof(D),tag);
+        View.design=d=(D)Enum.Parse(typeof(D),tag);
         UpdateControls();
       } else if(tag=="bg"||tag=="fg") ColorDiag(tag=="fg");
        else if(tag.StartsWith("col")) {
-         map.View.mono=int.Parse(tag.Substring(3));
+         View.mono=int.Parse(tag.Substring(3));
          UpdateControls();
-       } else if(tag=="loadb") {
-          string txt=SetIndex<set.Count?set[SetIndex].txt:"";
-          map.Parse(txt);
-          Repaint(true);
-       } else if(tag=="saveb") {
+       } else if(tag=="loadb") LoadBoard();
+       else if(tag=="saveb") {
           if(SetIndex<set.Count) {
             Set s=set[SetIndex];
             s.txt=map._game2txt(s.id,s.txt);
+            DirtyS=true;UpdDirtys();
           }
           Repaint(true);
        } else if(tag=="renb") {
          set[SetIndex].id=tName.Text;
          Set2CB(SetIndex);
+         DirtyS=true;UpdDirtys();
        } else if(tag=="addb"||tag=="clonb") {
          Set s=new Set(),t=set[SetIndex];
          s.id=tName.Text;
@@ -977,6 +1000,7 @@ namespace solon {
          set.Insert(pos,s);
          Set2CB(pos);
          UIIgnore--;
+         DirtyS=true;UpdDirtys();
        } else if(tag=="delb") {
          if(set.Count>0) {
            int n=set.Count-1;
@@ -984,6 +1008,7 @@ namespace solon {
            set.RemoveAt(SetIndex);
            if(SetIndex==n) SetIndex--;
            Set2CB(SetIndex);
+           DirtyS=true;UpdDirtys();
          }
        } else if(tag=="bup"||tag=="bdown") {
          int i=SetIndex,j=i+(tag.Length==3?-1:1);
@@ -992,11 +1017,11 @@ namespace solon {
            Set2CB(j);
          }
        } else if(tag=="peg"||tag=="rou"||tag=="corn"||tag=="grd1"||tag=="grd2") { 
-         if(tag=="peg") map.View.peg^=true;
-         else if(tag=="rou") map.View.rou^=true;
-         else if(tag=="corn") map.View.corn=(map.View.corn+1)%3;
+         if(tag=="peg") View.peg^=true;
+         else if(tag=="rou") View.rou^=true;
+         else if(tag=="corn") View.corn=(View.corn+1)%3;
          else if(tag=="grd1") Grd1(ct,sh);
-         else if(tag=="grd2") map.View.grdm2=map.View.grdm2!=0?0:1;
+         else if(tag=="grd2") View.grdm2=View.grdm2!=0?0:1;
          UpdateControls();
          return true;
        }
@@ -1014,12 +1039,12 @@ namespace solon {
       return s+(d?(char)(ch+1):p>0?'1':'2')+new string('0',p);
     }
     void Grd1(int sh,int ct) {       
-       map.View.grdm=map.View.grdm==0?1+ct+2*sh:0;
-       if((sh|ct)!=0&&map.View.grdm==0) {
-         map.View.grdm=5+sh*(1+ct);
+       View.grdm=View.grdm==0?1+ct+2*sh:0;
+       if((sh|ct)!=0&&View.grdm==0) {
+         View.grdm=5+sh*(1+ct);
        }
-       if(map.H==H.tria||map.H==H.tria2||map.H==H.tria4) {map.View.grdx=1;map.View.grdy=2;}
-       else {map.View.grdx=1;map.View.grdy=1;}
+       if(map.H==H.tria||map.H==H.tria2||map.H==H.tria4) {View.grdx=1;View.grdy=2;}
+       else {View.grdx=1;View.grdy=1;}
     }
     private void CheckedChanged(object sender, EventArgs e) {
       if(UIIgnore>0) return;
@@ -1029,9 +1054,9 @@ namespace solon {
         if(r.Checked) {
           ProcTag(tag);
         }
-      } else  if(tag=="peg") { map.View.peg=ch.Checked;UpdateControls();}
-      else if(tag=="rou") {map.View.rou=ch.Checked;UpdateControls();}
-      else if(tag=="corn") {map.View.corn=(map.View.corn+1)%3;ch.Checked=map.View.corn!=0;UpdateControls();} 
+      } else  if(tag=="peg") { View.peg=ch.Checked;UpdateControls();}
+      else if(tag=="rou") {View.rou=ch.Checked;UpdateControls();}
+      else if(tag=="corn") {View.corn=(View.corn+1)%3;ch.Checked=View.corn!=0;UpdateControls();} 
       else if(tag=="diag") map.Diag=ch.Checked; 
       else if(tag=="onoffx") map.oox=ch.Checked; 
       else if(tag=="onoffc") map.ooc=ch.Checked; 
@@ -1041,8 +1066,8 @@ namespace solon {
       else if(tag=="grd1") {
         Grd1(GDI.CtrlKey?1:0,GDI.ShiftKey?1:0);
         UpdateControls();        
-      } else if(tag=="grd2") {map.View.grdm2=ch.Checked?1:0;UpdateControls();}
-      else if(tag=="white") map.View.white=ch.Checked;        
+      } else if(tag=="grd2") {View.grdm2=ch.Checked?1:0;UpdateControls();}
+      else if(tag=="white") View.white=ch.Checked;        
 
       Repaint(true);
 
@@ -1051,8 +1076,9 @@ namespace solon {
     float[] _mxy(int x,int y) {
        int ix=IX(lmx,lmy),iy=IY(lmx,lmy);
        return pmap._mxy(map.H,ix,iy);
-    }
+    }    
 
+    static int sidx(int x) { return x<0?0:x;}
     private void chBB_SelectedIndexChanged(object sender, EventArgs e) {
        //ComboBox cb=sender as ComboBox;
        string r;
@@ -1060,14 +1086,14 @@ namespace solon {
          NUI++;
          if(sender==cbwhite2) {
            r=""+cbwhite2.SelectedItem;
-           map.View.whiter=(r+"xxxx").Substring(0,4);
+           View.whiter=(r+"xxxx").Substring(0,4);
            _w4();
            if(NUI==1) chWhite.Checked=true;
          } else if(sender==cbOnOff6) {
-           map.View.onoff6=cbOnOff6.SelectedIndex;
+           View.onoff6=cbOnOff6.SelectedIndex;
          } else {
            r="xbw";
-           map.View.whiter=r=""+r[chBB.SelectedIndex]+r[chBW.SelectedIndex]+r[chWB.SelectedIndex]+r[chWW.SelectedIndex];
+           View.whiter=r=""+r[sidx(chBB.SelectedIndex)]+r[sidx(chBW.SelectedIndex)]+r[sidx(chWB.SelectedIndex)]+r[sidx(chWW.SelectedIndex)];
            UpdateWhite2(r);
          }
          NUI--;
@@ -1080,7 +1106,7 @@ namespace solon {
       return false;
     }
 
-    bool IsPlay { get { return map!=null&&map.View.design==D.play;}}
+    bool IsPlay { get { return map!=null&&View.design==D.play;}}
     bool IsEdit { get { return !IsPlay;}}
 
     private void cbSet_SelectedIndexChanged(object sender, EventArgs e) {
@@ -1098,8 +1124,8 @@ namespace solon {
       if(i>=0&&i<set.Count) {
         if(a=='i') {
           SetIndex=i;
-          map.Parse(set[i].txt);          
-          Repaint(true);
+          map.Parse(set[i].txt);
+          UpdateBitmap(0,0);Repaint(true);
         } else if(a=='t') {
           set[i].id=cbSet.Text;
         }

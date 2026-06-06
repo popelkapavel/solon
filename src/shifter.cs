@@ -212,7 +212,8 @@ void _shift(int[] xy,int d) {
 }
 
 U _shifter(int up,float[] mu,ME ev) {
-   int px=(int)View.mp[0],py=(int)View.mp[1],ex=(int)mu[5],ey=(int)mu[6];int b,i=0,j,pi,mi=0,x,y;var opt=Diag;
+   V w=F1.View;
+   int px=(int)w.mp[0],py=(int)w.mp[1],ex=(int)mu[5],ey=(int)mu[6];int b,i=0,j,pi,mi=0,x,y;var opt=Diag;
    float[] p;float pv,mv;
   b=_shiftb(px,py,ex,ey);
   int[] xy=_shiftxy(px,py,b,opt,out pi);
@@ -221,13 +222,13 @@ U _shifter(int up,float[] mu,ME ev) {
       p=_peg(x=xy[i],y=xy[i+1]);pv=_sqr(ex-p[0],ey-p[1]);
       if(pv<mv) {mi=i;mv=pv;}
     }
-     View.sele.Clear();
+     w.sele.Clear();
     _shift(xy,i=(pi-mi)/2);
     _moves(1);
     //_drawboard();    
   } else {
-    View.sele.Clear();
-    for(j=0;j<xy.Length;j+=2) if(xy.Length==2||xy[j]!=px||xy[j+1]!=py) Push(View.sele,xy[j],xy[j+1]);
+    w.sele.Clear();
+    for(j=0;j<xy.Length;j+=2) if(xy.Length==2||xy[j]!=px||xy[j+1]!=py) Push(w.sele,xy[j],xy[j+1]);
     //_drawboard();
   }
   return U.Shifter(px,py,b,opt,i);

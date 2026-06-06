@@ -73,6 +73,16 @@ namespace solon.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap assign {
+            get {
+                object obj = ResourceManager.GetObject("assign", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap black {
             get {
                 object obj = ResourceManager.GetObject("black", resourceCulture);
@@ -213,6 +223,16 @@ namespace solon.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap delete {
+            get {
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dfill {
             get {
                 object obj = ResourceManager.GetObject("dfill", resourceCulture);
@@ -236,6 +256,16 @@ namespace solon.Properties {
         internal static System.Drawing.Bitmap dline {
             get {
                 object obj = ResourceManager.GetObject("dline", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap down {
+            get {
+                object obj = ResourceManager.GetObject("down", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -513,6 +543,16 @@ namespace solon.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap left {
+            get {
+                object obj = ResourceManager.GetObject("left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap open {
             get {
                 object obj = ResourceManager.GetObject("open", resourceCulture);
@@ -536,6 +576,16 @@ namespace solon.Properties {
         internal static System.Drawing.Bitmap peg {
             get {
                 object obj = ResourceManager.GetObject("peg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus {
+            get {
+                object obj = ResourceManager.GetObject("plus", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -676,6 +726,16 @@ namespace solon.Properties {
         internal static System.Drawing.Bitmap undo {
             get {
                 object obj = ResourceManager.GetObject("undo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap up {
+            get {
+                object obj = ResourceManager.GetObject("up", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

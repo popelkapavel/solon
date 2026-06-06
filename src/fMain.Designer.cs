@@ -37,39 +37,18 @@
       this.bBg = new System.Windows.Forms.Button();
       this.panel = new System.Windows.Forms.Panel();
       this.chSolM = new System.Windows.Forms.CheckBox();
-      this.pictureBox39 = new System.Windows.Forms.PictureBox();
       this.chSolF = new System.Windows.Forms.CheckBox();
-      this.pictureBox37 = new System.Windows.Forms.PictureBox();
       this.chSolX = new System.Windows.Forms.CheckBox();
-      this.pictureBox38 = new System.Windows.Forms.PictureBox();
-      this.pictureBox36 = new System.Windows.Forms.PictureBox();
-      this.pictureBox35 = new System.Windows.Forms.PictureBox();
-      this.pictureBox34 = new System.Windows.Forms.PictureBox();
-      this.pictureBox33 = new System.Windows.Forms.PictureBox();
-      this.pictureBox32 = new System.Windows.Forms.PictureBox();
-      this.bShd = new System.Windows.Forms.Button();
-      this.button1 = new System.Windows.Forms.Button();
       this.bdelb = new System.Windows.Forms.Button();
-      this.bRename = new System.Windows.Forms.Button();
-      this.bDown = new System.Windows.Forms.Button();
-      this.bUp = new System.Windows.Forms.Button();
       this.tName = new System.Windows.Forms.TextBox();
-      this.bAdd = new System.Windows.Forms.Button();
-      this.bSave = new System.Windows.Forms.Button();
-      this.bLoad = new System.Windows.Forms.Button();
       this.lMoves = new System.Windows.Forms.TextBox();
       this.cbSet = new System.Windows.Forms.ComboBox();
       this.chOnOffC = new System.Windows.Forms.CheckBox();
-      this.pbox24 = new System.Windows.Forms.PictureBox();
       this.chOnOff3 = new System.Windows.Forms.CheckBox();
-      this.pictureBox31 = new System.Windows.Forms.PictureBox();
       this.chOnOffO = new System.Windows.Forms.CheckBox();
-      this.pictureBox30 = new System.Windows.Forms.PictureBox();
       this.chCorn = new System.Windows.Forms.CheckBox();
       this.cbOnOff6 = new System.Windows.Forms.ComboBox();
       this.chOnOffx = new System.Windows.Forms.CheckBox();
-      this.pictureBox25 = new System.Windows.Forms.PictureBox();
-      this.pictureBox24 = new System.Windows.Forms.PictureBox();
       this.cbwhite2 = new System.Windows.Forms.ComboBox();
       this.chWW = new System.Windows.Forms.ComboBox();
       this.chWB = new System.Windows.Forms.ComboBox();
@@ -84,22 +63,12 @@
       this.chWhite = new System.Windows.Forms.CheckBox();
       this.chGrd2 = new System.Windows.Forms.CheckBox();
       this.chGrd1 = new System.Windows.Forms.CheckBox();
-      this.bShl = new System.Windows.Forms.Button();
-      this.bShr = new System.Windows.Forms.Button();
-      this.bVert = new System.Windows.Forms.Button();
-      this.bHori = new System.Windows.Forms.Button();
-      this.bRota = new System.Windows.Forms.Button();
       this.groupBox3 = new System.Windows.Forms.GroupBox();
-      this.pbshifter = new System.Windows.Forms.PictureBox();
       this.shifter = new System.Windows.Forms.RadioButton();
-      this.pbonoff = new System.Windows.Forms.PictureBox();
-      this.pbsol = new System.Windows.Forms.PictureBox();
       this.onoff = new System.Windows.Forms.RadioButton();
       this.sol = new System.Windows.Forms.RadioButton();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
       this.deca = new System.Windows.Forms.RadioButton();
-      this.pictureBox20 = new System.Windows.Forms.PictureBox();
-      this.pictureBox4 = new System.Windows.Forms.PictureBox();
       this.quad = new System.Windows.Forms.RadioButton();
       this.hexa = new System.Windows.Forms.RadioButton();
       this.tria = new System.Windows.Forms.RadioButton();
@@ -109,6 +78,66 @@
       this.cubes = new System.Windows.Forms.RadioButton();
       this.delta = new System.Windows.Forms.RadioButton();
       this.trap = new System.Windows.Forms.RadioButton();
+      this.chDiag = new System.Windows.Forms.CheckBox();
+      this.chRound = new System.Windows.Forms.CheckBox();
+      this.chPeg = new System.Windows.Forms.CheckBox();
+      this.bFg = new System.Windows.Forms.Button();
+      this.mMain = new System.Windows.Forms.MenuStrip();
+      this.miShape = new System.Windows.Forms.ToolStripMenuItem();
+      this.bBW = new System.Windows.Forms.Button();
+      this.bh1 = new System.Windows.Forms.Button();
+      this.bh3 = new System.Windows.Forms.Button();
+      this.bh5 = new System.Windows.Forms.Button();
+      this.groupBox4 = new System.Windows.Forms.GroupBox();
+      this.col4 = new System.Windows.Forms.RadioButton();
+      this.col31 = new System.Windows.Forms.RadioButton();
+      this.col30 = new System.Windows.Forms.RadioButton();
+      this.col21 = new System.Windows.Forms.RadioButton();
+      this.col2 = new System.Windows.Forms.RadioButton();
+      this.col1 = new System.Windows.Forms.RadioButton();
+      this.groupBox2 = new System.Windows.Forms.GroupBox();
+      this.dplay = new System.Windows.Forms.RadioButton();
+      this.dcolo2 = new System.Windows.Forms.RadioButton();
+      this.dfree = new System.Windows.Forms.RadioButton();
+      this.dcolo = new System.Windows.Forms.RadioButton();
+      this.dline = new System.Windows.Forms.RadioButton();
+      this.dedge = new System.Windows.Forms.RadioButton();
+      this.drect = new System.Windows.Forms.RadioButton();
+      this.dcirc = new System.Windows.Forms.RadioButton();
+      this.dfill = new System.Windows.Forms.RadioButton();
+      this.dcirc2 = new System.Windows.Forms.RadioButton();
+      this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+      this.pictureBox39 = new System.Windows.Forms.PictureBox();
+      this.pictureBox37 = new System.Windows.Forms.PictureBox();
+      this.pictureBox38 = new System.Windows.Forms.PictureBox();
+      this.pictureBox36 = new System.Windows.Forms.PictureBox();
+      this.pictureBox35 = new System.Windows.Forms.PictureBox();
+      this.pictureBox34 = new System.Windows.Forms.PictureBox();
+      this.pictureBox33 = new System.Windows.Forms.PictureBox();
+      this.pictureBox32 = new System.Windows.Forms.PictureBox();
+      this.bShd = new System.Windows.Forms.Button();
+      this.button1 = new System.Windows.Forms.Button();
+      this.bRename = new System.Windows.Forms.Button();
+      this.bDown = new System.Windows.Forms.Button();
+      this.bUp = new System.Windows.Forms.Button();
+      this.bAdd = new System.Windows.Forms.Button();
+      this.bSave = new System.Windows.Forms.Button();
+      this.bLoad = new System.Windows.Forms.Button();
+      this.pbox24 = new System.Windows.Forms.PictureBox();
+      this.pictureBox31 = new System.Windows.Forms.PictureBox();
+      this.pictureBox30 = new System.Windows.Forms.PictureBox();
+      this.pictureBox25 = new System.Windows.Forms.PictureBox();
+      this.pictureBox24 = new System.Windows.Forms.PictureBox();
+      this.bShl = new System.Windows.Forms.Button();
+      this.bShr = new System.Windows.Forms.Button();
+      this.bVert = new System.Windows.Forms.Button();
+      this.bHori = new System.Windows.Forms.Button();
+      this.bRota = new System.Windows.Forms.Button();
+      this.pbshifter = new System.Windows.Forms.PictureBox();
+      this.pbonoff = new System.Windows.Forms.PictureBox();
+      this.pbsol = new System.Windows.Forms.PictureBox();
+      this.pictureBox20 = new System.Windows.Forms.PictureBox();
+      this.pictureBox4 = new System.Windows.Forms.PictureBox();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.pictureBox2 = new System.Windows.Forms.PictureBox();
       this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -117,11 +146,6 @@
       this.pictureBox7 = new System.Windows.Forms.PictureBox();
       this.pictureBox8 = new System.Windows.Forms.PictureBox();
       this.pictureBox9 = new System.Windows.Forms.PictureBox();
-      this.chDiag = new System.Windows.Forms.CheckBox();
-      this.chRound = new System.Windows.Forms.CheckBox();
-      this.chPeg = new System.Windows.Forms.CheckBox();
-      this.bFg = new System.Windows.Forms.Button();
-      this.mMain = new System.Windows.Forms.MenuStrip();
       this.miFile = new System.Windows.Forms.ToolStripMenuItem();
       this.miFileNew = new System.Windows.Forms.ToolStripMenuItem();
       this.miFileOpen = new System.Windows.Forms.ToolStripMenuItem();
@@ -166,46 +190,27 @@
       this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
       this.miViewGrd1 = new System.Windows.Forms.ToolStripMenuItem();
       this.miViewGrd2 = new System.Windows.Forms.ToolStripMenuItem();
-      this.miShape = new System.Windows.Forms.ToolStripMenuItem();
-      this.bBW = new System.Windows.Forms.Button();
-      this.bh1 = new System.Windows.Forms.Button();
       this.bClear = new System.Windows.Forms.Button();
-      this.bh3 = new System.Windows.Forms.Button();
-      this.bh5 = new System.Windows.Forms.Button();
-      this.groupBox4 = new System.Windows.Forms.GroupBox();
-      this.col4 = new System.Windows.Forms.RadioButton();
-      this.col31 = new System.Windows.Forms.RadioButton();
-      this.col30 = new System.Windows.Forms.RadioButton();
       this.pictureBox29 = new System.Windows.Forms.PictureBox();
       this.pictureBox26 = new System.Windows.Forms.PictureBox();
       this.pictureBox27 = new System.Windows.Forms.PictureBox();
       this.pictureBox28 = new System.Windows.Forms.PictureBox();
-      this.col21 = new System.Windows.Forms.RadioButton();
-      this.col2 = new System.Windows.Forms.RadioButton();
-      this.col1 = new System.Windows.Forms.RadioButton();
-      this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.pictureBox13 = new System.Windows.Forms.PictureBox();
-      this.dplay = new System.Windows.Forms.RadioButton();
       this.pictureBox19 = new System.Windows.Forms.PictureBox();
       this.pictureBox10 = new System.Windows.Forms.PictureBox();
-      this.dcolo2 = new System.Windows.Forms.RadioButton();
-      this.dfree = new System.Windows.Forms.RadioButton();
       this.pictureBox18 = new System.Windows.Forms.PictureBox();
       this.pictureBox11 = new System.Windows.Forms.PictureBox();
-      this.dcolo = new System.Windows.Forms.RadioButton();
-      this.dline = new System.Windows.Forms.RadioButton();
       this.pictureBox17 = new System.Windows.Forms.PictureBox();
       this.pictureBox12 = new System.Windows.Forms.PictureBox();
-      this.dedge = new System.Windows.Forms.RadioButton();
-      this.drect = new System.Windows.Forms.RadioButton();
       this.pictureBox16 = new System.Windows.Forms.PictureBox();
-      this.dcirc = new System.Windows.Forms.RadioButton();
-      this.dfill = new System.Windows.Forms.RadioButton();
       this.pictureBox14 = new System.Windows.Forms.PictureBox();
       this.pictureBox15 = new System.Windows.Forms.PictureBox();
-      this.dcirc2 = new System.Windows.Forms.RadioButton();
-      this.toolTip = new System.Windows.Forms.ToolTip(this.components);
       this.panel.SuspendLayout();
+      this.groupBox3.SuspendLayout();
+      this.groupBox1.SuspendLayout();
+      this.mMain.SuspendLayout();
+      this.groupBox4.SuspendLayout();
+      this.groupBox2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox39)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).BeginInit();
@@ -219,11 +224,9 @@
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
-      this.groupBox3.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pbshifter)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pbonoff)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pbsol)).BeginInit();
-      this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -234,13 +237,10 @@
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-      this.mMain.SuspendLayout();
-      this.groupBox4.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
-      this.groupBox2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -375,18 +375,6 @@
       this.chSolM.UseVisualStyleBackColor = true;
       this.chSolM.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
-      // pictureBox39
-      // 
-      this.pictureBox39.Image = global::solon.Properties.Resources.solm;
-      this.pictureBox39.Location = new System.Drawing.Point(103, 84);
-      this.pictureBox39.Name = "pictureBox39";
-      this.pictureBox39.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox39.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.pictureBox39.TabIndex = 126;
-      this.pictureBox39.TabStop = false;
-      this.pictureBox39.Tag = "solm";
-      this.pictureBox39.Click += new System.EventHandler(this.Tag_Click);
-      // 
       // chSolF
       // 
       this.chSolF.AutoSize = true;
@@ -398,18 +386,6 @@
       this.toolTip.SetToolTip(this.chSolF, "Sol free jump");
       this.chSolF.UseVisualStyleBackColor = true;
       this.chSolF.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // pictureBox37
-      // 
-      this.pictureBox37.Image = global::solon.Properties.Resources.solf;
-      this.pictureBox37.Location = new System.Drawing.Point(84, 84);
-      this.pictureBox37.Name = "pictureBox37";
-      this.pictureBox37.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox37.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.pictureBox37.TabIndex = 124;
-      this.pictureBox37.TabStop = false;
-      this.pictureBox37.Tag = "solf";
-      this.pictureBox37.Click += new System.EventHandler(this.Tag_Click);
       // 
       // chSolX
       // 
@@ -423,201 +399,26 @@
       this.chSolX.UseVisualStyleBackColor = true;
       this.chSolX.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
-      // pictureBox38
-      // 
-      this.pictureBox38.Image = global::solon.Properties.Resources.solx;
-      this.pictureBox38.Location = new System.Drawing.Point(66, 84);
-      this.pictureBox38.Name = "pictureBox38";
-      this.pictureBox38.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox38.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.pictureBox38.TabIndex = 122;
-      this.pictureBox38.TabStop = false;
-      this.pictureBox38.Tag = "solx";
-      this.pictureBox38.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // pictureBox36
-      // 
-      this.pictureBox36.Image = global::solon.Properties.Resources.grd2;
-      this.pictureBox36.Location = new System.Drawing.Point(220, 119);
-      this.pictureBox36.Name = "pictureBox36";
-      this.pictureBox36.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox36.TabIndex = 121;
-      this.pictureBox36.TabStop = false;
-      this.pictureBox36.Tag = "sol";
-      // 
-      // pictureBox35
-      // 
-      this.pictureBox35.Image = global::solon.Properties.Resources.grd1;
-      this.pictureBox35.Location = new System.Drawing.Point(204, 119);
-      this.pictureBox35.Name = "pictureBox35";
-      this.pictureBox35.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox35.TabIndex = 120;
-      this.pictureBox35.TabStop = false;
-      this.pictureBox35.Tag = "sol";
-      // 
-      // pictureBox34
-      // 
-      this.pictureBox34.Image = global::solon.Properties.Resources.corn;
-      this.pictureBox34.Location = new System.Drawing.Point(41, 125);
-      this.pictureBox34.Name = "pictureBox34";
-      this.pictureBox34.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox34.TabIndex = 119;
-      this.pictureBox34.TabStop = false;
-      this.pictureBox34.Tag = "sol";
-      // 
-      // pictureBox33
-      // 
-      this.pictureBox33.Image = global::solon.Properties.Resources.round;
-      this.pictureBox33.Location = new System.Drawing.Point(24, 125);
-      this.pictureBox33.Name = "pictureBox33";
-      this.pictureBox33.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox33.TabIndex = 118;
-      this.pictureBox33.TabStop = false;
-      this.pictureBox33.Tag = "sol";
-      // 
-      // pictureBox32
-      // 
-      this.pictureBox32.Image = global::solon.Properties.Resources.peg;
-      this.pictureBox32.Location = new System.Drawing.Point(7, 125);
-      this.pictureBox32.Name = "pictureBox32";
-      this.pictureBox32.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox32.TabIndex = 117;
-      this.pictureBox32.TabStop = false;
-      this.pictureBox32.Tag = "sol";
-      // 
-      // bShd
-      // 
-      this.bShd.BackColor = System.Drawing.SystemColors.Control;
-      this.bShd.Image = global::solon.Properties.Resources.shd;
-      this.bShd.Location = new System.Drawing.Point(195, 363);
-      this.bShd.Name = "bShd";
-      this.bShd.Size = new System.Drawing.Size(24, 24);
-      this.bShd.TabIndex = 112;
-      this.bShd.TabStop = false;
-      this.bShd.Tag = "shd";
-      this.toolTip.SetToolTip(this.bShd, "Shift up");
-      this.bShd.UseVisualStyleBackColor = false;
-      this.bShd.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // button1
-      // 
-      this.button1.BackColor = System.Drawing.SystemColors.Control;
-      this.button1.Image = global::solon.Properties.Resources.shu;
-      this.button1.Location = new System.Drawing.Point(195, 340);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(24, 24);
-      this.button1.TabIndex = 111;
-      this.button1.TabStop = false;
-      this.button1.Tag = "shu";
-      this.toolTip.SetToolTip(this.button1, "Shift up");
-      this.button1.UseVisualStyleBackColor = false;
-      this.button1.ClientSizeChanged += new System.EventHandler(this.Tag_Click);
-      this.button1.Click += new System.EventHandler(this.Tag_Click);
-      // 
       // bdelb
       // 
       this.bdelb.BackColor = System.Drawing.SystemColors.Control;
-      this.bdelb.Location = new System.Drawing.Point(230, 205);
+      this.bdelb.Image = global::solon.Properties.Resources.delete;
+      this.bdelb.Location = new System.Drawing.Point(227, 205);
       this.bdelb.Name = "bdelb";
       this.bdelb.Size = new System.Drawing.Size(24, 24);
       this.bdelb.TabIndex = 110;
       this.bdelb.TabStop = false;
       this.bdelb.Tag = "delb";
-      this.bdelb.Text = "x";
       this.toolTip.SetToolTip(this.bdelb, "Delete board");
       this.bdelb.UseVisualStyleBackColor = false;
       this.bdelb.Click += new System.EventHandler(this.Tag_Click);
       // 
-      // bRename
-      // 
-      this.bRename.BackColor = System.Drawing.SystemColors.Control;
-      this.bRename.Location = new System.Drawing.Point(174, 228);
-      this.bRename.Name = "bRename";
-      this.bRename.Size = new System.Drawing.Size(24, 24);
-      this.bRename.TabIndex = 109;
-      this.bRename.TabStop = false;
-      this.bRename.Tag = "renb";
-      this.bRename.Text = "=";
-      this.toolTip.SetToolTip(this.bRename, "Rename board");
-      this.bRename.UseVisualStyleBackColor = false;
-      this.bRename.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // bDown
-      // 
-      this.bDown.BackColor = System.Drawing.SystemColors.Control;
-      this.bDown.Location = new System.Drawing.Point(202, 228);
-      this.bDown.Name = "bDown";
-      this.bDown.Size = new System.Drawing.Size(24, 25);
-      this.bDown.TabIndex = 108;
-      this.bDown.TabStop = false;
-      this.bDown.Tag = "bdown";
-      this.bDown.Text = "v";
-      this.toolTip.SetToolTip(this.bDown, "Board down");
-      this.bDown.UseVisualStyleBackColor = false;
-      this.bDown.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // bUp
-      // 
-      this.bUp.BackColor = System.Drawing.SystemColors.Control;
-      this.bUp.Location = new System.Drawing.Point(201, 204);
-      this.bUp.Name = "bUp";
-      this.bUp.Size = new System.Drawing.Size(24, 25);
-      this.bUp.TabIndex = 107;
-      this.bUp.TabStop = false;
-      this.bUp.Tag = "bup";
-      this.bUp.Text = "^";
-      this.toolTip.SetToolTip(this.bUp, "Board up");
-      this.bUp.UseVisualStyleBackColor = false;
-      this.bUp.Click += new System.EventHandler(this.Tag_Click);
-      // 
       // tName
       // 
-      this.tName.Location = new System.Drawing.Point(33, 230);
+      this.tName.Location = new System.Drawing.Point(32, 230);
       this.tName.Name = "tName";
-      this.tName.Size = new System.Drawing.Size(139, 20);
+      this.tName.Size = new System.Drawing.Size(140, 20);
       this.tName.TabIndex = 106;
-      // 
-      // bAdd
-      // 
-      this.bAdd.BackColor = System.Drawing.SystemColors.Control;
-      this.bAdd.Location = new System.Drawing.Point(8, 228);
-      this.bAdd.Name = "bAdd";
-      this.bAdd.Size = new System.Drawing.Size(24, 24);
-      this.bAdd.TabIndex = 105;
-      this.bAdd.TabStop = false;
-      this.bAdd.Tag = "addb";
-      this.bAdd.Text = "+";
-      this.toolTip.SetToolTip(this.bAdd, "Add new board");
-      this.bAdd.UseVisualStyleBackColor = false;
-      this.bAdd.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // bSave
-      // 
-      this.bSave.BackColor = System.Drawing.SystemColors.Control;
-      this.bSave.Location = new System.Drawing.Point(175, 203);
-      this.bSave.Name = "bSave";
-      this.bSave.Size = new System.Drawing.Size(24, 25);
-      this.bSave.TabIndex = 104;
-      this.bSave.TabStop = false;
-      this.bSave.Tag = "saveb";
-      this.bSave.Text = "<";
-      this.toolTip.SetToolTip(this.bSave, "Save board");
-      this.bSave.UseVisualStyleBackColor = false;
-      this.bSave.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // bLoad
-      // 
-      this.bLoad.BackColor = System.Drawing.SystemColors.Control;
-      this.bLoad.Location = new System.Drawing.Point(6, 203);
-      this.bLoad.Name = "bLoad";
-      this.bLoad.Size = new System.Drawing.Size(24, 25);
-      this.bLoad.TabIndex = 103;
-      this.bLoad.TabStop = false;
-      this.bLoad.Tag = "loadb";
-      this.bLoad.Text = "<";
-      this.toolTip.SetToolTip(this.bLoad, "Load board");
-      this.bLoad.UseVisualStyleBackColor = false;
-      this.bLoad.Click += new System.EventHandler(this.Tag_Click);
       // 
       // lMoves
       // 
@@ -657,18 +458,6 @@
       this.chOnOffC.UseVisualStyleBackColor = true;
       this.chOnOffC.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
-      // pbox24
-      // 
-      this.pbox24.Image = global::solon.Properties.Resources.gonoffc;
-      this.pbox24.Location = new System.Drawing.Point(181, 84);
-      this.pbox24.Name = "pbox24";
-      this.pbox24.Size = new System.Drawing.Size(16, 16);
-      this.pbox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.pbox24.TabIndex = 99;
-      this.pbox24.TabStop = false;
-      this.pbox24.Tag = "onoffc";
-      this.pbox24.Click += new System.EventHandler(this.Tag_Click);
-      // 
       // chOnOff3
       // 
       this.chOnOff3.AutoSize = true;
@@ -681,18 +470,6 @@
       this.chOnOff3.UseVisualStyleBackColor = true;
       this.chOnOff3.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
-      // pictureBox31
-      // 
-      this.pictureBox31.Image = global::solon.Properties.Resources.gonoff3;
-      this.pictureBox31.Location = new System.Drawing.Point(164, 84);
-      this.pictureBox31.Name = "pictureBox31";
-      this.pictureBox31.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox31.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.pictureBox31.TabIndex = 97;
-      this.pictureBox31.TabStop = false;
-      this.pictureBox31.Tag = "onoff3";
-      this.pictureBox31.Click += new System.EventHandler(this.Tag_Click);
-      // 
       // chOnOffO
       // 
       this.chOnOffO.AutoSize = true;
@@ -704,18 +481,6 @@
       this.toolTip.SetToolTip(this.chOnOffO, "OnOff around");
       this.chOnOffO.UseVisualStyleBackColor = true;
       this.chOnOffO.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // pictureBox30
-      // 
-      this.pictureBox30.Image = global::solon.Properties.Resources.gonoffo;
-      this.pictureBox30.Location = new System.Drawing.Point(146, 84);
-      this.pictureBox30.Name = "pictureBox30";
-      this.pictureBox30.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.pictureBox30.TabIndex = 95;
-      this.pictureBox30.TabStop = false;
-      this.pictureBox30.Tag = "onoffo";
-      this.pictureBox30.Click += new System.EventHandler(this.Tag_Click);
       // 
       // chCorn
       // 
@@ -762,30 +527,6 @@
       this.toolTip.SetToolTip(this.chOnOffx, "OnOff extended");
       this.chOnOffx.UseVisualStyleBackColor = true;
       this.chOnOffx.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // pictureBox25
-      // 
-      this.pictureBox25.Image = global::solon.Properties.Resources.gonoffx;
-      this.pictureBox25.Location = new System.Drawing.Point(200, 84);
-      this.pictureBox25.Name = "pictureBox25";
-      this.pictureBox25.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.pictureBox25.TabIndex = 90;
-      this.pictureBox25.TabStop = false;
-      this.pictureBox25.Tag = "onoffx";
-      this.pictureBox25.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // pictureBox24
-      // 
-      this.pictureBox24.Image = global::solon.Properties.Resources.gdiag;
-      this.pictureBox24.Location = new System.Drawing.Point(124, 85);
-      this.pictureBox24.Name = "pictureBox24";
-      this.pictureBox24.Size = new System.Drawing.Size(16, 16);
-      this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-      this.pictureBox24.TabIndex = 90;
-      this.pictureBox24.TabStop = false;
-      this.pictureBox24.Tag = "diag";
-      this.pictureBox24.Click += new System.EventHandler(this.Tag_Click);
       // 
       // cbwhite2
       // 
@@ -971,77 +712,6 @@
       this.chGrd1.UseVisualStyleBackColor = true;
       this.chGrd1.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
-      // bShl
-      // 
-      this.bShl.BackColor = System.Drawing.SystemColors.Control;
-      this.bShl.Image = global::solon.Properties.Resources.shl;
-      this.bShl.Location = new System.Drawing.Point(172, 349);
-      this.bShl.Name = "bShl";
-      this.bShl.Size = new System.Drawing.Size(24, 24);
-      this.bShl.TabIndex = 82;
-      this.bShl.TabStop = false;
-      this.bShl.Tag = "shl";
-      this.toolTip.SetToolTip(this.bShl, "Shift left");
-      this.bShl.UseVisualStyleBackColor = false;
-      this.bShl.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // bShr
-      // 
-      this.bShr.BackColor = System.Drawing.SystemColors.Control;
-      this.bShr.Image = global::solon.Properties.Resources.shr;
-      this.bShr.Location = new System.Drawing.Point(219, 349);
-      this.bShr.Name = "bShr";
-      this.bShr.Size = new System.Drawing.Size(24, 24);
-      this.bShr.TabIndex = 81;
-      this.bShr.TabStop = false;
-      this.bShr.Tag = "shr";
-      this.bShr.Text = ">";
-      this.toolTip.SetToolTip(this.bShr, "Shift right");
-      this.bShr.UseVisualStyleBackColor = false;
-      this.bShr.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // bVert
-      // 
-      this.bVert.BackColor = System.Drawing.SystemColors.Control;
-      this.bVert.Image = global::solon.Properties.Resources.flipx;
-      this.bVert.Location = new System.Drawing.Point(144, 375);
-      this.bVert.Name = "bVert";
-      this.bVert.Size = new System.Drawing.Size(24, 24);
-      this.bVert.TabIndex = 80;
-      this.bVert.TabStop = false;
-      this.bVert.Tag = "vert";
-      this.toolTip.SetToolTip(this.bVert, "Flip vertical");
-      this.bVert.UseVisualStyleBackColor = false;
-      this.bVert.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // bHori
-      // 
-      this.bHori.BackColor = System.Drawing.SystemColors.Control;
-      this.bHori.Image = global::solon.Properties.Resources.flipy;
-      this.bHori.Location = new System.Drawing.Point(145, 349);
-      this.bHori.Name = "bHori";
-      this.bHori.Size = new System.Drawing.Size(24, 24);
-      this.bHori.TabIndex = 79;
-      this.bHori.TabStop = false;
-      this.bHori.Tag = "hori";
-      this.toolTip.SetToolTip(this.bHori, "Flip horizontal");
-      this.bHori.UseVisualStyleBackColor = false;
-      this.bHori.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // bRota
-      // 
-      this.bRota.BackColor = System.Drawing.SystemColors.Control;
-      this.bRota.Image = global::solon.Properties.Resources.rotate;
-      this.bRota.Location = new System.Drawing.Point(119, 349);
-      this.bRota.Name = "bRota";
-      this.bRota.Size = new System.Drawing.Size(24, 24);
-      this.bRota.TabIndex = 78;
-      this.bRota.TabStop = false;
-      this.bRota.Tag = "rota";
-      this.toolTip.SetToolTip(this.bRota, "Rotate");
-      this.bRota.UseVisualStyleBackColor = false;
-      this.bRota.Click += new System.EventHandler(this.Tag_Click);
-      // 
       // groupBox3
       // 
       this.groupBox3.Controls.Add(this.pbshifter);
@@ -1058,16 +728,6 @@
       this.groupBox3.TabIndex = 77;
       this.groupBox3.TabStop = false;
       // 
-      // pbshifter
-      // 
-      this.pbshifter.Image = global::solon.Properties.Resources.gshift;
-      this.pbshifter.Location = new System.Drawing.Point(43, 11);
-      this.pbshifter.Name = "pbshifter";
-      this.pbshifter.Size = new System.Drawing.Size(16, 16);
-      this.pbshifter.TabIndex = 116;
-      this.pbshifter.TabStop = false;
-      this.pbshifter.Tag = "shifter";
-      // 
       // shifter
       // 
       this.shifter.AutoSize = true;
@@ -1080,28 +740,6 @@
       this.toolTip.SetToolTip(this.shifter, "Shifter");
       this.shifter.UseVisualStyleBackColor = true;
       this.shifter.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // pbonoff
-      // 
-      this.pbonoff.Image = global::solon.Properties.Resources.gonoff;
-      this.pbonoff.Location = new System.Drawing.Point(24, 11);
-      this.pbonoff.Name = "pbonoff";
-      this.pbonoff.Size = new System.Drawing.Size(16, 16);
-      this.pbonoff.TabIndex = 64;
-      this.pbonoff.TabStop = false;
-      this.pbonoff.Tag = "onoff";
-      this.pbonoff.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // pbsol
-      // 
-      this.pbsol.Image = global::solon.Properties.Resources.gsol;
-      this.pbsol.Location = new System.Drawing.Point(5, 11);
-      this.pbsol.Name = "pbsol";
-      this.pbsol.Size = new System.Drawing.Size(16, 16);
-      this.pbsol.TabIndex = 63;
-      this.pbsol.TabStop = false;
-      this.pbsol.Tag = "sol";
-      this.pbsol.Click += new System.EventHandler(this.Tag_Click);
       // 
       // onoff
       // 
@@ -1168,28 +806,6 @@
       this.deca.Tag = "deca";
       this.deca.UseVisualStyleBackColor = true;
       this.deca.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // pictureBox20
-      // 
-      this.pictureBox20.Image = global::solon.Properties.Resources.hdeca;
-      this.pictureBox20.Location = new System.Drawing.Point(213, 10);
-      this.pictureBox20.Name = "pictureBox20";
-      this.pictureBox20.Size = new System.Drawing.Size(20, 20);
-      this.pictureBox20.TabIndex = 55;
-      this.pictureBox20.TabStop = false;
-      this.pictureBox20.Tag = "deca";
-      this.pictureBox20.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // pictureBox4
-      // 
-      this.pictureBox4.Image = global::solon.Properties.Resources.htria2;
-      this.pictureBox4.Location = new System.Drawing.Point(71, 10);
-      this.pictureBox4.Name = "pictureBox4";
-      this.pictureBox4.Size = new System.Drawing.Size(20, 20);
-      this.pictureBox4.TabIndex = 48;
-      this.pictureBox4.TabStop = false;
-      this.pictureBox4.Tag = "tria2";
-      this.pictureBox4.Click += new System.EventHandler(this.Tag_Click);
       // 
       // quad
       // 
@@ -1299,6 +915,725 @@
       this.trap.UseVisualStyleBackColor = true;
       this.trap.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
+      // chDiag
+      // 
+      this.chDiag.AutoSize = true;
+      this.chDiag.Location = new System.Drawing.Point(126, 104);
+      this.chDiag.Name = "chDiag";
+      this.chDiag.Size = new System.Drawing.Size(15, 14);
+      this.chDiag.TabIndex = 54;
+      this.chDiag.Tag = "diag";
+      this.toolTip.SetToolTip(this.chDiag, "Diagonal");
+      this.chDiag.UseVisualStyleBackColor = true;
+      this.chDiag.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // chRound
+      // 
+      this.chRound.AutoSize = true;
+      this.chRound.Location = new System.Drawing.Point(25, 142);
+      this.chRound.Name = "chRound";
+      this.chRound.Size = new System.Drawing.Size(15, 14);
+      this.chRound.TabIndex = 36;
+      this.chRound.Tag = "rou";
+      this.toolTip.SetToolTip(this.chRound, "Roud");
+      this.chRound.UseVisualStyleBackColor = true;
+      this.chRound.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // chPeg
+      // 
+      this.chPeg.AutoSize = true;
+      this.chPeg.Location = new System.Drawing.Point(9, 142);
+      this.chPeg.Name = "chPeg";
+      this.chPeg.Size = new System.Drawing.Size(15, 14);
+      this.chPeg.TabIndex = 35;
+      this.chPeg.Tag = "peg";
+      this.toolTip.SetToolTip(this.chPeg, "Polygon peg");
+      this.chPeg.UseVisualStyleBackColor = true;
+      this.chPeg.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // bFg
+      // 
+      this.bFg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+      this.bFg.Location = new System.Drawing.Point(222, 262);
+      this.bFg.Name = "bFg";
+      this.bFg.Size = new System.Drawing.Size(31, 28);
+      this.bFg.TabIndex = 34;
+      this.bFg.Tag = "fg";
+      this.bFg.Text = "fg";
+      this.bFg.UseVisualStyleBackColor = false;
+      this.bFg.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // mMain
+      // 
+      this.mMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miFile,
+            this.miGame,
+            this.miEdit,
+            this.miView,
+            this.miShape});
+      this.mMain.Location = new System.Drawing.Point(0, 0);
+      this.mMain.Name = "mMain";
+      this.mMain.Size = new System.Drawing.Size(254, 24);
+      this.mMain.TabIndex = 0;
+      this.mMain.Text = "menuStrip1";
+      // 
+      // miShape
+      // 
+      this.miShape.Name = "miShape";
+      this.miShape.Size = new System.Drawing.Size(12, 20);
+      // 
+      // bBW
+      // 
+      this.bBW.Location = new System.Drawing.Point(0, 0);
+      this.bBW.Name = "bBW";
+      this.bBW.Size = new System.Drawing.Size(75, 23);
+      this.bBW.TabIndex = 30;
+      // 
+      // bh1
+      // 
+      this.bh1.Location = new System.Drawing.Point(0, 0);
+      this.bh1.Name = "bh1";
+      this.bh1.Size = new System.Drawing.Size(75, 23);
+      this.bh1.TabIndex = 31;
+      // 
+      // bh3
+      // 
+      this.bh3.Location = new System.Drawing.Point(0, 0);
+      this.bh3.Name = "bh3";
+      this.bh3.Size = new System.Drawing.Size(75, 23);
+      this.bh3.TabIndex = 32;
+      // 
+      // bh5
+      // 
+      this.bh5.Location = new System.Drawing.Point(0, 0);
+      this.bh5.Name = "bh5";
+      this.bh5.Size = new System.Drawing.Size(75, 23);
+      this.bh5.TabIndex = 33;
+      // 
+      // groupBox4
+      // 
+      this.groupBox4.Controls.Add(this.col4);
+      this.groupBox4.Controls.Add(this.col31);
+      this.groupBox4.Controls.Add(this.col30);
+      this.groupBox4.Controls.Add(this.pictureBox29);
+      this.groupBox4.Controls.Add(this.pictureBox26);
+      this.groupBox4.Controls.Add(this.pictureBox27);
+      this.groupBox4.Controls.Add(this.pictureBox28);
+      this.groupBox4.Controls.Add(this.col21);
+      this.groupBox4.Controls.Add(this.col2);
+      this.groupBox4.Controls.Add(this.col1);
+      this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.groupBox4.Location = new System.Drawing.Point(66, 113);
+      this.groupBox4.Margin = new System.Windows.Forms.Padding(0);
+      this.groupBox4.Name = "groupBox4";
+      this.groupBox4.Size = new System.Drawing.Size(131, 46);
+      this.groupBox4.TabIndex = 94;
+      this.groupBox4.TabStop = false;
+      // 
+      // col4
+      // 
+      this.col4.AutoSize = true;
+      this.col4.Location = new System.Drawing.Point(106, 30);
+      this.col4.Name = "col4";
+      this.col4.Size = new System.Drawing.Size(14, 13);
+      this.col4.TabIndex = 68;
+      this.col4.TabStop = true;
+      this.col4.Tag = "col4";
+      this.col4.UseVisualStyleBackColor = true;
+      this.col4.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // col31
+      // 
+      this.col31.AutoSize = true;
+      this.col31.Location = new System.Drawing.Point(86, 30);
+      this.col31.Name = "col31";
+      this.col31.Size = new System.Drawing.Size(14, 13);
+      this.col31.TabIndex = 67;
+      this.col31.TabStop = true;
+      this.col31.Tag = "col31";
+      this.col31.UseVisualStyleBackColor = true;
+      this.col31.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // col30
+      // 
+      this.col30.AutoSize = true;
+      this.col30.Location = new System.Drawing.Point(66, 30);
+      this.col30.Name = "col30";
+      this.col30.Size = new System.Drawing.Size(14, 13);
+      this.col30.TabIndex = 66;
+      this.col30.TabStop = true;
+      this.col30.Tag = "col30";
+      this.col30.UseVisualStyleBackColor = true;
+      this.col30.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // col21
+      // 
+      this.col21.AutoSize = true;
+      this.col21.Location = new System.Drawing.Point(46, 30);
+      this.col21.Name = "col21";
+      this.col21.Size = new System.Drawing.Size(14, 13);
+      this.col21.TabIndex = 62;
+      this.col21.TabStop = true;
+      this.col21.Tag = "col21";
+      this.col21.UseVisualStyleBackColor = true;
+      this.col21.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // col2
+      // 
+      this.col2.AutoSize = true;
+      this.col2.Location = new System.Drawing.Point(26, 30);
+      this.col2.Name = "col2";
+      this.col2.Size = new System.Drawing.Size(14, 13);
+      this.col2.TabIndex = 61;
+      this.col2.TabStop = true;
+      this.col2.Tag = "col2";
+      this.col2.UseVisualStyleBackColor = true;
+      this.col2.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // col1
+      // 
+      this.col1.AutoSize = true;
+      this.col1.Location = new System.Drawing.Point(6, 30);
+      this.col1.Name = "col1";
+      this.col1.Size = new System.Drawing.Size(14, 13);
+      this.col1.TabIndex = 60;
+      this.col1.TabStop = true;
+      this.col1.Tag = "col1";
+      this.col1.UseVisualStyleBackColor = true;
+      this.col1.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // groupBox2
+      // 
+      this.groupBox2.Controls.Add(this.pictureBox13);
+      this.groupBox2.Controls.Add(this.dplay);
+      this.groupBox2.Controls.Add(this.pictureBox19);
+      this.groupBox2.Controls.Add(this.pictureBox10);
+      this.groupBox2.Controls.Add(this.dcolo2);
+      this.groupBox2.Controls.Add(this.dfree);
+      this.groupBox2.Controls.Add(this.pictureBox18);
+      this.groupBox2.Controls.Add(this.pictureBox11);
+      this.groupBox2.Controls.Add(this.dcolo);
+      this.groupBox2.Controls.Add(this.dline);
+      this.groupBox2.Controls.Add(this.pictureBox17);
+      this.groupBox2.Controls.Add(this.pictureBox12);
+      this.groupBox2.Controls.Add(this.dedge);
+      this.groupBox2.Controls.Add(this.drect);
+      this.groupBox2.Controls.Add(this.pictureBox16);
+      this.groupBox2.Controls.Add(this.dcirc);
+      this.groupBox2.Controls.Add(this.dfill);
+      this.groupBox2.Controls.Add(this.pictureBox14);
+      this.groupBox2.Controls.Add(this.pictureBox15);
+      this.groupBox2.Controls.Add(this.dcirc2);
+      this.groupBox2.Location = new System.Drawing.Point(7, 152);
+      this.groupBox2.Name = "groupBox2";
+      this.groupBox2.Size = new System.Drawing.Size(232, 50);
+      this.groupBox2.TabIndex = 76;
+      this.groupBox2.TabStop = false;
+      // 
+      // dplay
+      // 
+      this.dplay.AutoSize = true;
+      this.dplay.Location = new System.Drawing.Point(7, 33);
+      this.dplay.Name = "dplay";
+      this.dplay.Size = new System.Drawing.Size(14, 13);
+      this.dplay.TabIndex = 55;
+      this.dplay.TabStop = true;
+      this.dplay.Tag = "play";
+      this.dplay.UseVisualStyleBackColor = true;
+      this.dplay.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // dcolo2
+      // 
+      this.dcolo2.AutoSize = true;
+      this.dcolo2.Location = new System.Drawing.Point(212, 33);
+      this.dcolo2.Name = "dcolo2";
+      this.dcolo2.Size = new System.Drawing.Size(14, 13);
+      this.dcolo2.TabIndex = 73;
+      this.dcolo2.TabStop = true;
+      this.dcolo2.Tag = "color2";
+      this.dcolo2.UseVisualStyleBackColor = true;
+      this.dcolo2.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // dfree
+      // 
+      this.dfree.AutoSize = true;
+      this.dfree.Location = new System.Drawing.Point(31, 33);
+      this.dfree.Name = "dfree";
+      this.dfree.Size = new System.Drawing.Size(14, 13);
+      this.dfree.TabIndex = 57;
+      this.dfree.TabStop = true;
+      this.dfree.Tag = "free";
+      this.dfree.UseVisualStyleBackColor = true;
+      this.dfree.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // dcolo
+      // 
+      this.dcolo.AutoSize = true;
+      this.dcolo.Location = new System.Drawing.Point(189, 33);
+      this.dcolo.Name = "dcolo";
+      this.dcolo.Size = new System.Drawing.Size(14, 13);
+      this.dcolo.TabIndex = 71;
+      this.dcolo.TabStop = true;
+      this.dcolo.Tag = "color";
+      this.dcolo.UseVisualStyleBackColor = true;
+      this.dcolo.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // dline
+      // 
+      this.dline.AutoSize = true;
+      this.dline.Location = new System.Drawing.Point(54, 33);
+      this.dline.Name = "dline";
+      this.dline.Size = new System.Drawing.Size(14, 13);
+      this.dline.TabIndex = 59;
+      this.dline.TabStop = true;
+      this.dline.Tag = "line";
+      this.dline.UseVisualStyleBackColor = true;
+      this.dline.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // dedge
+      // 
+      this.dedge.AutoSize = true;
+      this.dedge.Location = new System.Drawing.Point(167, 33);
+      this.dedge.Name = "dedge";
+      this.dedge.Size = new System.Drawing.Size(14, 13);
+      this.dedge.TabIndex = 69;
+      this.dedge.TabStop = true;
+      this.dedge.Tag = "edge";
+      this.dedge.UseVisualStyleBackColor = true;
+      this.dedge.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // drect
+      // 
+      this.drect.AutoSize = true;
+      this.drect.Location = new System.Drawing.Point(77, 33);
+      this.drect.Name = "drect";
+      this.drect.Size = new System.Drawing.Size(14, 13);
+      this.drect.TabIndex = 61;
+      this.drect.TabStop = true;
+      this.drect.Tag = "rect";
+      this.drect.UseVisualStyleBackColor = true;
+      this.drect.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // dcirc
+      // 
+      this.dcirc.AutoSize = true;
+      this.dcirc.Location = new System.Drawing.Point(100, 33);
+      this.dcirc.Name = "dcirc";
+      this.dcirc.Size = new System.Drawing.Size(14, 13);
+      this.dcirc.TabIndex = 63;
+      this.dcirc.TabStop = true;
+      this.dcirc.Tag = "circ";
+      this.dcirc.UseVisualStyleBackColor = true;
+      this.dcirc.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // dfill
+      // 
+      this.dfill.AutoSize = true;
+      this.dfill.Location = new System.Drawing.Point(145, 33);
+      this.dfill.Name = "dfill";
+      this.dfill.Size = new System.Drawing.Size(14, 13);
+      this.dfill.TabIndex = 67;
+      this.dfill.TabStop = true;
+      this.dfill.Tag = "fill";
+      this.dfill.UseVisualStyleBackColor = true;
+      this.dfill.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // dcirc2
+      // 
+      this.dcirc2.AutoSize = true;
+      this.dcirc2.Location = new System.Drawing.Point(123, 33);
+      this.dcirc2.Name = "dcirc2";
+      this.dcirc2.Size = new System.Drawing.Size(14, 13);
+      this.dcirc2.TabIndex = 65;
+      this.dcirc2.TabStop = true;
+      this.dcirc2.Tag = "circ2";
+      this.dcirc2.UseVisualStyleBackColor = true;
+      this.dcirc2.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+      // 
+      // pictureBox39
+      // 
+      this.pictureBox39.Image = global::solon.Properties.Resources.solm;
+      this.pictureBox39.Location = new System.Drawing.Point(103, 84);
+      this.pictureBox39.Name = "pictureBox39";
+      this.pictureBox39.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox39.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.pictureBox39.TabIndex = 126;
+      this.pictureBox39.TabStop = false;
+      this.pictureBox39.Tag = "solm";
+      this.pictureBox39.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pictureBox37
+      // 
+      this.pictureBox37.Image = global::solon.Properties.Resources.solf;
+      this.pictureBox37.Location = new System.Drawing.Point(84, 84);
+      this.pictureBox37.Name = "pictureBox37";
+      this.pictureBox37.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox37.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.pictureBox37.TabIndex = 124;
+      this.pictureBox37.TabStop = false;
+      this.pictureBox37.Tag = "solf";
+      this.pictureBox37.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pictureBox38
+      // 
+      this.pictureBox38.Image = global::solon.Properties.Resources.solx;
+      this.pictureBox38.Location = new System.Drawing.Point(66, 84);
+      this.pictureBox38.Name = "pictureBox38";
+      this.pictureBox38.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox38.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.pictureBox38.TabIndex = 122;
+      this.pictureBox38.TabStop = false;
+      this.pictureBox38.Tag = "solx";
+      this.pictureBox38.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pictureBox36
+      // 
+      this.pictureBox36.Image = global::solon.Properties.Resources.grd2;
+      this.pictureBox36.Location = new System.Drawing.Point(220, 119);
+      this.pictureBox36.Name = "pictureBox36";
+      this.pictureBox36.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox36.TabIndex = 121;
+      this.pictureBox36.TabStop = false;
+      this.pictureBox36.Tag = "sol";
+      // 
+      // pictureBox35
+      // 
+      this.pictureBox35.Image = global::solon.Properties.Resources.grd1;
+      this.pictureBox35.Location = new System.Drawing.Point(204, 119);
+      this.pictureBox35.Name = "pictureBox35";
+      this.pictureBox35.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox35.TabIndex = 120;
+      this.pictureBox35.TabStop = false;
+      this.pictureBox35.Tag = "sol";
+      // 
+      // pictureBox34
+      // 
+      this.pictureBox34.Image = global::solon.Properties.Resources.corn;
+      this.pictureBox34.Location = new System.Drawing.Point(41, 125);
+      this.pictureBox34.Name = "pictureBox34";
+      this.pictureBox34.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox34.TabIndex = 119;
+      this.pictureBox34.TabStop = false;
+      this.pictureBox34.Tag = "sol";
+      // 
+      // pictureBox33
+      // 
+      this.pictureBox33.Image = global::solon.Properties.Resources.round;
+      this.pictureBox33.Location = new System.Drawing.Point(24, 125);
+      this.pictureBox33.Name = "pictureBox33";
+      this.pictureBox33.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox33.TabIndex = 118;
+      this.pictureBox33.TabStop = false;
+      this.pictureBox33.Tag = "sol";
+      // 
+      // pictureBox32
+      // 
+      this.pictureBox32.Image = global::solon.Properties.Resources.peg;
+      this.pictureBox32.Location = new System.Drawing.Point(7, 125);
+      this.pictureBox32.Name = "pictureBox32";
+      this.pictureBox32.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox32.TabIndex = 117;
+      this.pictureBox32.TabStop = false;
+      this.pictureBox32.Tag = "sol";
+      // 
+      // bShd
+      // 
+      this.bShd.BackColor = System.Drawing.SystemColors.Control;
+      this.bShd.Image = global::solon.Properties.Resources.shd;
+      this.bShd.Location = new System.Drawing.Point(195, 363);
+      this.bShd.Name = "bShd";
+      this.bShd.Size = new System.Drawing.Size(24, 24);
+      this.bShd.TabIndex = 112;
+      this.bShd.TabStop = false;
+      this.bShd.Tag = "shd";
+      this.toolTip.SetToolTip(this.bShd, "Shift up");
+      this.bShd.UseVisualStyleBackColor = false;
+      this.bShd.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // button1
+      // 
+      this.button1.BackColor = System.Drawing.SystemColors.Control;
+      this.button1.Image = global::solon.Properties.Resources.shu;
+      this.button1.Location = new System.Drawing.Point(195, 340);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(24, 24);
+      this.button1.TabIndex = 111;
+      this.button1.TabStop = false;
+      this.button1.Tag = "shu";
+      this.toolTip.SetToolTip(this.button1, "Shift up");
+      this.button1.UseVisualStyleBackColor = false;
+      this.button1.ClientSizeChanged += new System.EventHandler(this.Tag_Click);
+      this.button1.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bRename
+      // 
+      this.bRename.BackColor = System.Drawing.SystemColors.Control;
+      this.bRename.Image = global::solon.Properties.Resources.assign;
+      this.bRename.Location = new System.Drawing.Point(174, 228);
+      this.bRename.Name = "bRename";
+      this.bRename.Size = new System.Drawing.Size(24, 24);
+      this.bRename.TabIndex = 109;
+      this.bRename.TabStop = false;
+      this.bRename.Tag = "renb";
+      this.toolTip.SetToolTip(this.bRename, "Rename board");
+      this.bRename.UseVisualStyleBackColor = false;
+      this.bRename.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bDown
+      // 
+      this.bDown.BackColor = System.Drawing.SystemColors.Control;
+      this.bDown.Image = global::solon.Properties.Resources.down;
+      this.bDown.Location = new System.Drawing.Point(201, 228);
+      this.bDown.Name = "bDown";
+      this.bDown.Size = new System.Drawing.Size(24, 25);
+      this.bDown.TabIndex = 108;
+      this.bDown.TabStop = false;
+      this.bDown.Tag = "bdown";
+      this.toolTip.SetToolTip(this.bDown, "Board down");
+      this.bDown.UseVisualStyleBackColor = false;
+      this.bDown.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bUp
+      // 
+      this.bUp.BackColor = System.Drawing.SystemColors.Control;
+      this.bUp.Image = global::solon.Properties.Resources.up;
+      this.bUp.Location = new System.Drawing.Point(201, 205);
+      this.bUp.Name = "bUp";
+      this.bUp.Size = new System.Drawing.Size(24, 25);
+      this.bUp.TabIndex = 107;
+      this.bUp.TabStop = false;
+      this.bUp.Tag = "bup";
+      this.toolTip.SetToolTip(this.bUp, "Board up");
+      this.bUp.UseVisualStyleBackColor = false;
+      this.bUp.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bAdd
+      // 
+      this.bAdd.BackColor = System.Drawing.SystemColors.Control;
+      this.bAdd.Image = global::solon.Properties.Resources.plus;
+      this.bAdd.Location = new System.Drawing.Point(7, 228);
+      this.bAdd.Name = "bAdd";
+      this.bAdd.Size = new System.Drawing.Size(24, 24);
+      this.bAdd.TabIndex = 105;
+      this.bAdd.TabStop = false;
+      this.bAdd.Tag = "addb";
+      this.toolTip.SetToolTip(this.bAdd, "Add new board");
+      this.bAdd.UseVisualStyleBackColor = false;
+      this.bAdd.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bSave
+      // 
+      this.bSave.BackColor = System.Drawing.SystemColors.Control;
+      this.bSave.Image = global::solon.Properties.Resources.left;
+      this.bSave.Location = new System.Drawing.Point(175, 204);
+      this.bSave.Name = "bSave";
+      this.bSave.Size = new System.Drawing.Size(24, 25);
+      this.bSave.TabIndex = 104;
+      this.bSave.TabStop = false;
+      this.bSave.Tag = "saveb";
+      this.toolTip.SetToolTip(this.bSave, "Save board");
+      this.bSave.UseVisualStyleBackColor = false;
+      this.bSave.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bLoad
+      // 
+      this.bLoad.BackColor = System.Drawing.SystemColors.Control;
+      this.bLoad.Image = global::solon.Properties.Resources.left;
+      this.bLoad.Location = new System.Drawing.Point(7, 203);
+      this.bLoad.Name = "bLoad";
+      this.bLoad.Size = new System.Drawing.Size(24, 25);
+      this.bLoad.TabIndex = 103;
+      this.bLoad.TabStop = false;
+      this.bLoad.Tag = "loadb";
+      this.toolTip.SetToolTip(this.bLoad, "Load board");
+      this.bLoad.UseVisualStyleBackColor = false;
+      this.bLoad.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pbox24
+      // 
+      this.pbox24.Image = global::solon.Properties.Resources.gonoffc;
+      this.pbox24.Location = new System.Drawing.Point(181, 84);
+      this.pbox24.Name = "pbox24";
+      this.pbox24.Size = new System.Drawing.Size(16, 16);
+      this.pbox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.pbox24.TabIndex = 99;
+      this.pbox24.TabStop = false;
+      this.pbox24.Tag = "onoffc";
+      this.pbox24.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pictureBox31
+      // 
+      this.pictureBox31.Image = global::solon.Properties.Resources.gonoff3;
+      this.pictureBox31.Location = new System.Drawing.Point(164, 84);
+      this.pictureBox31.Name = "pictureBox31";
+      this.pictureBox31.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox31.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.pictureBox31.TabIndex = 97;
+      this.pictureBox31.TabStop = false;
+      this.pictureBox31.Tag = "onoff3";
+      this.pictureBox31.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pictureBox30
+      // 
+      this.pictureBox30.Image = global::solon.Properties.Resources.gonoffo;
+      this.pictureBox30.Location = new System.Drawing.Point(146, 84);
+      this.pictureBox30.Name = "pictureBox30";
+      this.pictureBox30.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.pictureBox30.TabIndex = 95;
+      this.pictureBox30.TabStop = false;
+      this.pictureBox30.Tag = "onoffo";
+      this.pictureBox30.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pictureBox25
+      // 
+      this.pictureBox25.Image = global::solon.Properties.Resources.gonoffx;
+      this.pictureBox25.Location = new System.Drawing.Point(200, 84);
+      this.pictureBox25.Name = "pictureBox25";
+      this.pictureBox25.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.pictureBox25.TabIndex = 90;
+      this.pictureBox25.TabStop = false;
+      this.pictureBox25.Tag = "onoffx";
+      this.pictureBox25.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pictureBox24
+      // 
+      this.pictureBox24.Image = global::solon.Properties.Resources.gdiag;
+      this.pictureBox24.Location = new System.Drawing.Point(124, 85);
+      this.pictureBox24.Name = "pictureBox24";
+      this.pictureBox24.Size = new System.Drawing.Size(16, 16);
+      this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+      this.pictureBox24.TabIndex = 90;
+      this.pictureBox24.TabStop = false;
+      this.pictureBox24.Tag = "diag";
+      this.pictureBox24.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bShl
+      // 
+      this.bShl.BackColor = System.Drawing.SystemColors.Control;
+      this.bShl.Image = global::solon.Properties.Resources.shl;
+      this.bShl.Location = new System.Drawing.Point(172, 349);
+      this.bShl.Name = "bShl";
+      this.bShl.Size = new System.Drawing.Size(24, 24);
+      this.bShl.TabIndex = 82;
+      this.bShl.TabStop = false;
+      this.bShl.Tag = "shl";
+      this.toolTip.SetToolTip(this.bShl, "Shift left");
+      this.bShl.UseVisualStyleBackColor = false;
+      this.bShl.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bShr
+      // 
+      this.bShr.BackColor = System.Drawing.SystemColors.Control;
+      this.bShr.Image = global::solon.Properties.Resources.shr;
+      this.bShr.Location = new System.Drawing.Point(219, 349);
+      this.bShr.Name = "bShr";
+      this.bShr.Size = new System.Drawing.Size(24, 24);
+      this.bShr.TabIndex = 81;
+      this.bShr.TabStop = false;
+      this.bShr.Tag = "shr";
+      this.bShr.Text = ">";
+      this.toolTip.SetToolTip(this.bShr, "Shift right");
+      this.bShr.UseVisualStyleBackColor = false;
+      this.bShr.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bVert
+      // 
+      this.bVert.BackColor = System.Drawing.SystemColors.Control;
+      this.bVert.Image = global::solon.Properties.Resources.flipx;
+      this.bVert.Location = new System.Drawing.Point(144, 375);
+      this.bVert.Name = "bVert";
+      this.bVert.Size = new System.Drawing.Size(24, 24);
+      this.bVert.TabIndex = 80;
+      this.bVert.TabStop = false;
+      this.bVert.Tag = "vert";
+      this.toolTip.SetToolTip(this.bVert, "Flip vertical");
+      this.bVert.UseVisualStyleBackColor = false;
+      this.bVert.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bHori
+      // 
+      this.bHori.BackColor = System.Drawing.SystemColors.Control;
+      this.bHori.Image = global::solon.Properties.Resources.flipy;
+      this.bHori.Location = new System.Drawing.Point(145, 349);
+      this.bHori.Name = "bHori";
+      this.bHori.Size = new System.Drawing.Size(24, 24);
+      this.bHori.TabIndex = 79;
+      this.bHori.TabStop = false;
+      this.bHori.Tag = "hori";
+      this.toolTip.SetToolTip(this.bHori, "Flip horizontal");
+      this.bHori.UseVisualStyleBackColor = false;
+      this.bHori.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // bRota
+      // 
+      this.bRota.BackColor = System.Drawing.SystemColors.Control;
+      this.bRota.Image = global::solon.Properties.Resources.rotate;
+      this.bRota.Location = new System.Drawing.Point(119, 349);
+      this.bRota.Name = "bRota";
+      this.bRota.Size = new System.Drawing.Size(24, 24);
+      this.bRota.TabIndex = 78;
+      this.bRota.TabStop = false;
+      this.bRota.Tag = "rota";
+      this.toolTip.SetToolTip(this.bRota, "Rotate");
+      this.bRota.UseVisualStyleBackColor = false;
+      this.bRota.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pbshifter
+      // 
+      this.pbshifter.Image = global::solon.Properties.Resources.gshift;
+      this.pbshifter.Location = new System.Drawing.Point(43, 11);
+      this.pbshifter.Name = "pbshifter";
+      this.pbshifter.Size = new System.Drawing.Size(16, 16);
+      this.pbshifter.TabIndex = 116;
+      this.pbshifter.TabStop = false;
+      this.pbshifter.Tag = "shifter";
+      // 
+      // pbonoff
+      // 
+      this.pbonoff.Image = global::solon.Properties.Resources.gonoff;
+      this.pbonoff.Location = new System.Drawing.Point(24, 11);
+      this.pbonoff.Name = "pbonoff";
+      this.pbonoff.Size = new System.Drawing.Size(16, 16);
+      this.pbonoff.TabIndex = 64;
+      this.pbonoff.TabStop = false;
+      this.pbonoff.Tag = "onoff";
+      this.pbonoff.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pbsol
+      // 
+      this.pbsol.Image = global::solon.Properties.Resources.gsol;
+      this.pbsol.Location = new System.Drawing.Point(5, 11);
+      this.pbsol.Name = "pbsol";
+      this.pbsol.Size = new System.Drawing.Size(16, 16);
+      this.pbsol.TabIndex = 63;
+      this.pbsol.TabStop = false;
+      this.pbsol.Tag = "sol";
+      this.pbsol.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pictureBox20
+      // 
+      this.pictureBox20.Image = global::solon.Properties.Resources.hdeca;
+      this.pictureBox20.Location = new System.Drawing.Point(213, 10);
+      this.pictureBox20.Name = "pictureBox20";
+      this.pictureBox20.Size = new System.Drawing.Size(20, 20);
+      this.pictureBox20.TabIndex = 55;
+      this.pictureBox20.TabStop = false;
+      this.pictureBox20.Tag = "deca";
+      this.pictureBox20.Click += new System.EventHandler(this.Tag_Click);
+      // 
+      // pictureBox4
+      // 
+      this.pictureBox4.Image = global::solon.Properties.Resources.htria2;
+      this.pictureBox4.Location = new System.Drawing.Point(71, 10);
+      this.pictureBox4.Name = "pictureBox4";
+      this.pictureBox4.Size = new System.Drawing.Size(20, 20);
+      this.pictureBox4.TabIndex = 48;
+      this.pictureBox4.TabStop = false;
+      this.pictureBox4.Tag = "tria2";
+      this.pictureBox4.Click += new System.EventHandler(this.Tag_Click);
+      // 
       // pictureBox1
       // 
       this.pictureBox1.Image = global::solon.Properties.Resources.hquad;
@@ -1386,68 +1721,6 @@
       this.pictureBox9.TabStop = false;
       this.pictureBox9.Tag = "trap";
       this.pictureBox9.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // chDiag
-      // 
-      this.chDiag.AutoSize = true;
-      this.chDiag.Location = new System.Drawing.Point(126, 104);
-      this.chDiag.Name = "chDiag";
-      this.chDiag.Size = new System.Drawing.Size(15, 14);
-      this.chDiag.TabIndex = 54;
-      this.chDiag.Tag = "diag";
-      this.toolTip.SetToolTip(this.chDiag, "Diagonal");
-      this.chDiag.UseVisualStyleBackColor = true;
-      this.chDiag.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // chRound
-      // 
-      this.chRound.AutoSize = true;
-      this.chRound.Location = new System.Drawing.Point(25, 142);
-      this.chRound.Name = "chRound";
-      this.chRound.Size = new System.Drawing.Size(15, 14);
-      this.chRound.TabIndex = 36;
-      this.chRound.Tag = "rou";
-      this.toolTip.SetToolTip(this.chRound, "Roud");
-      this.chRound.UseVisualStyleBackColor = true;
-      this.chRound.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // chPeg
-      // 
-      this.chPeg.AutoSize = true;
-      this.chPeg.Location = new System.Drawing.Point(9, 142);
-      this.chPeg.Name = "chPeg";
-      this.chPeg.Size = new System.Drawing.Size(15, 14);
-      this.chPeg.TabIndex = 35;
-      this.chPeg.Tag = "peg";
-      this.toolTip.SetToolTip(this.chPeg, "Polygon peg");
-      this.chPeg.UseVisualStyleBackColor = true;
-      this.chPeg.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // bFg
-      // 
-      this.bFg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-      this.bFg.Location = new System.Drawing.Point(222, 262);
-      this.bFg.Name = "bFg";
-      this.bFg.Size = new System.Drawing.Size(31, 28);
-      this.bFg.TabIndex = 34;
-      this.bFg.Tag = "fg";
-      this.bFg.Text = "fg";
-      this.bFg.UseVisualStyleBackColor = false;
-      this.bFg.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // mMain
-      // 
-      this.mMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miFile,
-            this.miGame,
-            this.miEdit,
-            this.miView,
-            this.miShape});
-      this.mMain.Location = new System.Drawing.Point(0, 0);
-      this.mMain.Name = "mMain";
-      this.mMain.Size = new System.Drawing.Size(254, 24);
-      this.mMain.TabIndex = 0;
-      this.mMain.Text = "menuStrip1";
       // 
       // miFile
       // 
@@ -1849,25 +2122,6 @@
       this.miViewGrd2.Text = "Peg gradient";
       this.miViewGrd2.Click += new System.EventHandler(this.miMenu_Click);
       // 
-      // miShape
-      // 
-      this.miShape.Name = "miShape";
-      this.miShape.Size = new System.Drawing.Size(12, 20);
-      // 
-      // bBW
-      // 
-      this.bBW.Location = new System.Drawing.Point(0, 0);
-      this.bBW.Name = "bBW";
-      this.bBW.Size = new System.Drawing.Size(75, 23);
-      this.bBW.TabIndex = 30;
-      // 
-      // bh1
-      // 
-      this.bh1.Location = new System.Drawing.Point(0, 0);
-      this.bh1.Name = "bh1";
-      this.bh1.Size = new System.Drawing.Size(75, 23);
-      this.bh1.TabIndex = 31;
-      // 
       // bClear
       // 
       this.bClear.BackColor = System.Drawing.SystemColors.Control;
@@ -1881,76 +2135,6 @@
       this.toolTip.SetToolTip(this.bClear, "Clear");
       this.bClear.UseVisualStyleBackColor = false;
       this.bClear.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // bh3
-      // 
-      this.bh3.Location = new System.Drawing.Point(0, 0);
-      this.bh3.Name = "bh3";
-      this.bh3.Size = new System.Drawing.Size(75, 23);
-      this.bh3.TabIndex = 32;
-      // 
-      // bh5
-      // 
-      this.bh5.Location = new System.Drawing.Point(0, 0);
-      this.bh5.Name = "bh5";
-      this.bh5.Size = new System.Drawing.Size(75, 23);
-      this.bh5.TabIndex = 33;
-      // 
-      // groupBox4
-      // 
-      this.groupBox4.Controls.Add(this.col4);
-      this.groupBox4.Controls.Add(this.col31);
-      this.groupBox4.Controls.Add(this.col30);
-      this.groupBox4.Controls.Add(this.pictureBox29);
-      this.groupBox4.Controls.Add(this.pictureBox26);
-      this.groupBox4.Controls.Add(this.pictureBox27);
-      this.groupBox4.Controls.Add(this.pictureBox28);
-      this.groupBox4.Controls.Add(this.col21);
-      this.groupBox4.Controls.Add(this.col2);
-      this.groupBox4.Controls.Add(this.col1);
-      this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.groupBox4.Location = new System.Drawing.Point(66, 113);
-      this.groupBox4.Margin = new System.Windows.Forms.Padding(0);
-      this.groupBox4.Name = "groupBox4";
-      this.groupBox4.Size = new System.Drawing.Size(131, 46);
-      this.groupBox4.TabIndex = 94;
-      this.groupBox4.TabStop = false;
-      // 
-      // col4
-      // 
-      this.col4.AutoSize = true;
-      this.col4.Location = new System.Drawing.Point(106, 30);
-      this.col4.Name = "col4";
-      this.col4.Size = new System.Drawing.Size(14, 13);
-      this.col4.TabIndex = 68;
-      this.col4.TabStop = true;
-      this.col4.Tag = "col4";
-      this.col4.UseVisualStyleBackColor = true;
-      this.col4.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // col31
-      // 
-      this.col31.AutoSize = true;
-      this.col31.Location = new System.Drawing.Point(86, 30);
-      this.col31.Name = "col31";
-      this.col31.Size = new System.Drawing.Size(14, 13);
-      this.col31.TabIndex = 67;
-      this.col31.TabStop = true;
-      this.col31.Tag = "col31";
-      this.col31.UseVisualStyleBackColor = true;
-      this.col31.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // col30
-      // 
-      this.col30.AutoSize = true;
-      this.col30.Location = new System.Drawing.Point(66, 30);
-      this.col30.Name = "col30";
-      this.col30.Size = new System.Drawing.Size(14, 13);
-      this.col30.TabIndex = 66;
-      this.col30.TabStop = true;
-      this.col30.Tag = "col30";
-      this.col30.UseVisualStyleBackColor = true;
-      this.col30.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
       // pictureBox29
       // 
@@ -2005,70 +2189,6 @@
       this.toolTip.SetToolTip(this.pictureBox28, "1 Color");
       this.pictureBox28.Click += new System.EventHandler(this.Tag_Click);
       // 
-      // col21
-      // 
-      this.col21.AutoSize = true;
-      this.col21.Location = new System.Drawing.Point(46, 30);
-      this.col21.Name = "col21";
-      this.col21.Size = new System.Drawing.Size(14, 13);
-      this.col21.TabIndex = 62;
-      this.col21.TabStop = true;
-      this.col21.Tag = "col21";
-      this.col21.UseVisualStyleBackColor = true;
-      this.col21.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // col2
-      // 
-      this.col2.AutoSize = true;
-      this.col2.Location = new System.Drawing.Point(26, 30);
-      this.col2.Name = "col2";
-      this.col2.Size = new System.Drawing.Size(14, 13);
-      this.col2.TabIndex = 61;
-      this.col2.TabStop = true;
-      this.col2.Tag = "col2";
-      this.col2.UseVisualStyleBackColor = true;
-      this.col2.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // col1
-      // 
-      this.col1.AutoSize = true;
-      this.col1.Location = new System.Drawing.Point(6, 30);
-      this.col1.Name = "col1";
-      this.col1.Size = new System.Drawing.Size(14, 13);
-      this.col1.TabIndex = 60;
-      this.col1.TabStop = true;
-      this.col1.Tag = "col1";
-      this.col1.UseVisualStyleBackColor = true;
-      this.col1.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // groupBox2
-      // 
-      this.groupBox2.Controls.Add(this.pictureBox13);
-      this.groupBox2.Controls.Add(this.dplay);
-      this.groupBox2.Controls.Add(this.pictureBox19);
-      this.groupBox2.Controls.Add(this.pictureBox10);
-      this.groupBox2.Controls.Add(this.dcolo2);
-      this.groupBox2.Controls.Add(this.dfree);
-      this.groupBox2.Controls.Add(this.pictureBox18);
-      this.groupBox2.Controls.Add(this.pictureBox11);
-      this.groupBox2.Controls.Add(this.dcolo);
-      this.groupBox2.Controls.Add(this.dline);
-      this.groupBox2.Controls.Add(this.pictureBox17);
-      this.groupBox2.Controls.Add(this.pictureBox12);
-      this.groupBox2.Controls.Add(this.dedge);
-      this.groupBox2.Controls.Add(this.drect);
-      this.groupBox2.Controls.Add(this.pictureBox16);
-      this.groupBox2.Controls.Add(this.dcirc);
-      this.groupBox2.Controls.Add(this.dfill);
-      this.groupBox2.Controls.Add(this.pictureBox14);
-      this.groupBox2.Controls.Add(this.pictureBox15);
-      this.groupBox2.Controls.Add(this.dcirc2);
-      this.groupBox2.Location = new System.Drawing.Point(7, 152);
-      this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(232, 50);
-      this.groupBox2.TabIndex = 76;
-      this.groupBox2.TabStop = false;
-      // 
       // pictureBox13
       // 
       this.pictureBox13.Image = global::solon.Properties.Resources.drect;
@@ -2079,18 +2199,6 @@
       this.pictureBox13.TabStop = false;
       this.pictureBox13.Tag = "rect";
       this.pictureBox13.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // dplay
-      // 
-      this.dplay.AutoSize = true;
-      this.dplay.Location = new System.Drawing.Point(7, 33);
-      this.dplay.Name = "dplay";
-      this.dplay.Size = new System.Drawing.Size(14, 13);
-      this.dplay.TabIndex = 55;
-      this.dplay.TabStop = true;
-      this.dplay.Tag = "play";
-      this.dplay.UseVisualStyleBackColor = true;
-      this.dplay.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
       // pictureBox19
       // 
@@ -2114,30 +2222,6 @@
       this.pictureBox10.Tag = "play";
       this.pictureBox10.Click += new System.EventHandler(this.Tag_Click);
       // 
-      // dcolo2
-      // 
-      this.dcolo2.AutoSize = true;
-      this.dcolo2.Location = new System.Drawing.Point(212, 33);
-      this.dcolo2.Name = "dcolo2";
-      this.dcolo2.Size = new System.Drawing.Size(14, 13);
-      this.dcolo2.TabIndex = 73;
-      this.dcolo2.TabStop = true;
-      this.dcolo2.Tag = "color2";
-      this.dcolo2.UseVisualStyleBackColor = true;
-      this.dcolo2.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // dfree
-      // 
-      this.dfree.AutoSize = true;
-      this.dfree.Location = new System.Drawing.Point(31, 33);
-      this.dfree.Name = "dfree";
-      this.dfree.Size = new System.Drawing.Size(14, 13);
-      this.dfree.TabIndex = 57;
-      this.dfree.TabStop = true;
-      this.dfree.Tag = "free";
-      this.dfree.UseVisualStyleBackColor = true;
-      this.dfree.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
       // pictureBox18
       // 
       this.pictureBox18.Image = global::solon.Properties.Resources.dcolor;
@@ -2159,30 +2243,6 @@
       this.pictureBox11.TabStop = false;
       this.pictureBox11.Tag = "free";
       this.pictureBox11.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // dcolo
-      // 
-      this.dcolo.AutoSize = true;
-      this.dcolo.Location = new System.Drawing.Point(189, 33);
-      this.dcolo.Name = "dcolo";
-      this.dcolo.Size = new System.Drawing.Size(14, 13);
-      this.dcolo.TabIndex = 71;
-      this.dcolo.TabStop = true;
-      this.dcolo.Tag = "color";
-      this.dcolo.UseVisualStyleBackColor = true;
-      this.dcolo.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // dline
-      // 
-      this.dline.AutoSize = true;
-      this.dline.Location = new System.Drawing.Point(54, 33);
-      this.dline.Name = "dline";
-      this.dline.Size = new System.Drawing.Size(14, 13);
-      this.dline.TabIndex = 59;
-      this.dline.TabStop = true;
-      this.dline.Tag = "line";
-      this.dline.UseVisualStyleBackColor = true;
-      this.dline.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
       // pictureBox17
       // 
@@ -2206,30 +2266,6 @@
       this.pictureBox12.Tag = "line";
       this.pictureBox12.Click += new System.EventHandler(this.Tag_Click);
       // 
-      // dedge
-      // 
-      this.dedge.AutoSize = true;
-      this.dedge.Location = new System.Drawing.Point(167, 33);
-      this.dedge.Name = "dedge";
-      this.dedge.Size = new System.Drawing.Size(14, 13);
-      this.dedge.TabIndex = 69;
-      this.dedge.TabStop = true;
-      this.dedge.Tag = "edge";
-      this.dedge.UseVisualStyleBackColor = true;
-      this.dedge.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // drect
-      // 
-      this.drect.AutoSize = true;
-      this.drect.Location = new System.Drawing.Point(77, 33);
-      this.drect.Name = "drect";
-      this.drect.Size = new System.Drawing.Size(14, 13);
-      this.drect.TabIndex = 61;
-      this.drect.TabStop = true;
-      this.drect.Tag = "rect";
-      this.drect.UseVisualStyleBackColor = true;
-      this.drect.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
       // pictureBox16
       // 
       this.pictureBox16.Image = global::solon.Properties.Resources.dfill;
@@ -2240,30 +2276,6 @@
       this.pictureBox16.TabStop = false;
       this.pictureBox16.Tag = "fill";
       this.pictureBox16.Click += new System.EventHandler(this.Tag_Click);
-      // 
-      // dcirc
-      // 
-      this.dcirc.AutoSize = true;
-      this.dcirc.Location = new System.Drawing.Point(100, 33);
-      this.dcirc.Name = "dcirc";
-      this.dcirc.Size = new System.Drawing.Size(14, 13);
-      this.dcirc.TabIndex = 63;
-      this.dcirc.TabStop = true;
-      this.dcirc.Tag = "circ";
-      this.dcirc.UseVisualStyleBackColor = true;
-      this.dcirc.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
-      // dfill
-      // 
-      this.dfill.AutoSize = true;
-      this.dfill.Location = new System.Drawing.Point(145, 33);
-      this.dfill.Name = "dfill";
-      this.dfill.Size = new System.Drawing.Size(14, 13);
-      this.dfill.TabIndex = 67;
-      this.dfill.TabStop = true;
-      this.dfill.Tag = "fill";
-      this.dfill.UseVisualStyleBackColor = true;
-      this.dfill.CheckedChanged += new System.EventHandler(this.CheckedChanged);
       // 
       // pictureBox14
       // 
@@ -2287,18 +2299,6 @@
       this.pictureBox15.Tag = "circ2";
       this.pictureBox15.Click += new System.EventHandler(this.Tag_Click);
       // 
-      // dcirc2
-      // 
-      this.dcirc2.AutoSize = true;
-      this.dcirc2.Location = new System.Drawing.Point(123, 33);
-      this.dcirc2.Name = "dcirc2";
-      this.dcirc2.Size = new System.Drawing.Size(14, 13);
-      this.dcirc2.TabIndex = 65;
-      this.dcirc2.TabStop = true;
-      this.dcirc2.Tag = "circ2";
-      this.dcirc2.UseVisualStyleBackColor = true;
-      this.dcirc2.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-      // 
       // fMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2316,6 +2316,16 @@
       this.Resize += new System.EventHandler(this.fMain_Resize);
       this.panel.ResumeLayout(false);
       this.panel.PerformLayout();
+      this.groupBox3.ResumeLayout(false);
+      this.groupBox3.PerformLayout();
+      this.groupBox1.ResumeLayout(false);
+      this.groupBox1.PerformLayout();
+      this.mMain.ResumeLayout(false);
+      this.mMain.PerformLayout();
+      this.groupBox4.ResumeLayout(false);
+      this.groupBox4.PerformLayout();
+      this.groupBox2.ResumeLayout(false);
+      this.groupBox2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox39)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).EndInit();
@@ -2329,13 +2339,9 @@
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
-      this.groupBox3.ResumeLayout(false);
-      this.groupBox3.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pbshifter)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pbonoff)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pbsol)).EndInit();
-      this.groupBox1.ResumeLayout(false);
-      this.groupBox1.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -2346,16 +2352,10 @@
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-      this.mMain.ResumeLayout(false);
-      this.mMain.PerformLayout();
-      this.groupBox4.ResumeLayout(false);
-      this.groupBox4.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
-      this.groupBox2.ResumeLayout(false);
-      this.groupBox2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();

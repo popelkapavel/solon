@@ -152,6 +152,9 @@
     <None Include="img\exit.png" />
     <None Include="img\corn.png" />
     <None Include="img\black.png" />
+    <None Include="img\down.png" />
+    <None Include="img\assign.png" />
+    <None Include="img\delete.png" />
     <Content Include="img\export.png" />
     <None Include="img\invert.png" />
     <None Include="img\hquad.png" />
@@ -187,6 +190,9 @@
     <None Include="img\solx.png" />
     <None Include="img\solf.png" />
     <None Include="img\solm.png" />
+    <None Include="img\left.png" />
+    <None Include="img\up.png" />
+    <None Include="img\plus.png" />
     <Content Include="solon.ico" />
     <None Include="img\print.png" />
     <None Include="img\redo.png" />

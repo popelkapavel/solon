@@ -140,8 +140,16 @@ int _jumpsl(int[] ja) {
   return Diag?ja.Length/4:H==H.trap?4:H==H.quad?4:H==H.hexa?6:H==H.cubes?4:H==H.delta?6:H==H.tria?6:H==H.tria2||H==H.tria4?6:10;
 }
 
+bool Safe3(int i,int j,int k) {
+  int x;
+  if(i>j) {x=i;i=j;j=x;}
+  if(k<i) i=k;else if(k>j) j=k;
+  return i>=0&&j<Data.Length;
+}
+
 bool _can5(int x,int y,int qx,int qy,int rx,int ry) {
   int i=Index(x,y),qi=Index(qx,qy),ri=Index(rx,ry);
+  if(!Safe3(i,qi,ri)) return B0;
   int c=Data[i].ch,c1=Data[qi].ch,c2=Data[ri].ch;
   if(!((c==2||c==3)&&(c1==2||c1==3)&&c2==1)) return B0;
   return !(_blocked(x,y,qx,qy)||_blocked(qx,qy,rx,ry));
@@ -170,7 +178,7 @@ int[] _xybn(int x,int y,int b,bool opt,int n) {
 
 
    U _solx(int up,float[] mu,ME ev,bool hole,bool move) {
-     int px=(int)View.mp[0],py=(int)View.mp[1],rx=(int)mu[0],ry=(int)mu[1],ex=(int)mu[5],ey=(int)mu[6];int ip,ir,c,b,i=0,j,e,x,y,x2,y2,pi,mi=0,fo,iq,n;var opt=Diag;
+     int px=(int)F1.View.mp[0],py=(int)F1.View.mp[1],rx=(int)mu[0],ry=(int)mu[1],ex=(int)mu[5],ey=(int)mu[6];int ip,ir,c,b,i=0,j,e,x,y,x2,y2,pi,mi=0,fo,iq,n;var opt=Diag;
      float[] p;float pv,mv;
      ip=Index(px,py);c=Data[ip].ch;
      ir=Index(rx,ry);
