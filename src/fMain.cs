@@ -25,7 +25,7 @@ namespace solon {
         const int UndoMax=5;
         int FColor,BColor,NUI;
         Bitmap bm;
-        pmap map;
+        pmap map,clipb;
         List<Set> set=new List<Set>();
         bool White=true;
         ColorDialog CDialog=new ColorDialog();
@@ -82,6 +82,7 @@ namespace solon {
               UpdateBitmap(0,0);Repaint(true);
               Center();
             }
+            UpdateControls();
         }
         char _wx(char e,char x) {
           if(x=='e') x=e;else if(x=='f') x=e=='w'?'b':'w';
@@ -92,11 +93,11 @@ namespace solon {
           cb.SelectedIndex=x=='b'?1:x=='w'?2:0;
         }
         void _w4() {          
-           var v=View;
-          _ws(chBB,'b',v.whiter[0]);
-          _ws(chBW,'w',v.whiter[1]);
-          _ws(chWB,'b',v.whiter[2]);
-          _ws(chWW,'w',v.whiter[3]);
+           var w=View.whiter;
+          _ws(chBB,'b',w[0]);
+          _ws(chBW,'w',w[1]);
+          _ws(chWB,'b',w[2]);
+          _ws(chWW,'w',w[3]);
         }
         public void Moves() {
           var v=View;
@@ -438,6 +439,30 @@ namespace solon {
           Center();
           Repaint(false);
         }
+        void Copy(bool cut) {
+          float[] xy2=_mxy(lmx,lmy);
+          int r,x=(int)View.mp[0],y=(int)View.mp[1],x2=(int)xy2[0],y2=(int)xy2[1];
+          if(x2<x) {r=x;x=x2;x2=r;}
+          if(y2<y) {r=y;y=y2;y2=r;}
+          if(!map.Intersected(ref x,ref y,ref x2,ref y2)) return;
+          if(cut) PushEUndo(true);
+          x2=x2-x+1;y2=y2-y+1;
+          clipb=new pmap(x2,y2);
+          clipb.Copy(0,0,map,x,y,x2,y2,false,cut);
+          pmb=MouseButtons.None;View.sele.Clear();
+          Repaint(true);
+        }
+        void Paste(bool mask) {
+          var xy=_mxy(lmx,lmy);
+          int x=(int)xy[0],y=(int)xy[1];
+          if(map!=null&&clipb!=null&&x<map.Width&&y<map.Height) {
+            PushEUndo(true);
+            map.Extent(x+clipb.Width,y+clipb.Height);
+            map.Copy(x,y,clipb,0,0,clipb.Width,clipb.Height,mask,false);
+            CheckBitmap();
+            Repaint(true);
+          }
+        }
         Bitmap BMResized() {
           var bm2=new Bitmap(map.Width*zoom/ZoomBase,map.Height*zoom/ZoomBase);
           using(Graphics g=Graphics.FromImage(bm2)) {
@@ -492,10 +517,13 @@ namespace solon {
              case Keys.P:if(shift) if(!PrintPage(true)) break;Print();break;
              case Keys.R:if(shift) AutoShrink();else Shrink(pix,piy,IX(lmx,lmy),IY(lmx,lmy));break;
              case Keys.E:if(shift) NoScale();else ExportFile(true);break;
-             case Keys.Z:Undo(shift?10:1);break;             
-             case Keys.Y:Redo(shift?10:1);break;
+             case Keys.Z:if(IsEdit) EUndo(false);else Undo(shift?10:1);break;
+             case Keys.Y:if(IsEdit) EUndo(true);else Redo(shift?10:1);break;
+             case Keys.Space:ProcTag(IsEdit?"play":"free");break;
              case Keys.Insert:Insert(shift);break;
-             case Keys.C:Clipboard.SetImage(bm);break;
+             case Keys.X:if(IsEdit) Copy(true);else if(map!=null) map.ExportEmf(null);break;
+             case Keys.C:if(IsEdit) Copy(false);else Clipboard.SetImage(bm);break;
+             case Keys.V:if(IsEdit) Paste(shift);break;
              default:goto ret;
             }
             return true;
@@ -522,7 +550,9 @@ namespace solon {
             return;
           }
           int cx,cy;
+          UpdateXY(e);
           pix=cx=IX(e.X,e.Y);piy=cy=IY(e.X,e.Y);
+          undop=null;
           if(map._mdown(new ME(cx,cy,(int)e.Button>>20,GDI.ShiftKey,GDI.CtrlKey)))
             Repaint(true);          
 
@@ -536,8 +566,15 @@ namespace solon {
           pmk=(sh?1:0)|(ct?2:0);
         }
         
+        void MouseUndo() {
+          if(IsEdit) PushEUndo(true,"M:"+View.design);
+        }
+        void UpdateXY(MouseEventArgs e) {
+          var xy=_mxy(e.X,e.Y);
+          lX.Text=""+xy[0];lY.Text=""+xy[1];          
+        }
         private void fMain_MouseMove(object sender, MouseEventArgs e) {
-          if(e.Button==pmb) {
+          if(pmb!=MouseButtons.None&&e.Button==pmb) {
             MouseButtons mb=MouseButtons.Left;
             if(0!=(pmb&MouseButtons.Middle)) {
               if(0==(3&pmk)) {
@@ -545,7 +582,9 @@ namespace solon {
                 timeDraw=true;
               }
             } else {
-              int ix=IX(e.X,e.Y),iy=IY(e.X,e.Y);              
+              MouseUndo();
+              UpdateXY(e);
+              int ix=IX(e.X,e.Y),iy=IY(e.X,e.Y);
               if(map._mmove(new ME(ix,iy,(int)e.Button>>20,GDI.ShiftKey,GDI.CtrlKey),false))
                 Repaint(true);
             }
@@ -564,6 +603,8 @@ namespace solon {
               timeDraw=true;
             } 
           } else if(0!=(e.Button&mb)) {
+            MouseUndo();
+            UpdateXY(e);
             int ix=IX(e.X,e.Y),iy=IY(e.X,e.Y);
             if(map._mup(new ME(ix,iy,(int)e.Button>>20,GDI.ShiftKey,GDI.CtrlKey)))
               Repaint(true);
@@ -664,7 +705,7 @@ namespace solon {
             if(ofd.FileName+""!="") efd.FileName=Path.GetFileNameWithoutExtension(ofd.FileName)+".png";
           }
           if(dialog||efd.FileName+""=="") {
-            efd.Filter="png image|*.png|svg vector file|*.svg|pdf document|*.pdf|*.*|*.*";
+            efd.Filter="png image|*.png|svg vector file|*.svg|pdf document|*.pdf|EMF metafile|*.emf|*.*|*.*";
             efd.DefaultExt="png";
             efd.Title="Export";
             if(DialogResult.OK!=efd.ShowDialog()) return false;
@@ -675,8 +716,11 @@ namespace solon {
 
         void ExportFile(string file,bool shift,bool caps,int fi) {
           var m=map;
+          if(fi==5) for(int i=2;i<=4;i++)
+              if(file.EndsWith(i==3?".pdf":i==4?".emf":".svg",StringComparison.InvariantCultureIgnoreCase)) fi=i;          
           if(fi==3) m.ExportPdf(file);
           else if(fi==2) m.ExportSvg(file);
+          else if(fi==4) m.ExportEmf(file);
           else m.ExportPng(file);
         }        
         bool PrintPage(bool show) {
@@ -810,6 +854,7 @@ namespace solon {
             map.Parse(set[0].txt+"");
           }
           Set2CB(0);
+          UpdateBitmap(0,0);Repaint(true);
          } finally {
           UIIgnore--;
          }
@@ -850,7 +895,7 @@ namespace solon {
           SetDirty();
         }
 
-        public void xxUndo(bool redo) {
+        public void EUndo(bool redo) {
           if(redo) {
             if(undoc>=undos.Count) return;
             UndoItem ui=undos[undoc];
@@ -946,8 +991,6 @@ namespace solon {
        else if(tag=="shu") {map._deletey(0,1);if(map.Height<4) map._inserty(map.Height,1,true);UpdateBitmap(0,0);Repaint(true);}
        else if(tag=="shd") {map._inserty(0,1,true);UpdateBitmap(0,0);Repaint(true);}
        else if(tag=="clear"||tag=="clearc") { Clear(tag=="clearc");}
-       else if(tag=="invert") { map.Invert();Repaint(true);}
-       else if(tag=="black") { map.Black();Repaint(true);}
        else goto n;
        return true;
       }
@@ -955,6 +998,8 @@ namespace solon {
       if(tag=="sol") {map.Game=Game.Sol;UpdateG();}
       else if(tag=="shift") {map.Game=Game.Shift;UpdateG();}
       else if(tag=="onoff") { map.Game=Game.OnOff;UpdateG();}
+      else if(tag=="invert") { map.Invert();Repaint(true);}
+      else if(tag=="black") { map.Black();Repaint(true);}
       else if(tag=="quad"||tag=="hexa"||tag=="tria"||tag=="tria2"||tag=="tria4"||tag=="penta"||tag=="cubes"||tag=="delta"||tag=="trap"||tag=="deca") {
         map.H=(H)Enum.Parse(typeof(H),tag);
         UpdateH();
@@ -1269,7 +1314,9 @@ namespace solon {
     public class Set {
       public string id,txt;
       public static Regex Rex=new Regex(@"^//.*@([^,]+)");
+      public override string ToString() { return id;}
     }
+  
 
     public class UndoItem {
       public pmap map;
@@ -1312,6 +1359,39 @@ namespace solon {
        public RECT(int left,int top,int right,int bottom) {
          Left=left;Top=top;Right=right;Bottom=bottom;
        }
+     }
+
+     [DllImport("user32") ,SuppressUnmanagedCodeSecurity, PreserveSig]  
+     public static extern bool OpenClipboard(IntPtr hw);
+     [DllImport("user32") ,SuppressUnmanagedCodeSecurity, PreserveSig]  
+     public static extern bool EmptyClipboard();
+     [DllImport("user32") ,SuppressUnmanagedCodeSecurity, PreserveSig]  
+     public static extern bool CloseClipboard();
+     [DllImport("user32") ,SuppressUnmanagedCodeSecurity, PreserveSig]  
+     public static extern IntPtr SetClipboardData(int fmt,IntPtr hw);
+     [DllImport("user32") ,SuppressUnmanagedCodeSecurity, PreserveSig]  
+     public static extern IntPtr GetClipboardData(int fmt);
+     [DllImport("user32") ,SuppressUnmanagedCodeSecurity, PreserveSig]  
+     public static extern bool IsClipboardFormatAvailable(int fmt);
+     [DllImport("gdi32") ,SuppressUnmanagedCodeSecurity, PreserveSig]  
+     private static extern IntPtr CopyEnhMetaFile(IntPtr src, string fn);
+     [DllImport("gdi32") ,SuppressUnmanagedCodeSecurity, PreserveSig]  
+     private static extern bool DeleteEnhMetaFile(IntPtr src);
+
+
+     public static bool CopyEMF(IntPtr hw,Metafile mf) {
+       IntPtr emf=mf.GetHenhmetafile(),emf2;
+       bool r=false;
+       if(emf!=IntPtr.Zero) {
+         emf2=CopyEnhMetaFile(emf,null);
+         if((emf2!=IntPtr.Zero)&&OpenClipboard(hw)) {
+           EmptyClipboard();
+           r=emf2==SetClipboardData(14,emf2);
+           CloseClipboard();
+         }
+         DeleteEnhMetaFile(emf);
+       }
+       return r;
      }
     }
 

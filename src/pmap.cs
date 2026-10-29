@@ -45,9 +45,9 @@ namespace solon {
         u.ia=ia;u.xy=xy;
         return u;        
       }
-      public static U Shifter(int x,int y,int b,bool opt,int i) {
+      public static U Shifter(int x,int y,int b,bool opt,int i,int n,int f) {
         var u=new U(2);
-        u.ia=new int[] {x,y,b,pmap.b2i(opt),i};
+        u.ia=new int[] {x,y,b,pmap.b2i(opt),i,n,f};
         return u;
       }
       public static void Add(ref int[] a,int[] b) {
@@ -60,7 +60,7 @@ namespace solon {
     }
     public class V {
       public bool rou,peg,white,back;
-      public string whiter="eeee";
+      public string whiter="xxwb";
       public int mono=2,grdm,grdm2=2,corn;
       public float grdx=15,grdy=16;
       public D design;
@@ -125,6 +125,24 @@ namespace solon {
         Data=new C[width*height];
         Width=width;Height=height;
       }
+      public void Copy(int dx,int dy,pmap src,int sx,int sy,int width,int height,bool mask,bool cut) {
+        int r;
+        if(dx<0) {width+=dx;sx-=dx;dx=0;}
+        if(dy<0) {height+=dy;sy-=dy;dy=0;}
+        if((r=dx+width-Width)>0) width-=r;
+        if((r=dy+height-Height)>0) height-=r;
+        if(sx<0) {width+=sx;dx-=sx;sx=0;}
+        if(sy<0) {height+=sy;dy-=sy;sy=0;}
+        if((r=sx+width-src.Width)>0) width-=r;
+        if((r=sy+height-src.Height)>0) height-=r;
+        if(width<1||height<1) return;
+        for(int j=0;j<height;j++) 
+          for(int i=0,g=(dy+j)*Width+dx,h=(sy+j)*src.Width+sx;i<width;i++,g++,h++) {
+             C c=src.Data[h];
+             if(!mask||c.ch!=0) Data[g]=c;
+             if(cut) src.Data[h]=new C();
+          }
+      }
       public void _cmd(string s) {
         s=Regex.Replace(s,@"^\s*//","");        
         foreach(var xx in s.Split(',')) {
@@ -182,7 +200,7 @@ namespace solon {
       public string _game2txt(string name,string txt) {        
         var sa=new List<string>();int i,c,e,r,x,y,xi=-1,yi=-1,ya=0,n;bool wh=Whiter!="xxff"||_white();string hdr,l,s;
         hdr="//"+(name+""==""?"":"@"+name)+','+(H==H.deca?"deca":H==H.trap?"trap":H==H.delta?"delta":H==H.cubes?"cubes":H==H.penta?"penta":H==H.tria4?"tria4":H==H.tria2?"tria2":H==H.tria?"tria":H==H.hexa?"hexa":"quad")
-          +(Game==Game.Shift?",shift":Game==Game.OnOff?",onoff"+(ooc?",onoffc":oo3?",onoff3":"")+(oox?",onoffx":"")+(ooo?",onoffo":""):",sol"+(solf?",solf":solx?",solx":"")+(solm?",solm":""))+(wh?",white_"+Whiter:"")+(Diag?",diag":"");
+          +(Game==Game.Shift?",shift"+(solx?",solx":"")+(solf?",solf":""):Game==Game.OnOff?",onoff"+(ooc?",onoffc":oo3?",onoff3":"")+(oox?",onoffx":"")+(ooo?",onoffo":""):",sol"+(solf?",solf":solx?",solx":"")+(solm?",solm":""))+(wh?",white_"+Whiter:"")+(Diag?",diag":"");
         for(y=0;y<Height;y++) {
           l="";
           for(x=0;x<Width;x++) {
@@ -1590,6 +1608,22 @@ static int[] _border11(int x,int y) {
         gr.FillRectangle(lg,x,y,w,h);
       }
 
+      public void ExportEmf(string s) {
+        bool cp=s+""=="";
+        using(Stream f=cp?new MemoryStream() as Stream:new FileStream(s,FileMode.OpenOrCreate,FileAccess.Write,FileShare.Read)) {
+         Metafile mf;          
+         using(Graphics g=Graphics.FromHwndInternal(IntPtr.Zero)) {
+           mf=new Metafile(f,g.GetHdc(),new Rectangle(0,0,BWidth(),BHeight()),MetafileFrameUnit.Pixel,EmfType.EmfOnly);
+           g.ReleaseHdc();
+         }
+         using(Graphics g=Graphics.FromImage(mf)) {
+           g.SmoothingMode=SmoothingMode.HighQuality;
+           Draw(g);
+         }
+         if(cp) GDI.CopyEMF(F1.Handle,mf);else {f.Flush();f.SetLength(f.Position);}
+        }
+      }
+
       public void ExportSvg(string s) {
         int w=BWidth(),h=BHeight();
         string svg="<svg width=\""+w+"\" height=\""+h+"\" xmlns=\"http://www.w3.org/2000/svg\" >\n"+_svg()+"\n</svg>";
@@ -2373,7 +2407,7 @@ for(y=ii=0;y<Height;y++)
     return FA(cx+dx,cy-1,ax-cell6y,ay-cell6x*3/2,2,ex,ey,0);
   }
   fx=ex-sx-cell6y;
-  if(fx*cell6x/2-fy*cell6y>0) return FA(cx+dx+1,cy-1,ax+cell6y,ay-cell6x*3/2,3,ex,ey);
+  if(fx*cell6x/2-fy*cell6y>0) return FA(cx+dx+1,cy-1,ax+cell6y,ay-cell6x*3/2,3,ex,ey,0);
   return FA(cx,cy,ax,ay,ax>0?0:5,ex,ey,0);
   }
  }
@@ -2969,8 +3003,10 @@ public bool _mup(ME e) {
   if(!In(lx,ly)||!In(px,py)) return true;
   if(Game==Game.Shift) {
     var u=_shifter(1,mxy,e);
-    AddUndo(u);
-    _moves(1);_beep();
+    if(u!=null) {
+      AddUndo(u);
+      _moves(1);_beep();
+    }
     return true;
   }
   if(Game==Game.OnOff) {
@@ -3071,7 +3107,8 @@ public bool _mup(ME e) {
            } else if(u.t==2) {
              int pi;
              int[] xy=_shiftxy(px,py,dx,i2b(dy),out pi);
-             _shift(xy,-ia[4]);
+             if(ia[5]>0) xy=_part(xy,ia[6],ia[5]);
+             _rotate(xy,-ia[4]);
            } else if(u.t==1) {
              _switchx(ia[2])(px,py,ia[3],ia[4],u.xy);
            } else if(dx!=0||dy!=0) {
@@ -3108,7 +3145,8 @@ public bool _mup(ME e) {
            } else if(u.t==2) {
              int pi;
              int[] xy=_shiftxy(px,py,dx,i2b(dy),out pi);
-             _shift(xy,ia[4]);
+             if(ia[5]>0) xy=_part(xy,ia[6],ia[5]);
+             _rotate(xy,ia[4]);
             } else if(u.t==1) {
              _switchx(ia[2])(px,py,ia[3],ia[4]);
             } else if(dx!=0||dy!=0) {

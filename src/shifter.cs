@@ -200,7 +200,9 @@ int _shiftb(int px,int py,int ex,int ey) {
   return b;
 }
 
-void _shift(int[] xy,int d) {
+
+void _rotate(int[] xy,int d) {
+  if(xy==null||xy.Length<1) return;
   int n=xy.Length>>1,i,ix,j,x,y,k;int[] m=new int [n],pc=new int[n];
   d=(d%n+n)%n;
   for(i=j=0;i+1<xy.Length;j++,i+=2) { ix=Index(x=xy[i],y=xy[i+1]);m[j]=Data[ix].ch;pc[j]=Data[ix].fore;}
@@ -211,9 +213,17 @@ void _shift(int[] xy,int d) {
   }
 }
 
+static int[] _part(int[] xy,int i,int len) {
+   if(xy==null) return null;
+   int[] r=new int[len];
+   if(i<0||i>=xy.Length||i+len>xy.Length) return null;
+   Array.Copy(xy,i,r,0,r.Length);
+   return r;
+}
+
 U _shifter(int up,float[] mu,ME ev) {
    V w=F1.View;
-   int px=(int)w.mp[0],py=(int)w.mp[1],ex=(int)mu[5],ey=(int)mu[6];int b,i=0,j,pi,mi=0,x,y;var opt=Diag;
+   int px=(int)w.mp[0],py=(int)w.mp[1],ex=(int)mu[5],ey=(int)mu[6];int b,i=0,j,pi,mi=0,x,y,f=0,t=0;bool opt=Diag,shx=solx,shb=solf;
    float[] p;float pv,mv;
   b=_shiftb(px,py,ex,ey);
   int[] xy=_shiftxy(px,py,b,opt,out pi);
@@ -223,15 +233,48 @@ U _shifter(int up,float[] mu,ME ev) {
       if(pv<mv) {mi=i;mv=pv;}
     }
      w.sele.Clear();
-    _shift(xy,i=(pi-mi)/2);
-    _moves(1);
+    i=(pi-mi)/2;
+    if(i!=0) {
+      if(shx) {
+       int n=2*(i<0?-i:i);
+       for(j=0;j<n;j+=2) {
+         y=j;//i<0?j:xy.Length-2-j;
+         x=Index(xy[y],xy[y+1]);
+         C c=Data[x];
+         if(c.ch!=1) {i=(i<0?-1:1)*j/2;break;}
+       }
+      } else if(shb) {
+        x=Index(px,py);
+        if(Data[x].ch==1) {
+          pi=mi;px=xy[pi];py=xy[pi+1];
+          x=Index(px,py);
+          if(Data[x].ch==1) i=0;
+        }
+        if(i!=0) {
+          t=f=pi;
+          while(f>0&&Data[Index(xy[f-2],xy[f-1])].ch!=1) f-=2;
+          while(t+2<xy.Length&&Data[Index(xy[t+2],xy[t+3])].ch!=1) t+=2;
+          for(y=f;y>0&&Data[Index(xy[y-2],xy[y-1])].ch==1;y-=2);
+          y=f-y;
+          if(Math.Abs(2*i)>y) i=Math.Sign(i)*(y/2);
+          if(i>0) {
+            f-=2*Math.Abs(i);
+            xy=_part(xy,f,(t-f+2));
+          }
+        }
+      }
+    }
+    if(i!=0) {
+      _rotate(xy,i);
+      _moves(1);
+    }
     //_drawboard();    
   } else {
     w.sele.Clear();
     for(j=0;j<xy.Length;j+=2) if(xy.Length==2||xy[j]!=px||xy[j+1]!=py) Push(w.sele,xy[j],xy[j+1]);
     //_drawboard();
   }
-  return U.Shifter(px,py,b,opt,i);
+  return i==0?null:U.Shifter(px,py,b,opt,i,shb?t-f+2:0,f);
 }
 
     }
